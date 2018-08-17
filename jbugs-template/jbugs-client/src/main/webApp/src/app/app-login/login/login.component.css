@@ -1,0 +1,32 @@
+div.minHeight {
+  min-height: 100vh;
+  background-color: #17a2b8;
+}
+
+div.loginForm {
+  background-color: burlywood;
+  padding-left: 8%;
+  padding-right: 8%;
+  padding-top: 8%;
+  padding-bottom: 8%;
+  border-radius: 10%;
+}
+
+label {
+  float: left;
+}
+
+span {
+  color: red;
+  font-size: 0.7em;
+  position: absolute;
+}
+
+.isInvalid {
+  border-color: red;
+}
+
+input.ng-valid {
+  border-color: green;
+}
+

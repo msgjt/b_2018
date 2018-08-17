@@ -1,0 +1,7 @@
+<div *ngIf="users">
+  <ol>
+    <li *ngFor="let user of users">
+      {{user.id}}, {{user.username}}, {{user.password}}, {{user.email}}, {{user.firstName}}, {{user.lastName}}, {{user.mobileNumber}}
+    </li>
+  </ol>
+</div>
