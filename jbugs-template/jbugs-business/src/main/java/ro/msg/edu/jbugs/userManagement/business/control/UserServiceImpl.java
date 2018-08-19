@@ -7,8 +7,7 @@ import ro.msg.edu.jbugs.userManagement.business.validator.UserValidator;
 import ro.msg.edu.jbugs.userManagement.persistence.dao.UserDao;
 import ro.msg.edu.jbugs.userManagement.business.exception.BusinessException;
 import ro.msg.edu.jbugs.userManagement.business.exception.ExceptionCode;
-import ro.msg.edu.jbugs.userManagement.persistence.entity.User;
-import ro.msg.edu.jbugs.userManagement.persistence.entity.UserStatus;
+import ro.msg.edu.jbugs.userManagement.persistence.entity.*;
 import ro.msg.edu.jbugs.userManagement.business.dto.UserDto;
 import ro.msg.edu.jbugs.userManagement.business.utils.Encryptor;
 import org.apache.logging.log4j.LogManager;
@@ -55,7 +54,6 @@ public class UserServiceImpl implements UserService {
         user.setUsername(generateRealUsername(user.getFirstName(), user.getLastName()));
         user.setPassword(Encryptor.encrypt(userDto.getPassword()));
         user.setStatus(UserStatus.ACTIVE);
-
         Optional<User> user1 = userDao.addUser(user);
         UserDto userDto1 = user1.map(userConverter::convertEntityToDto).orElse(UserDto.builder().build());
         log.info("createUser: result={}", userDto1);

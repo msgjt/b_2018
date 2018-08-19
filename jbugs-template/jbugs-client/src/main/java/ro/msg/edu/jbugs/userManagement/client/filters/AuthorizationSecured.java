@@ -1,5 +1,6 @@
 package ro.msg.edu.jbugs.userManagement.client.filters;
 
+import ro.msg.edu.jbugs.userManagement.persistence.entity.PermissionType;
 import ro.msg.edu.jbugs.userManagement.persistence.entity.RoleType;
 
 import javax.ws.rs.NameBinding;
@@ -13,5 +14,5 @@ import static java.lang.annotation.RetentionPolicy.RUNTIME;
 @Retention(RUNTIME)
 @Target({ElementType.METHOD, ElementType.TYPE})
 public @interface AuthorizationSecured {
-    RoleType[] value() default {};
+    PermissionType[] value() default {};
 }
