@@ -11,7 +11,7 @@ public class UserValidator {
 
     public static void validateUser(User user) throws BusinessException {
         if(!userRequiredFieldsNotNull(user) || !validEmail(user.getEmail()) ||
-                !validPhoneNumber(user.getMobileNumber())){
+                !validPhoneNumber(user.getMobileNumber())) {
             throw new BusinessException(BusinessExceptionCode.USER_VALIDATION_EXCEPTION);
         }
     }
