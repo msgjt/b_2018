@@ -7,8 +7,7 @@ import io.jsonwebtoken.Jws;
 import ro.msg.edu.jbugs.userManagement.business.exception.BusinessException;
 import ro.msg.edu.jbugs.userManagement.business.exception.ExceptionCode;
 import ro.msg.edu.jbugs.userManagement.business.utils.JwtManager;
-import ro.msg.edu.jbugs.userManagement.persistence.entity.PermissionType;
-import ro.msg.edu.jbugs.userManagement.persistence.entity.RoleType;
+import ro.msg.edu.jbugs.userManagement.persistence.entity.enums.PermissionType;
 
 import javax.annotation.Priority;
 import javax.ws.rs.NotAuthorizedException;
@@ -23,8 +22,6 @@ import javax.ws.rs.ext.Provider;
 import java.io.IOException;
 import java.lang.reflect.Method;
 import java.util.Set;
-import java.util.stream.Collectors;
-import java.util.stream.Stream;
 
 @AuthorizationSecured
 @Provider

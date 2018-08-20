@@ -2,9 +2,15 @@ import {NgModule} from '@angular/core';
 import {CommonModule} from '@angular/common';
 import {RouterModule, Routes} from '@angular/router';
 import {ErrorComponent} from './error/error.component';
+import {LoginComponent} from './login/login.component';
+import {AddUserComponent} from './content/add-user/add-user.component';
+import {DummyContentComponent} from './content/dummy-content/dummy-content.component';
 
 const routes: Routes = [
   {path: '', redirectTo: '/login', pathMatch: 'full'},
+  {path: 'login', component: LoginComponent},
+  {path: 'content/add', component: AddUserComponent},
+  {path: 'content/dummy', component: DummyContentComponent},
   {path: '**', component: ErrorComponent}
 
 ];

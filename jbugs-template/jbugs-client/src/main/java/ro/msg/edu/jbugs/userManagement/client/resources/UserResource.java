@@ -7,7 +7,7 @@ import ro.msg.edu.jbugs.userManagement.business.dto.TokenDto;
 import ro.msg.edu.jbugs.userManagement.business.dto.UserDto;
 import ro.msg.edu.jbugs.userManagement.business.exception.BusinessException;
 import ro.msg.edu.jbugs.userManagement.client.filters.AuthorizationSecured;
-import ro.msg.edu.jbugs.userManagement.persistence.entity.RoleType;
+import ro.msg.edu.jbugs.userManagement.persistence.entity.enums.PermissionType;
 
 import javax.ejb.EJB;
 import javax.ws.rs.*;
@@ -24,7 +24,7 @@ public class UserResource {
     @EJB
     UserManagementBoundary userManagementBoundary;
 
-    //@AuthorizationSecured({RoleType.ADMINISTRATOR, RoleType.DEVELOPER})
+    @AuthorizationSecured({PermissionType.PERMISSION_MANAGEMENT, PermissionType.USER_MANAGEMENT})
     @GET
     public List<UserDto> getUsers() throws BusinessException {
         log.info("getUsers: --entered");
@@ -42,7 +42,7 @@ public class UserResource {
     }
 
     @Path("/add")
-    @AuthorizationSecured(RoleType.ADMINISTRATOR)
+    @AuthorizationSecured(PermissionType.USER_MANAGEMENT)
     @POST
     public Response addUser(UserDto userDto) throws BusinessException {
         log.info("addUser: userDto={}",userDto);

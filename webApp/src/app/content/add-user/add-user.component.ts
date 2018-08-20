@@ -1,6 +1,6 @@
 import {Component, OnInit} from '@angular/core';
-import {User} from '../../../shared/user';
-import {AdminService} from '../shared/admin.service';
+import {ContentService} from '../shared/content.service';
+import {User} from '../../shared/user';
 
 @Component({
   selector: 'app-add-user',
@@ -11,7 +11,7 @@ export class AddUserComponent implements OnInit {
 
   model: User;
 
-  constructor(private adminService: AdminService) {
+  constructor(private adminService: ContentService) {
     this.model = new User();
   }
 

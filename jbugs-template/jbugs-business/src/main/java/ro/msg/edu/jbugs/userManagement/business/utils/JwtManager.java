@@ -2,13 +2,13 @@ package ro.msg.edu.jbugs.userManagement.business.utils;
 
 import io.jsonwebtoken.*;
 import io.jsonwebtoken.security.Keys;
-import javafx.util.Pair;
 import ro.msg.edu.jbugs.userManagement.business.exception.BusinessException;
 import ro.msg.edu.jbugs.userManagement.business.exception.ExceptionCode;
 import ro.msg.edu.jbugs.userManagement.persistence.entity.*;
+import ro.msg.edu.jbugs.userManagement.persistence.entity.enums.PermissionType;
+import ro.msg.edu.jbugs.userManagement.persistence.entity.enums.RoleType;
 
 import java.security.Key;
-import java.util.Map;
 import java.util.Set;
 import java.util.stream.Collectors;
 

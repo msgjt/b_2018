@@ -1,7 +1,6 @@
 package ro.msg.edu.jbugs.userManagement.client.filters;
 
-import ro.msg.edu.jbugs.userManagement.persistence.entity.PermissionType;
-import ro.msg.edu.jbugs.userManagement.persistence.entity.RoleType;
+import ro.msg.edu.jbugs.userManagement.persistence.entity.enums.PermissionType;
 
 import javax.ws.rs.NameBinding;
 import java.lang.annotation.ElementType;
