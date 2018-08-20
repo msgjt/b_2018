@@ -1,3 +1,4 @@
+
 <div class="row justify-content-center minHeight">
   <div class="col-md-4 text-center align-self-center loginForm">
     <form (ngSubmit)="submitForm()" #formControl="ngForm">
@@ -21,10 +22,11 @@
           <span *ngIf="passwordControl.invalid && passwordControl.touched">Should contain only letters and numbers!</span>
         </div>
         <div class="row justify-content-center">
-          <button type="submit" class="btn btn-primary" [disabled]="formControl.invalid">Submit</button>
+          <button type="submit" class="btn btn-pill btn-light" [disabled]="formControl.invalid">Submit</button>
         </div>
       </fieldset>
 
     </form>
   </div>
 </div>
+y
