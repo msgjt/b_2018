@@ -10,7 +10,7 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 @AllArgsConstructor
 @Getter
-public enum ExceptionCode {
+public enum BusinessExceptionCode {
     INVALID_USER(1000,"User does not exist"),
     USER_VALIDATION_EXCEPTION(1005, "ValidationException"),
     EMAIL_EXISTS_ALREADY(1010, "Email already exists"),

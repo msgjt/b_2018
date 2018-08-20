@@ -1,7 +1,7 @@
 <div class="row justify-content-center minHeight">
   <div class="col-md-4 text-center align-self-center loginForm">
     <form (ngSubmit)="submitForm()" #formControl="ngForm">
-      <fieldset [disabled]="formControl.submitted">
+      <!--<fieldset [disabled]="formControl.submitted">-->
         <div class="form-group">
           <label for="usernameInput">Username:</label>
           <input type="text" id="usernameInput" name="username"
@@ -23,8 +23,9 @@
         <div class="row justify-content-center">
           <button type="submit" class="btn btn-primary" [disabled]="formControl.invalid">Submit</button>
         </div>
-      </fieldset>
+      <!--</fieldset>-->
 
     </form>
+    <button class="btn btn-dark" (click)="logout()">Logout</button>
   </div>
 </div>
