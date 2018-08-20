@@ -3,7 +3,7 @@ package ro.msg.edu.jbugs.userManagement.business.control;
 import ro.msg.edu.jbugs.userManagement.business.dto.TokenDto;
 import ro.msg.edu.jbugs.userManagement.business.exception.BusinessException;
 import ro.msg.edu.jbugs.userManagement.business.dto.UserDto;
-import ro.msg.edu.jbugs.userManagement.persistence.entity.UserStatus;
+import ro.msg.edu.jbugs.userManagement.persistence.entity.enums.UserStatus;
 
 import java.util.List;
 
