@@ -12,6 +12,7 @@ import ro.msg.edu.jbugs.userManagement.business.dto.UserDto;
 import ro.msg.edu.jbugs.userManagement.business.utils.Encryptor;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
+import ro.msg.edu.jbugs.userManagement.persistence.entity.enums.UserStatus;
 
 import javax.ejb.EJB;
 import javax.ejb.Stateless;
@@ -21,7 +22,6 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 import java.util.Random;
-import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
 @Stateless
