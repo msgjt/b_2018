@@ -1,6 +1,7 @@
 package ro.msg.edu.jbugs.userManagement.persistence.entity;
 
 import lombok.*;
+import ro.msg.edu.jbugs.userManagement.persistence.entity.enums.UserStatus;
 
 import javax.persistence.*;
 import java.util.HashSet;
@@ -11,8 +12,8 @@ import java.util.Set;
 @NoArgsConstructor
 @Getter
 @Setter
-@EqualsAndHashCode(callSuper = true, exclude = "roles")
-@ToString(callSuper = true, exclude = "roles")
+@EqualsAndHashCode(callSuper = true, exclude = {"roles", "notifications", "bugsCreated", "bugsAssigned"})
+@ToString(callSuper = true, exclude = {"roles", "notifications", "bugsCreated", "bugsAssigned"})
 @Builder
 @NamedQueries({
         @NamedQuery(name = User.GET_ALL_USERS, query = "select distinct u from User u"),
@@ -41,6 +42,15 @@ public class User extends BaseEntity<Long> {
 
     @ManyToMany(cascade = CascadeType.ALL)
     private Set<Role> roles = new HashSet<>();
+
+    @OneToMany(cascade = CascadeType.ALL, mappedBy = "user")
+    private Set<Notification> notifications = new HashSet<>();
+
+    @OneToMany(cascade = CascadeType.ALL, mappedBy = "creator")
+    private Set<Bug> bugsCreated = new HashSet<>();
+
+    @OneToMany(cascade = CascadeType.ALL, mappedBy = "assignee")
+    private Set<Bug> bugsAssigned = new HashSet<>();
 
 
 }
