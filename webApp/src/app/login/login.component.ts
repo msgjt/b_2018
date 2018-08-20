@@ -11,6 +11,7 @@ import {User} from '../shared/user';
 export class LoginComponent implements OnInit {
 
   model: User;
+  loggedIn: boolean;
 
   constructor(private loginService: LoginService,
               private router: Router) {
@@ -19,6 +20,9 @@ export class LoginComponent implements OnInit {
 
 
   ngOnInit() {
+    if (localStorage.getItem('username')) {
+      this.loggedIn = true;
+    }
   }
 
   submitForm() {
@@ -28,6 +32,7 @@ export class LoginComponent implements OnInit {
             localStorage.setItem('userId', result.id.toString());
             localStorage.setItem('token', result.token);
             localStorage.setItem('username', result.username);
+            this.loggedIn = true;
           },
           error => {
             console.log(JSON.stringify(error['error']));
@@ -49,6 +54,7 @@ export class LoginComponent implements OnInit {
           localStorage.removeItem('userId');
           localStorage.removeItem('token');
           localStorage.removeItem('username');
+          this.loggedIn = false;
           alert('logout successful');
         });
   }
