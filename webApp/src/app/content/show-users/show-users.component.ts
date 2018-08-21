@@ -13,12 +13,6 @@ export class ShowUsersComponent implements OnInit {
   previewPhoto;
   users: Array<User>;
 
-  usersa = [
-    {username: 'lungoa', firstName: 'Oana', lastName: 'Lung', mobileNumber: '0754326754', email: 'oana@msggroup.com', status: 'ACTIVE'},
-    {username: 'oanalu', firstName: 'ana', lastName: 'ung', mobileNumber: '0754326754', email: 'oana@msggroup.com', status: 'ACTIVE'}
-
-  ];
-
   constructor(private contentService: ContentService, private router: Router) {
   }
 
