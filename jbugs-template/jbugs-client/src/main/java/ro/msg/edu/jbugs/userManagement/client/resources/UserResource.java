@@ -24,7 +24,7 @@ public class UserResource {
     @EJB
     UserManagementBoundary userManagementBoundary;
 
-    @AuthorizationSecured({RoleType.ADMINISTRATOR, RoleType.DEVELOPER})
+//    @AuthorizationSecured({RoleType.ADMINISTRATOR, RoleType.DEVELOPER})
     @GET
     public List<UserDto> getUsers() throws BusinessException {
         log.info("getUsers: --entered");
