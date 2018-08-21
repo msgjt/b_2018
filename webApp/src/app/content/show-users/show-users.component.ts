@@ -12,12 +12,6 @@ export class ShowUsersComponent implements OnInit {
   model: User;
   previewPhoto = false;
 
-  users = [
-    {username: 'lungoa', firstName: 'Oana', lastName: 'Lung', mobileNumber: '0754326754', email: 'oana@msggroup.com', status: 'ACTIVE'},
-    {username: 'oanalu', firstName: 'ana', lastName: 'ung', mobileNumber: '0754326754', email: 'oana@msggroup.com', status: 'ACTIVE'}
-
-  ];
-
   constructor(private router: Router) {
   }
 
