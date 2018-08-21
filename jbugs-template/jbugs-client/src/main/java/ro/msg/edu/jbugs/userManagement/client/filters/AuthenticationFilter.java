@@ -5,7 +5,7 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 import io.jsonwebtoken.Claims;
 import io.jsonwebtoken.Jws;
 import ro.msg.edu.jbugs.userManagement.business.exception.BusinessException;
-import ro.msg.edu.jbugs.userManagement.business.exception.ExceptionCode;
+import ro.msg.edu.jbugs.userManagement.business.exception.BusinessExceptionCode;
 import ro.msg.edu.jbugs.userManagement.business.utils.JwtManager;
 import ro.msg.edu.jbugs.userManagement.persistence.entity.enums.PermissionType;
 
@@ -78,16 +78,16 @@ public class AuthenticationFilter implements ContainerRequestFilter {
                 }
 //                for (RoleType r : roles) {
 //                    if (claims.getBody().get(r.toString()) == null) {
-//                        throw new BusinessException(ExceptionCode.INVALID_TOKEN);
+//                        throw new BusinessException(BusinessExceptionCode.INVALID_TOKEN);
 //                    }
 //                }
 //                if (!"user".equals(role)) {
-//                    throw new BusinessException(ExceptionCode.INVALID_TOKEN);
+//                    throw new BusinessException(BusinessExceptionCode.INVALID_TOKEN);
 //                }
 //                requestContext.setProperty("loggedInAs", role);
 
             } else {
-                throw new BusinessException(ExceptionCode.INVALID_TOKEN);
+                throw new BusinessException(BusinessExceptionCode.INVALID_TOKEN);
             }
         } catch (Exception ex) {
             requestContext.abortWith(

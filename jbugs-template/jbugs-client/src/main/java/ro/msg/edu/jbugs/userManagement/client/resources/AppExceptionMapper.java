@@ -7,10 +7,12 @@ import javax.ws.rs.ext.ExceptionMapper;
 import javax.ws.rs.ext.Provider;
 
 @Provider
-public class AppExceptionMapper implements ExceptionMapper<BusinessException> {
+public class AppExceptionMapper implements ExceptionMapper<Exception> {
 
     @Override
-    public Response toResponse(BusinessException e) {
-        return Response.status(Response.Status.INTERNAL_SERVER_ERROR).entity(e.getMessage()).build();
+    public Response toResponse(Exception e) {
+        return Response.status(Response.Status.INTERNAL_SERVER_ERROR)
+                .entity(e.getMessage())
+                .build();
     }
 }

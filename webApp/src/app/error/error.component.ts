@@ -3,21 +3,19 @@ import {Component, OnInit} from '@angular/core';
 @Component({
   selector: 'app-error',
   template: `
-    <label>404</label>
-    <p>
-      This is not the page you're looking for!
-    </p>
+    <br>
+    <br>
+    <br>
+    <h2 class="text-center text-uppercase text-secondary mb-0"><label class="help-block text-danger" style="font-size: 2em">404</label></h2>
+    <hr class="star-dark mb-5">
+    <div class="row justify-content-center">
+      <p class="help-block text-danger" style="font-size: 2em">This is not the page you're looking for!</p>
+    </div>
+    <br>
+    <br>
+    <br>
   `,
-  styles: [
-    'p { ' +
-    'color: red; ' +
-    'font-size: 1.6em;' +
-    '}',
-    'label { ' +
-    'color: red; ' +
-    'font-size: 3em;' +
-    '}',
-  ]
+  styles: []
 })
 export class ErrorComponent implements OnInit {
 
