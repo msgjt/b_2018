@@ -1,14 +1,14 @@
 package ro.msg.edu.jbugs.userManagement.persistence.dao;
 
-import ro.msg.edu.jbugs.userManagement.persistence.entity.Role;
 import ro.msg.edu.jbugs.userManagement.persistence.entity.User;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
-import ro.msg.edu.jbugs.userManagement.persistence.entity.UserStatus;
+import ro.msg.edu.jbugs.userManagement.persistence.entity.enums.UserStatus;
 
 import javax.ejb.*;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
+import javax.persistence.Query;
 import javax.persistence.TypedQuery;
 import java.util.List;
 import java.util.Optional;
@@ -100,12 +100,23 @@ public class UserDaoImpl implements UserDao {
     public Boolean setUserStatus(Long id, UserStatus userStatus) {
         log.info("setUserStatus: id={}", id);
         Optional<User> user = Optional.ofNullable(em.find(User.class, id));
-        user = user.map(u->{
+        user = user.map(u -> {
             u.setStatus(userStatus);
             return u;
         });
-        log.info("setUserStatus: user={}",user);
+        log.info("setUserStatus: user={}", user);
         return user.isPresent();
+    }
+
+    @Override
+    public Boolean setUserStatusByUsername(String username, UserStatus userStatus) {
+        log.info("setUserStatus: username={}", username);
+        Query query = em.createNamedQuery(User.UPDATE_USER_STATUS_BY_USERNAME);
+        query.setParameter("status", userStatus);
+        query.setParameter("username", username);
+        final Integer result = query.executeUpdate();
+        log.info("setUserStatus: result={}", result);
+        return result != 0;
     }
 
     @Override

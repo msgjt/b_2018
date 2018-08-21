@@ -1,0 +1,81 @@
+<section id="contact" *ngIf="!loggedIn">
+  <div class="container">
+    <h2 class="text-center text-uppercase text-secondary mb-0">{{ 'login.login' | translate }}</h2>
+    <hr class="star-dark mb-5">
+    <div class="row">
+      <div class="col-lg-8 mx-auto">
+        <form name="sentMessage" id="contactForm" autocomplete="off" (ngSubmit)="submitForm()" #formControl="ngForm">
+          <div class="control-group">
+            <div class="form-group floating-label-form-group controls mb-0 pb-2">
+              <input type="text"
+                     id="usernameInput"
+                     name="username"
+                     class="form-control"
+                     [(ngModel)]="model.username"
+                     required
+                     #usernameElement
+                     #usernameControl="ngModel"
+                     minlength="6"
+                     maxlength="12"
+                     pattern="^[a-zA-Z0-9]*$"
+                     placeholder="{{ 'login.username' | translate }}"
+                     [class.isInvalid]="usernameControl.invalid && usernameControl.touched">
+            </div>
+            <small class="help-block text-danger"
+                   *ngIf="usernameControl.invalid && usernameControl.touched && usernameControl.value != '' &&usernameControl.value != null">
+              {{'login.message1' | translate }}
+            </small>
+            <small class="help-block text-info" *ngIf="usernameControl.value == null || usernameControl.value == ''">
+              {{'login.message3' | translate }}
+            </small>
+            <small class="help-block text-info" *ngIf="usernameControl.valid">{{'login.message4' | translate }}</small>
+          </div>
+          <div class="control-group">
+            <div class="form-group floating-label-form-group controls mb-0 pb-2">
+              <input type="password"
+                     id="passwordInput"
+                     name="password"
+                     class="form-control"
+                     [(ngModel)]="model.password"
+                     required
+                     #passwordElement
+                     #passwordControl="ngModel"
+                     minlength="6"
+                     maxlength="12"
+                     pattern="^[a-zA-Z0-9]*$"
+                     placeholder="{{'login.password' | translate }}"
+                     [class.isInvalid]="passwordControl.invalid && passwordControl.touched">
+            </div>
+            <small class="help-block text-danger"
+                   *ngIf="passwordControl.invalid && passwordControl.touched && passwordControl.value != '' && passwordControl.value != null">
+              {{'login.message2' | translate }}
+            </small>
+            <small class="help-block text-info" *ngIf="passwordControl.value == null || passwordControl.value == ''">
+              {{'login.message3' | translate }}
+            </small>
+            <small class="help-block text-info" *ngIf="passwordControl.valid">{{'login.message5' | translate }}</small>
+          </div>
+          <br>
+          <div class="row justify-content-center">
+            <button type="submit" style="border-color: #18BC9C; background-color: #18BC9C"
+                    class="btn btn-primary btn-lg" [disabled]="formControl.invalid">{{'login.login' | translate }}
+            </button>
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+</section>
+<section *ngIf="loggedIn">
+  <div class="container">
+    <h2 class="text-center text-uppercase text-secondary mb-0">{{'login.logout' | translate }}</h2>
+    <hr class="star-dark mb-5">
+    <div class="row justify-content-center">
+      <button type="submit"
+              style="border-color: #18BC9C; background-color: #18BC9C"
+              class="btn btn-primary btn-lg"
+              (click)="logout()">{{'login.logout' | translate }}
+      </button>
+    </div>
+  </div>
+</section>

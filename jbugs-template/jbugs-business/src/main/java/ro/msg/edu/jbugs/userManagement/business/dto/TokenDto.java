@@ -11,4 +11,5 @@ import lombok.*;
 @Builder
 public class TokenDto extends BaseDto {
     private String token;
+    private String username;
 }

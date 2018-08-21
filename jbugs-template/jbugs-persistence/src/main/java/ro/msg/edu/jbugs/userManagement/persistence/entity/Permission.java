@@ -1,6 +1,7 @@
 package ro.msg.edu.jbugs.userManagement.persistence.entity;
 
 import lombok.*;
+import ro.msg.edu.jbugs.userManagement.persistence.entity.enums.PermissionType;
 
 import javax.persistence.*;
 import java.util.HashSet;
@@ -18,8 +19,6 @@ public class Permission extends BaseEntity<Long>{
 
     @Enumerated(EnumType.STRING)
     private PermissionType type;
-
-    private String description;
 
     @ManyToMany(cascade = CascadeType.ALL, mappedBy = "permissions")
     private Set<Role> roles = new HashSet<>();

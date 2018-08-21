@@ -1,6 +1,7 @@
 package ro.msg.edu.jbugs.userManagement.persistence.entity;
 
 import lombok.*;
+import ro.msg.edu.jbugs.userManagement.persistence.entity.enums.RoleType;
 
 import javax.persistence.*;
 import java.util.HashSet;

@@ -2,8 +2,6 @@ package servlet;
 
 import java.io.IOException;
 import java.io.PrintWriter;
-import java.util.ArrayList;
-import java.util.List;
 import java.util.Optional;
 
 import javax.ejb.EJB;
@@ -14,11 +12,8 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import ro.msg.edu.jbugs.userManagement.business.control.UserService;
-import ro.msg.edu.jbugs.userManagement.business.exception.BusinessException;
-import ro.msg.edu.jbugs.userManagement.business.dto.UserDto;
 import ro.msg.edu.jbugs.userManagement.persistence.dao.UserDao;
 import ro.msg.edu.jbugs.userManagement.persistence.entity.User;
-import ro.msg.edu.jbugs.userManagement.persistence.entity.UserStatus;
 
 @WebServlet(urlPatterns = {"/TestServlet"})
 public class TestServlet extends HttpServlet {
@@ -63,7 +58,8 @@ public class TestServlet extends HttpServlet {
 //            message = "failed!";
 //        }
 
-        Optional<User> optionalUser = userDao.getUserByUsernameWithRolesAndPermissions("bothti");
+
+        Optional<User> optionalUser = userDao.getUserByUsernameWithRolesAndPermissions("macarc");
 
         response.setContentType("text/html;charset=UTF-8");
         try (PrintWriter out = response.getWriter()) {
