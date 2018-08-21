@@ -1,6 +1,5 @@
 import {Component, OnInit} from '@angular/core';
 import {User} from '../../shared/user';
-import {ContentService} from '../shared/content.service';
 
 @Component({
   selector: 'app-edit-user',
@@ -10,12 +9,11 @@ import {ContentService} from '../shared/content.service';
 export class EditUserComponent implements OnInit {
 
   model: User;
-  userArray: Array<User>;
   itemList = [];
   selectedItems = [];
   settings = {};
 
-  constructor(private userList: ContentService) {
+  constructor() {
     this.model = new User();
   }
 
@@ -43,9 +41,6 @@ export class EditUserComponent implements OnInit {
 
   }
 
-  submitForm() {
-
-  }
 
   onItemSelect() {
     console.log('on select');
