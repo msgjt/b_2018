@@ -14,10 +14,8 @@ const routes: Routes = [
   {path: 'login', component: LoginComponent},
   {path: 'content/add', component: AddUserComponent},
   {path: 'content/dummy', component: DummyContentComponent},
-  {path: 'showUsers', component: ShowUsersComponent,
-    children: [
-      {path: 'editUser', component: EditUserComponent}
-    ]},
+  {path: 'showUsers', component: ShowUsersComponent},
+  {path: 'editUser', component: EditUserComponent},
   {path: 'welcome', component: WelcomeComponent},
   {path: '**', component: ErrorComponent}
 

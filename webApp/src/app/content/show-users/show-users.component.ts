@@ -9,7 +9,7 @@ import {Router} from '@angular/router';
   styleUrls: ['./show-users.component.css']
 })
 export class ShowUsersComponent implements OnInit {
-  model: User;
+  user: User;
   previewPhoto;
   users: Array<User>;
 
