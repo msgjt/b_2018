@@ -10,13 +10,18 @@ import {Router} from '@angular/router';
 })
 export class ShowUsersComponent implements OnInit {
   model: User;
-  previewPhoto = false;
+  previewPhoto;
+  users: Array<User>;
 
-  constructor(private router: Router) {
+  constructor(private contentService: ContentService, private router: Router) {
   }
 
 
   ngOnInit() {
+    this.contentService.getAllUsers()
+      .subscribe(result => this.users = result,
+        error => console.log(JSON.stringify(error)));
+
 
   }
 

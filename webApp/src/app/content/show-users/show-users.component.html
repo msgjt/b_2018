@@ -1,25 +1,33 @@
-<div class="container">
-  <table>
-    <thead>
+<br>
+<div class="col-md-12 justify-content-center">
+  <table class="table">
+    <thead style="background-color: #1a252f; color: white">
     <tr>
-      <th>Username</th>
-      <th>First name</th>
-      <th>Last name</th>
-      <th>Email</th>
-      <th>Mobile number</th>
-      <th>Account status</th>
+      <th scope="col">#</th>
+      <th scope="col">Username</th>
+      <th scope="col">First name</th>
+      <th scope="col">Last name</th>
+      <th scope="col">Email</th>
+      <th scope="col">Mobile number</th>
+      <th scope="col">Account status</th>
+      <th scope="col"></th>
+      <th scope="col"></th>
     </tr>
-    </thead>
+    </thead >
     <tbody>
-    <tr *ngFor="let user of users">
+
+    <tr *ngFor="let user of users; let i = index" [attr.data-index]="i">
+      <td scope="col">{{i + 1}}</td>
       <td>{{user.username}}</td>
       <td>{{user.firstName}}</td>
       <td>{{user.lastName}}</td>
       <td>{{user.email}}</td>
       <td>{{user.mobileNumber}}</td>
       <td>{{user.status}}</td>
-      <td> <button type="button" (click)="togglePhotoPreview()" class="btn btn-primary">
-        {{previewPhoto ? "Hide" : "Show"}} Edit User
+      <td> <button type="button" class="btn btn-primary">Edit</button>
+      </td>
+      <td style="width: 10%"> <button type="button" (click)="togglePhotoPreview()" class="btn btn-primary">
+        {{previewPhoto ? "Activate" : "Deactivate"}}
       </button>
       </td>
 
