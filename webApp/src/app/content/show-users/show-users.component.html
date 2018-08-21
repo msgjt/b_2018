@@ -1,3 +1,6 @@
+<div style="height: 70px">
+
+</div>
 <div class="container">
   <table>
     <thead>
@@ -18,8 +21,10 @@
       <td>{{user.email}}</td>
       <td>{{user.mobileNumber}}</td>
       <td>{{user.status}}</td>
+      <td> <button type="button" class="btn btn-primary"> Edit User</button>
+      </td>
       <td> <button type="button" (click)="togglePhotoPreview()" class="btn btn-primary">
-        {{previewPhoto ? "Hide" : "Show"}} Edit User
+        {{previewPhoto ? "Activate" : "Deactivate"}} account
       </button>
       </td>
 
