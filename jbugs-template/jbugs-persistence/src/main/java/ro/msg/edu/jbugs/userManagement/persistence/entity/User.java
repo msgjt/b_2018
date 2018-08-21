@@ -57,5 +57,4 @@ public class User extends BaseEntity<Long> {
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "assignee")
     private Set<Bug> bugsAssigned = new HashSet<>();
 
-
 }

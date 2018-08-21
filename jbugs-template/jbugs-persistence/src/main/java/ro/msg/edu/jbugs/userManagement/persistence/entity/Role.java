@@ -15,7 +15,16 @@ import java.util.Set;
 @EqualsAndHashCode(exclude = {"users","permissions"})
 @ToString(exclude = {"users","permissions"})
 @Builder
+
+@NamedQueries({
+        @NamedQuery(name = Role.GET_BY_TYPES, query="select distinct r from Role r where r.type in :types")
+})
+
 public class Role extends BaseEntity<Long> {
+
+
+    public static final String GET_BY_TYPES = "GET_BY_TYPES";
+
 
     @Enumerated(EnumType.STRING)
     private RoleType type;
