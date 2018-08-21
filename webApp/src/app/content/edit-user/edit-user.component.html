@@ -1,0 +1,49 @@
+<div class="row justify-content-center minHeight">
+  <div class="col-md-8 text-center align-self-center loginForm">
+    <form (ngSubmit)="submitForm()" #formControl="ngForm">
+
+      <div class="form-group">
+        <label for="firstNameInput">First name:</label>
+        <input type="text" id="firstNameInput" name="firstName"
+               class="form-control" [(ngModel)]="model.firstName"
+               required #firstNameElement #firstNameControl="ngModel"
+               minlength="1" pattern="^[a-zA-Z]*$"
+               [class.isInvalid]="firstNameControl.invalid && firstNameControl.touched">
+        <span *ngIf="firstNameControl.invalid && firstNameControl.touched">First name can not be empty!</span>
+      </div>
+
+      <div class="form-group">
+        <label for="lastNameInput">Last Name:</label>
+        <input type="text" id="lastNameInput" name="lastName"
+               class="form-control" [(ngModel)]="model.lastName"
+               required #lastNameElement #lastNameControl="ngModel"
+               minlength="1" pattern="^[a-zA-Z]*$"
+               [class.isInvalid]="lastNameControl.invalid && lastNameControl.touched">
+        <span *ngIf="lastNameControl.invalid && lastNameControl.touched">Last name can not be empty!</span>
+      </div>
+
+      <div class="form-group">
+        <label for="emailInput">Email:</label>
+        <input type="text" id="emailInput" name="email"
+               class="form-control" [(ngModel)]="model.email"
+               required #emailElement #emailControl="ngModel">
+      </div>
+
+      <div class="form-group">
+        <label for="mobileNumberInput">Mobile Number:</label>
+        <input type="text" id="mobileNumberInput" name="mobileNumber"
+               class="form-control" [(ngModel)]="model.mobileNumber"
+               required #mobileNumberElement #mobileNumberControl="ngModel"
+               minlength="10" pattern="^[0-9]*$"
+               [class.isInvalid]="mobileNumberControl.invalid && mobileNumberControl.touched">
+        <span *ngIf="mobileNumberControl.invalid && mobileNumberControl.touched">Mobile number can contain only digits!</span>
+      </div>
+
+
+
+      <div class="row justify-content-center">
+        <button type="submit" class="btn btn-primary" >Submit</button>
+      </div>
+    </form>
+  </div>
+</div>
