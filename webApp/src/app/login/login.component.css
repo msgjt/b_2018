@@ -1,15 +1,15 @@
 div.minHeight {
   min-height: 100vh;
-  background-color: #5A0016;
+  background-color: #17a2b8;
 }
 
 div.loginForm {
-  background-color: lightsteelblue;
+  background-color: burlywood;
   padding-left: 8%;
   padding-right: 8%;
   padding-top: 8%;
   padding-bottom: 8%;
-  border-radius: 50%;
+  border-radius: 10%;
 }
 
 label {
