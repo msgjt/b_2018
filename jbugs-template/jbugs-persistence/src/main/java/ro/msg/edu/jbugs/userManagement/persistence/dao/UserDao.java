@@ -24,6 +24,8 @@ public interface UserDao {
 
     Boolean setUserStatus(Long id, UserStatus userStatus);
 
+    Boolean setUserStatusByUsername(String username, UserStatus userStatus);
+
     Optional<User> getUserWithEmail(@NotNull String email);
 
 }

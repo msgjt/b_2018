@@ -1,25 +1,25 @@
 package ro.msg.edu.jbugs.userManagement.business.exception;
 
 public class BusinessException extends Exception {
-    private ExceptionCode exceptionCode;
+    private BusinessExceptionCode businessExceptionCode;
 
-    public BusinessException(ExceptionCode exceptionCode) {
-        super(exceptionCode.getMessage());
-        this.exceptionCode = exceptionCode;
+    public BusinessException(BusinessExceptionCode businessExceptionCode) {
+        super(businessExceptionCode.getMessage());
+        this.businessExceptionCode = businessExceptionCode;
     }
 
-    public BusinessException(ExceptionCode code, String message) {
+    public BusinessException(BusinessExceptionCode code, String message) {
         super(message);
-        exceptionCode = code;
+        businessExceptionCode = code;
     }
 
-    public BusinessException(ExceptionCode code, String message, Throwable cause) {
+    public BusinessException(BusinessExceptionCode code, String message, Throwable cause) {
         super(message, cause);
-        exceptionCode = code;
+        businessExceptionCode = code;
     }
 
-    public BusinessException(ExceptionCode code, Throwable cause) {
+    public BusinessException(BusinessExceptionCode code, Throwable cause) {
         super(cause);
-        exceptionCode = code;
+        businessExceptionCode = code;
     }
 }

@@ -2,11 +2,12 @@ package ro.msg.edu.jbugs.userManagement.business.control;
 
 import ro.msg.edu.jbugs.userManagement.business.converter.UserConverter;
 import ro.msg.edu.jbugs.userManagement.business.dto.TokenDto;
+import ro.msg.edu.jbugs.userManagement.business.exception.BusinessExceptionCode;
 import ro.msg.edu.jbugs.userManagement.business.utils.JwtManager;
+import ro.msg.edu.jbugs.userManagement.business.utils.UtilBean;
 import ro.msg.edu.jbugs.userManagement.business.validator.UserValidator;
 import ro.msg.edu.jbugs.userManagement.persistence.dao.UserDao;
 import ro.msg.edu.jbugs.userManagement.business.exception.BusinessException;
-import ro.msg.edu.jbugs.userManagement.business.exception.ExceptionCode;
 import ro.msg.edu.jbugs.userManagement.persistence.entity.*;
 import ro.msg.edu.jbugs.userManagement.business.dto.UserDto;
 import ro.msg.edu.jbugs.userManagement.business.utils.Encryptor;
@@ -18,10 +19,7 @@ import javax.ejb.EJB;
 import javax.ejb.Stateless;
 import javax.inject.Inject;
 import javax.validation.constraints.NotNull;
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Optional;
-import java.util.Random;
+import java.util.*;
 import java.util.stream.Stream;
 
 @Stateless
@@ -39,6 +37,9 @@ public class UserServiceImpl implements UserService {
     @EJB
     private UserDao userDao;
 
+    @EJB
+    private UtilBean utilBean;
+
     @Inject
     private UserConverter userConverter;
 
@@ -49,7 +50,7 @@ public class UserServiceImpl implements UserService {
         normalizeUser(user);
         UserValidator.validateUser(user);
 //        if (userDao.getUserWithEmail(user.getEmail()).isPresent()) {
-//            throw new BusinessException(ExceptionCode.EMAIL_EXISTS_ALREADY);
+//            throw new BusinessException(BusinessExceptionCode.EMAIL_EXISTS_ALREADY);
 //        }
         user.setUsername(generateRealUsername(user.getFirstName(), user.getLastName()));
         user.setPassword(Encryptor.encrypt(userDto.getPassword()));
@@ -78,16 +79,29 @@ public class UserServiceImpl implements UserService {
     public TokenDto login(String username, String password) throws BusinessException {
         log.info("login: username={}", username);
         Optional<User> user = userDao.getUserByUsernameWithRolesAndPermissions(username);
-        User user1 = user.orElseThrow(() -> new BusinessException(ExceptionCode.USER_VALIDATION_EXCEPTION));
-        if (!Encryptor.encrypt(password).equals(user1.getPassword())) {
-            throw new BusinessException(ExceptionCode.PASSWORD_NOT_VALID);
-        }
+        User user1 = user.orElseThrow(() -> new BusinessException(BusinessExceptionCode.USER_VALIDATION_EXCEPTION));
+        validateUserForLogin(user1, password);
         TokenDto tokenDto = TokenDto.builder()
                 .token(JwtManager.getInstance().createToken(user1))
+                .username(user1.getUsername())
                 .build();
         tokenDto.setId(user1.getId());
         log.info("login: token={}", tokenDto);
         return tokenDto;
+    }
+
+    private void validateUserForLogin(User user, String password) throws BusinessException {
+        if(user.getStatus().equals(UserStatus.DEACTIVATED)){
+            throw new BusinessException(BusinessExceptionCode.USER_DEACTIVATED);
+        }
+        if(utilBean.addTry(user.getUsername())){
+            userDao.setUserStatusByUsername(user.getUsername(), UserStatus.DEACTIVATED);
+            throw new BusinessException(BusinessExceptionCode.USER_DEACTIVATED);
+        }
+        if (!Encryptor.encrypt(password).equals(user.getPassword())) {
+            throw new BusinessException(BusinessExceptionCode.PASSWORD_NOT_VALID);
+        }
+        utilBean.resetTries(user.getUsername());
     }
 
     String generateFirstAttemptUsername(final String firstName, final String lastName) {
@@ -121,7 +135,7 @@ public class UserServiceImpl implements UserService {
                 suffixInt = getRandomInteger(MIN_RANDOM_PREFIX_RANGE, MAX_RANDOM_PREFIX_RANGE);
                 result = firstAttemptUsername + suffixInt;
                 if (System.currentTimeMillis() > endTime) {
-                    throw new BusinessException(ExceptionCode.TOO_MANY_ALIKE_USERNAMES);
+                    throw new BusinessException(BusinessExceptionCode.TOO_MANY_ALIKE_USERNAMES);
                 }
             } while (userDao.getUserByUsername(result).isPresent());
             realUsername = result;
@@ -140,7 +154,7 @@ public class UserServiceImpl implements UserService {
         log.info("setUserStatus: id={}, userStatus={}",id,userStatus);
         Boolean success = userDao.setUserStatus(id, userStatus);
         if(!success){
-            throw new BusinessException(ExceptionCode.INVALID_USER);
+            throw new BusinessException(BusinessExceptionCode.INVALID_USER);
         }
         log.info("setUserStatus: success");
     }
