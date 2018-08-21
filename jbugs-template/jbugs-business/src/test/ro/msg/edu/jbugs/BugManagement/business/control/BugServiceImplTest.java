@@ -51,8 +51,6 @@ public class BugServiceImplTest{
         bugDto.setFixedInVersion("1.0");
         bugDto.setSeverityType(SeverityType.HIGH);
         bugDto.setBugStatusType(BugStatusType.IN_PROGRESS);
-        //bugDto.setCreator(userConverter.convertDtoToEntity(user));
-        //bugDto.setAssignee(userConverter.convertDtoToEntity(user));
         assertEquals(bugDto,bugService.createBug(bugDto));
 
     }
