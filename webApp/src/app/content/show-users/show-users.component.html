@@ -24,12 +24,11 @@
       <td>{{user.email}}</td>
       <td>{{user.mobileNumber}}</td>
       <td>{{user.status}}</td>
-      <td> <button type="button" class="btn btn-primary">Edit</button>
+      <td> <i class="material-icons">border_color</i>
       </td>
-      <td style="width: 10%"> <button type="button" (click)="togglePhotoPreview()" class="btn btn-primary">
-        {{previewPhoto ? "Activate" : "Deactivate"}}
-      </button>
-      </td>
+      <td><i class="material-icons">check_box</i></td>
+      <td *ngIf="false"><i class="material-icons">check_box_outline_blank</i></td>
+      <!--pui un ngIf pe un td-->
 
     </tr>
 
