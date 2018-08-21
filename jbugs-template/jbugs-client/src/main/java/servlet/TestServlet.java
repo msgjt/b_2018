@@ -2,8 +2,6 @@ package servlet;
 
 import java.io.IOException;
 import java.io.PrintWriter;
-import java.sql.Date;
-import java.time.LocalDate;
 import java.util.Optional;
 
 import javax.ejb.EJB;
@@ -14,12 +12,8 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import ro.msg.edu.jbugs.userManagement.business.control.UserService;
-import ro.msg.edu.jbugs.userManagement.persistence.dao.BugDao;
 import ro.msg.edu.jbugs.userManagement.persistence.dao.UserDao;
-import ro.msg.edu.jbugs.userManagement.persistence.entity.Bug;
 import ro.msg.edu.jbugs.userManagement.persistence.entity.User;
-import ro.msg.edu.jbugs.userManagement.persistence.entity.enums.BugStatusType;
-import ro.msg.edu.jbugs.userManagement.persistence.entity.enums.SeverityType;
 
 @WebServlet(urlPatterns = {"/TestServlet"})
 public class TestServlet extends HttpServlet {
@@ -29,9 +23,6 @@ public class TestServlet extends HttpServlet {
 
     @EJB
     private UserDao userDao;
-
-    @EJB
-    private BugDao bugDao;
 
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
@@ -67,23 +58,7 @@ public class TestServlet extends HttpServlet {
 //            message = "failed!";
 //        }
 
-        Optional<User> optionalUser = userDao.getUserByUsernameWithRolesAndPermissions("ghemep");
-        User user = new User();
-        user.setFirstName("Ghemes");
-        user.setLastName("Paul");
-        Bug bug = new Bug();
-        bug.setFixedInVersion("1.0");
-        bug.setAssignee(user);
-        bug.setCreator(user);
-        bug.setDueDate(Date.valueOf(LocalDate.now()));
-        bug.setDescription("test123");
-        bug.setSeverityType(SeverityType.CRITICAL);
-        bug.setStatusType(BugStatusType.IN_PROGRESS);
-        bug.setTitle("titlu");
-        bug.setVersion("1.0");
-        //userDao.addUser(user);
-        //bugDao.addBug(bug);
-//        userDao.addUser(user);
+        Optional<User> optionalUser = userDao.getUserByUsernameWithRolesAndPermissions("lungoa");
 
         response.setContentType("text/html;charset=UTF-8");
         try (PrintWriter out = response.getWriter()) {

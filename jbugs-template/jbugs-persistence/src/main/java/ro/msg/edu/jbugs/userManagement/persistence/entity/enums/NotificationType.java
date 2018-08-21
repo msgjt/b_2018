@@ -5,7 +5,7 @@ public enum NotificationType {
     USER_UPDATED,
     USER_DELETED,
     BUG_UPDATED,
-    BUC_CLOSED,
+    BUG_CLOSED,
     BUG_STATUS_UPDATED,
     USER_DEACTIVATED
 }

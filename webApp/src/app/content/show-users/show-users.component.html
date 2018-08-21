@@ -1,0 +1,36 @@
+<div style="height: 70px">
+
+</div>
+<div class="container">
+  <table>
+    <thead>
+    <tr>
+      <th>Username</th>
+      <th>First name</th>
+      <th>Last name</th>
+      <th>Email</th>
+      <th>Mobile number</th>
+      <th>Account status</th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr *ngFor="let user of users">
+      <td>{{user.username}}</td>
+      <td>{{user.firstName}}</td>
+      <td>{{user.lastName}}</td>
+      <td>{{user.email}}</td>
+      <td>{{user.mobileNumber}}</td>
+      <td>{{user.status}}</td>
+      <td> <button type="button" class="btn btn-primary"> Edit User</button>
+      </td>
+      <td> <button type="button" (click)="togglePhotoPreview()" class="btn btn-primary">
+        {{previewPhoto ? "Activate" : "Deactivate"}} account
+      </button>
+      </td>
+
+    </tr>
+
+    </tbody>
+  </table>
+</div>
+

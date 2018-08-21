@@ -13,6 +13,8 @@ import {AddUserComponent} from './content/add-user/add-user.component';
 import {FormsModule} from '@angular/forms';
 import {LoginService} from './login/shared/login.service';
 import {ContentService} from './content/shared/content.service';
+import { EditUserComponent } from './content/edit-user/edit-user.component';
+import {ShowUsersComponent} from './content/show-users/show-users.component';
 @NgModule({
   declarations: [
     AppComponent,
@@ -20,7 +22,9 @@ import {ContentService} from './content/shared/content.service';
     LoginComponent,
     ContentComponent,
     AddUserComponent,
-    DummyContentComponent
+    DummyContentComponent,
+    EditUserComponent,
+    ShowUsersComponent
   ],
   imports: [
     BrowserModule,
