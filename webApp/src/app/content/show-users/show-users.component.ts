@@ -10,19 +10,24 @@ import {Router} from '@angular/router';
 })
 export class ShowUsersComponent implements OnInit {
   model: User;
-  previewPhoto = false;
+  previewPhoto;
+  users: Array<User>;
 
-  users = [
+  usersa = [
     {username: 'lungoa', firstName: 'Oana', lastName: 'Lung', mobileNumber: '0754326754', email: 'oana@msggroup.com', status: 'ACTIVE'},
     {username: 'oanalu', firstName: 'ana', lastName: 'ung', mobileNumber: '0754326754', email: 'oana@msggroup.com', status: 'ACTIVE'}
 
   ];
 
-  constructor(private router: Router) {
+  constructor(private contentService: ContentService, private router: Router) {
   }
 
 
   ngOnInit() {
+    this.contentService.getAllUsers()
+      .subscribe(result => this.users = result,
+        error => console.log(JSON.stringify(error)));
+
 
   }
 
