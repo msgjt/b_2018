@@ -74,7 +74,7 @@ public class UserResource {
     }
 
     @Path("/update")
-    @POST
+    @PUT
     public Response updateUser(UserDto userDto) throws BusinessException {
         log.info("updateUser: userDto={}",userDto);
         UserDto result = userManagementBoundary.updateUser(userDto);

@@ -17,13 +17,15 @@ import java.util.Set;
 @Builder
 
 @NamedQueries({
-        @NamedQuery(name = Role.GET_BY_TYPES, query="select distinct r from Role r where r.type in :types")
+        @NamedQuery(name = Role.GET_BY_TYPES, query="select distinct r from Role r where r.type in :types"),
+        @NamedQuery(name = Role.GET_ALL_ROLES, query="select distinct r from Role r")
 })
 
 public class Role extends BaseEntity<Long> {
 
 
     public static final String GET_BY_TYPES = "GET_BY_TYPES";
+    public static final String GET_ALL_ROLES = "GET_ALL_ROLES";
 
 
     @Enumerated(EnumType.STRING)

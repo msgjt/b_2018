@@ -1,6 +1,7 @@
 package ro.msg.edu.jbugs.userManagement.business.validator;
 
 import com.sun.javaws.exceptions.InvalidArgumentException;
+import ro.msg.edu.jbugs.userManagement.business.dto.RoleDto;
 import ro.msg.edu.jbugs.userManagement.business.exception.BusinessException;
 import ro.msg.edu.jbugs.userManagement.business.exception.BusinessExceptionCode;
 import ro.msg.edu.jbugs.userManagement.persistence.entity.Role;
@@ -8,6 +9,7 @@ import ro.msg.edu.jbugs.userManagement.persistence.entity.User;
 import ro.msg.edu.jbugs.userManagement.persistence.entity.enums.RoleType;
 
 import java.util.HashSet;
+import java.util.List;
 import java.util.Set;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
@@ -61,13 +63,13 @@ public class UserValidator {
         return matcherGermany.find() || matcherRomania.find();
     }
 
-    public static HashSet<RoleType> validateRoles(String[] roles) {
+    public static HashSet<RoleType> validateRoles(List<RoleDto> roles) {
         HashSet<RoleType> toReturn = new HashSet<>();
-        if (roles.length == 0 || roles.length > 5)
+        if (roles.size() == 0 || roles.size() > 5)
             return toReturn;
-        for (String role: roles) {
+        for (RoleDto role: roles) {
             try {
-                if (!toReturn.add(RoleType.valueOf(role))) {
+                if (!toReturn.add(RoleType.valueOf(role.getRoleType()))) {
                     throw new IllegalArgumentException();
                 }
             } catch (IllegalArgumentException | NullPointerException e) {

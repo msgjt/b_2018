@@ -33,6 +33,10 @@ public class RoleConverter extends AbstractConverterBaseEntityConverter<Role, Ro
 
     @Override
     public RoleDto convertEntityToDto(Role role) {
-        return null;
+        RoleDto roleDto = RoleDto.builder()
+                .roleType(role.getType().name())
+                .build();
+        roleDto.setId(role.getId());
+        return roleDto;
     }
 }
