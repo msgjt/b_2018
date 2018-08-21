@@ -36,7 +36,7 @@ public class BugDaoImpl implements BugDao {
             bugOptional = Optional.ofNullable(bug);
         } catch (RuntimeException ex) {
             bugOptional = Optional.empty();
-            log.info("bug not inserted");
+            //log.info("bug not inserted");
             log.info(ex.getStackTrace());
         }
         log.info("addBug: result={}", bug);
