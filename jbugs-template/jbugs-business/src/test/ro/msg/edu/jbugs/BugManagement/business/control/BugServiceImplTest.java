@@ -52,6 +52,5 @@ public class BugServiceImplTest{
         bugDto.setSeverityType(SeverityType.HIGH);
         bugDto.setBugStatusType(BugStatusType.IN_PROGRESS);
         assertEquals(bugDto,bugService.createBug(bugDto));
-
     }
 }
