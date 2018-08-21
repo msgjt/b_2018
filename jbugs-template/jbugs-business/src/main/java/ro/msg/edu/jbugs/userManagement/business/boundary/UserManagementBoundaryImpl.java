@@ -21,6 +21,11 @@ public class UserManagementBoundaryImpl implements UserManagementBoundary {
     }
 
     @Override
+    public UserDto updateUser(UserDto userDto) throws BusinessException {
+        return userService.updateUser(userDto);
+    }
+
+    @Override
     public List<UserDto> getAllUsers() {
         return userService.getAllUsers();
     }

@@ -7,7 +7,10 @@ import ro.msg.edu.jbugs.userManagement.business.exception.BusinessException;
 import java.util.List;
 
 public interface UserManagementBoundary {
+
     UserDto createUser(UserDto userDto) throws BusinessException;
+
+    UserDto updateUser(UserDto userDto) throws BusinessException;
 
     public List<UserDto> getAllUsers();
 

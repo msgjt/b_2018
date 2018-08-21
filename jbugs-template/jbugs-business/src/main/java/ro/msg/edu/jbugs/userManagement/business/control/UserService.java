@@ -23,4 +23,6 @@ public interface UserService {
     public TokenDto login(String username, String password) throws BusinessException;
 
     void setUserStatus(Long id, UserStatus userStatus) throws BusinessException;
+
+    UserDto updateUser(UserDto userDto) throws BusinessException;
 }

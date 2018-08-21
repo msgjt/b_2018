@@ -12,8 +12,8 @@ import java.util.Set;
 @NoArgsConstructor
 @Getter
 @Setter
-@EqualsAndHashCode(callSuper = true, exclude = "roles")
-@ToString(callSuper = true, exclude = "roles")
+@EqualsAndHashCode(exclude = "roles")
+@ToString(exclude = "roles")
 @Builder
 public class Permission extends BaseEntity<Long>{
 

@@ -49,14 +49,15 @@ public class UserServiceImpl implements UserService {
         User user = userConverter.convertDtoToEntity(userDto);
         normalizeUser(user);
         UserValidator.validateUser(user);
-//        if (userDao.getUserWithEmail(user.getEmail()).isPresent()) {
-//            throw new BusinessException(BusinessExceptionCode.EMAIL_EXISTS_ALREADY);
-//        }
+        if (userDao.getUserWithEmail(user.getEmail()).isPresent()) {
+            throw new BusinessException(BusinessExceptionCode.EMAIL_EXISTS_ALREADY);
+        }
         user.setUsername(generateRealUsername(user.getFirstName(), user.getLastName()));
         user.setPassword(Encryptor.encrypt(userDto.getPassword()));
         user.setStatus(UserStatus.ACTIVE);
         Optional<User> user1 = userDao.addUser(user);
-        UserDto userDto1 = user1.map(userConverter::convertEntityToDto).orElse(UserDto.builder().build());
+        UserDto userDto1 = user1.map(userConverter::convertEntityToDto)
+                .orElseThrow(() -> new BusinessException(BusinessExceptionCode.CAN_NOT_ADD_USER));
         log.info("createUser: result={}", userDto1);
 
         return userDto1;
@@ -79,7 +80,7 @@ public class UserServiceImpl implements UserService {
     public TokenDto login(String username, String password) throws BusinessException {
         log.info("login: username={}", username);
         Optional<User> user = userDao.getUserByUsernameWithRolesAndPermissions(username);
-        User user1 = user.orElseThrow(() -> new BusinessException(BusinessExceptionCode.USER_VALIDATION_EXCEPTION));
+        User user1 = user.orElseThrow(() -> new BusinessException(BusinessExceptionCode.CAN_NOT_GET_USER));
         validateUserForLogin(user1, password);
         TokenDto tokenDto = TokenDto.builder()
                 .token(JwtManager.getInstance().createToken(user1))
@@ -158,4 +159,22 @@ public class UserServiceImpl implements UserService {
         }
         log.info("setUserStatus: success");
     }
+
+    @Override
+    public UserDto updateUser(UserDto userDto) throws BusinessException {
+        log.trace("updateUser: userDto={}", userDto);
+        User user = userConverter.convertDtoToEntity(userDto);
+        UserValidator.validateUserForUpdate(user);
+        if(user.getPassword() != null && !user.getPassword().equals("")){
+            user.setPassword(Encryptor.encrypt(user.getPassword()));
+        }
+        Optional<User> optionalUser = userDao.updateUser(user);
+        User userResult = optionalUser
+                .orElseThrow(() -> new BusinessException(BusinessExceptionCode.CAN_NOT_UPDATE_USER));
+        UserDto result = userConverter.convertEntityToDto(userResult);
+        log.trace("updateUser: result={}",result);
+        return result;
+    }
+
+
 }
