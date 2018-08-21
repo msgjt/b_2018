@@ -11,6 +11,7 @@ import {User} from '../shared/user';
 export class LoginComponent implements OnInit {
 
   model: User;
+  loggedIn: boolean;
 
   constructor(private loginService: LoginService,
               private router: Router) {
@@ -19,6 +20,9 @@ export class LoginComponent implements OnInit {
 
 
   ngOnInit() {
+    if (localStorage.getItem('username')) {
+      this.loggedIn = true;
+    }
   }
 
   submitForm() {
@@ -27,12 +31,31 @@ export class LoginComponent implements OnInit {
         .subscribe(result => {
             localStorage.setItem('userId', result.id.toString());
             localStorage.setItem('token', result.token);
+            localStorage.setItem('username', result.username);
+            this.loggedIn = true;
           },
           error => {
-            console.log(JSON.stringify(error));
+            console.log(JSON.stringify(error['error']));
             alert('login failed!');
-          });
+          },
+          () => alert('login successful'));
       // () => this.router.navigateByUrl('/content'));
     }
+  }
+
+  logout() {
+    this.loginService.logout(localStorage.getItem('username'))
+      .subscribe(result => console.log(result),
+        error1 => {
+          console.log(JSON.stringify(error1['error']));
+          alert('logout failed!');
+        },
+        () => {
+          localStorage.removeItem('userId');
+          localStorage.removeItem('token');
+          localStorage.removeItem('username');
+          this.loggedIn = false;
+          alert('logout successful');
+        });
   }
 }

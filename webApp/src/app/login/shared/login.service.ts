@@ -13,10 +13,17 @@ export class LoginService {
   }
 
   login(username: string, password: string): Observable<Token> {
-    const url = `${this.baseUrl}/users`;
+    const url = `${this.baseUrl}/users/login`;
     const body = {username, password};
     return this.httpClient
       .post<Token>(url, body);
+  }
+
+  logout(username: string): Observable<boolean> {
+    const url = `${this.baseUrl}/users/logout`;
+    const body = {username};
+    return this.httpClient
+      .post<boolean>(url, body);
   }
 
 

@@ -3,7 +3,7 @@ package ro.msg.edu.jbugs.userManagement.business.utils;
 import io.jsonwebtoken.*;
 import io.jsonwebtoken.security.Keys;
 import ro.msg.edu.jbugs.userManagement.business.exception.BusinessException;
-import ro.msg.edu.jbugs.userManagement.business.exception.ExceptionCode;
+import ro.msg.edu.jbugs.userManagement.business.exception.BusinessExceptionCode;
 import ro.msg.edu.jbugs.userManagement.persistence.entity.*;
 import ro.msg.edu.jbugs.userManagement.persistence.entity.enums.PermissionType;
 import ro.msg.edu.jbugs.userManagement.persistence.entity.enums.RoleType;
@@ -31,12 +31,6 @@ public class JwtManager {
 
 
     public String createToken(User user) {
-        //Set<PermissionType>
-//        Map<String, Object> map = user.getRoles().stream()
-//                .map(r->new Pair<String, Set<PermissionType>>(
-//                        r.getType().toString(),
-//                        r.getPermissions().stream().map(Permission::getType).collect(Collectors.toSet())))
-//                .collect(Collectors.toMap(Pair::getKey,Pair::getValue));
 
         Set<RoleType> roles = user.getRoles().stream()
                 .map(Role::getType)
@@ -63,7 +57,7 @@ public class JwtManager {
                     .parseClaimsJws(token);
             return parsedToken;
         } catch (JwtException ex) {
-            throw new BusinessException(ExceptionCode.INVALID_TOKEN);
+            throw new BusinessException(BusinessExceptionCode.INVALID_TOKEN);
         }
     }
 }

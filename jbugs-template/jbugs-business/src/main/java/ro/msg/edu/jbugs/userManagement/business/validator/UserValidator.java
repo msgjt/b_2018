@@ -1,7 +1,7 @@
 package ro.msg.edu.jbugs.userManagement.business.validator;
 
 import ro.msg.edu.jbugs.userManagement.business.exception.BusinessException;
-import ro.msg.edu.jbugs.userManagement.business.exception.ExceptionCode;
+import ro.msg.edu.jbugs.userManagement.business.exception.BusinessExceptionCode;
 import ro.msg.edu.jbugs.userManagement.persistence.entity.User;
 
 import java.util.regex.Matcher;
@@ -11,8 +11,8 @@ public class UserValidator {
 
     public static void validateUser(User user) throws BusinessException {
         if(!userRequiredFieldsNotNull(user) || !validEmail(user.getEmail()) ||
-                !validPhoneNumber(user.getMobileNumber())){
-            throw new BusinessException(ExceptionCode.USER_VALIDATION_EXCEPTION);
+                !validPhoneNumber(user.getMobileNumber())) {
+            throw new BusinessException(BusinessExceptionCode.USER_VALIDATION_EXCEPTION);
         }
     }
 

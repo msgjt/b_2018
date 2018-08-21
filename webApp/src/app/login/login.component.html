@@ -1,30 +1,81 @@
-<div class="row justify-content-center minHeight">
-  <div class="col-md-4 text-center align-self-center loginForm">
-    <form (ngSubmit)="submitForm()" #formControl="ngForm">
-      <fieldset [disabled]="formControl.submitted">
-        <div class="form-group">
-          <label for="usernameInput">Username:</label>
-          <input type="text" id="usernameInput" name="username"
-                 class="form-control" [(ngModel)]="model.username"
-                 required #usernameElement #usernameControl="ngModel"
-                 minlength="6" pattern="^[a-zA-Z0-9]*$"
-                 [class.isInvalid]="usernameControl.invalid && usernameControl.touched">
-          <span *ngIf="usernameControl.invalid && usernameControl.touched">Should be at least 6 characters long and contain only numbers and letters!</span>
-        </div>
-        <div class="form-group">
-          <label for="passwordInput">Password:</label>
-          <input type="password" id="passwordInput" name="password"
-                 class="form-control" [(ngModel)]="model.password"
-                 required #passwordElement #passwordControl="ngModel"
-                 minlength="3" pattern="^[a-zA-Z0-9]*$"
-                 [class.isInvalid]="passwordControl.invalid && passwordControl.touched">
-          <span *ngIf="passwordControl.invalid && passwordControl.touched">Should contain only letters and numbers!</span>
-        </div>
-        <div class="row justify-content-center">
-          <button type="submit" class="btn btn-primary" [disabled]="formControl.invalid">Submit</button>
-        </div>
-      </fieldset>
-
-    </form>
+<section id="contact" *ngIf="!loggedIn">
+  <div class="container">
+    <h2 class="text-center text-uppercase text-secondary mb-0">Login</h2>
+    <hr class="star-dark mb-5">
+    <div class="row">
+      <div class="col-lg-8 mx-auto">
+        <form name="sentMessage" id="contactForm" autocomplete="off" (ngSubmit)="submitForm()" #formControl="ngForm">
+          <div class="control-group">
+            <div class="form-group floating-label-form-group controls mb-0 pb-2">
+              <input type="text"
+                     id="usernameInput"
+                     name="username"
+                     class="form-control"
+                     [(ngModel)]="model.username"
+                     required
+                     #usernameElement
+                     #usernameControl="ngModel"
+                     minlength="6"
+                     maxlength="12"
+                     pattern="^[a-zA-Z0-9]*$"
+                     placeholder="Username"
+                     [class.isInvalid]="usernameControl.invalid && usernameControl.touched">
+            </div>
+            <small class="help-block text-danger"
+                   *ngIf="usernameControl.invalid && usernameControl.touched && usernameControl.value != '' &&usernameControl.value != null">
+              Please enter a valid username.
+            </small>
+            <small class="help-block text-info" *ngIf="usernameControl.value == null || usernameControl.value == ''">
+              Must be 6-12 characters long and contain only numbers and letters.
+            </small>
+            <small class="help-block text-info" *ngIf="usernameControl.valid">Valid username.</small>
+          </div>
+          <div class="control-group">
+            <div class="form-group floating-label-form-group controls mb-0 pb-2">
+              <input type="password"
+                     id="passwordInput"
+                     name="password"
+                     class="form-control"
+                     [(ngModel)]="model.password"
+                     required
+                     #passwordElement
+                     #passwordControl="ngModel"
+                     minlength="6"
+                     maxlength="12"
+                     pattern="^[a-zA-Z0-9]*$"
+                     placeholder="Password"
+                     [class.isInvalid]="passwordControl.invalid && passwordControl.touched">
+            </div>
+            <small class="help-block text-danger"
+                   *ngIf="passwordControl.invalid && passwordControl.touched && passwordControl.value != '' && passwordControl.value != null">
+              Please enter a valid password.
+            </small>
+            <small class="help-block text-info" *ngIf="passwordControl.value == null || passwordControl.value == ''">
+              Must be 6-12 characters long and contain only numbers and letters.
+            </small>
+            <small class="help-block text-info" *ngIf="passwordControl.valid">Valid password.</small>
+          </div>
+          <br>
+          <div class="row justify-content-center">
+            <button type="submit" style="border-color: #18BC9C; background-color: #18BC9C"
+                    class="btn btn-primary btn-lg" [disabled]="formControl.invalid">Login
+            </button>
+          </div>
+        </form>
+      </div>
+    </div>
   </div>
-</div>
+</section>
+<section *ngIf="loggedIn">
+  <div class="container">
+    <h2 class="text-center text-uppercase text-secondary mb-0">Logout</h2>
+    <hr class="star-dark mb-5">
+    <div class="row justify-content-center">
+      <button type="submit"
+              style="border-color: #18BC9C; background-color: #18BC9C"
+              class="btn btn-primary btn-lg"
+              (click)="logout()">Logout
+      </button>
+    </div>
+  </div>
+</section>
