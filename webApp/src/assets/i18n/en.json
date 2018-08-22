@@ -19,5 +19,38 @@
   },
   "error": {
     "message": "This is not the page you're looking for!"
+  },
+  "adduser": {
+    "adduser": "Add user",
+    "firstname": "First Name",
+    "lastname": "Last name",
+    "phonenr": "Mobil number",
+    "password": "Password",
+    "submit": "Submit"
+  },
+  "edit": {
+    "edit": "Edit user",
+    "firstname": "First Name",
+    "lastname": "Last name",
+    "mobilenr": "Mobil number",
+    "password": "Password",
+    "update": "Submit",
+    "message1": "Please enter a valid First Name.",
+    "message2": "Must be 3-20 characters long and contain only letters.",
+    "message3": "Please enter a valid Last Name.",
+    "message4": "Must be 6-12 characters long and contain only numbers and letters.",
+    "message5": "Please enter a valid password.",
+    "message6": "Please enter a valid email ex: abc@msggroup.com.",
+    "message7": "Must contain only numbers, letters, dots and underscores.",
+    "message8": "Please enter a valid Mobile Number.",
+    "message9": "Must be 10-13 characters long and contain only numbers.",
+    "message10": "Valid first name.",
+    "message11": "Valid last name.",
+    "message12": "Valid password.",
+    "message13": "Valid email.",
+    "message14": "Valid mobile number.",
+    "selectroles": "Select Roles",
+    "selectall": "Select all",
+    "unselectall": "Unselect all"
   }
 }
