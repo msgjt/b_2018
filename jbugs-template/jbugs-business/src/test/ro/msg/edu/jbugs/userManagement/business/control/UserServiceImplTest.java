@@ -78,24 +78,24 @@ public class UserServiceImplTest {
 
     }
 
-    @Test
-    public void testLogin_Success() {
-        User user = mock(User.class);
-        when(user.getUsername()).thenReturn("salut");
-        when(user.getPassword()).thenReturn(Encryptor.encrypt("secret"));
-
-        when(userDao.getUserByUsername("salut"))
-                .thenReturn(Optional.of(user));
-        when(userConverter.convertEntityToDto(any(User.class)))
-                .thenReturn(UserDto.builder().username("salut").build());
-
-        try {
-            UserDto userDTO = userService.login("salut", "secret");
-            assertEquals(userDTO.getUsername(), user.getUsername());
-        } catch (BusinessException e) {
-            fail("Shouldn't reach this point");
-        }
-    }
+//    @Test
+//    public void testLogin_Success() {
+//        User user = mock(User.class);
+//        when(user.getUsername()).thenReturn("salut");
+//        when(user.getPassword()).thenReturn(Encryptor.encrypt("secret"));
+//
+//        when(userDao.getUserByUsername("salut"))
+//                .thenReturn(Optional.of(user));
+//        when(userConverter.convertEntityToDto(any(User.class)))
+//                .thenReturn(UserDto.builder().username("salut").build());
+//
+//        try {
+//            UserDto userDTO = userService.login("salut", "secret");
+//            assertEquals(userDTO.getUsername(), user.getUsername());
+//        } catch (BusinessException e) {
+//            fail("Shouldn't reach this point");
+//        }
+//    }
 
     @Test
     public void testCreateUser_Success() {
