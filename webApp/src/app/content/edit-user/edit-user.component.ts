@@ -25,27 +25,13 @@ export class EditUserComponent implements OnInit {
   }
 
   ngOnInit() {
-    // this.itemList = [
-    //   {'id': 1, 'itemName': 'India'},
-    //   {'id': 2, 'itemName': 'Singapore'},
-    //   {'id': 3, 'itemName': 'Australia'},
-    //   {'id': 4, 'itemName': 'Canada'},
-    //   {'id': 5, 'itemName': 'South Korea'},
-    //   {'id': 6, 'itemName': 'Brazil'}
-    // ];
-
     this.contentService.getAllRoles()
       .subscribe(roles => this.roles = roles,
         err => console.log(JSON.stringify(err)),
         () => {
-        this.roles.forEach(r => this.itemList.push({'id': r.id, 'itemName': r.roleType}));
+          this.roles.forEach(r => this.itemList.push({'id': r.id, 'itemName': r.roleType}));
         });
 
-    // this.selectedItems = [
-    //   {'id': 1, 'itemName': 'India'},
-    //   {'id': 2, 'itemName': 'Singapore'},
-    //   {'id': 3, 'itemName': 'Australia'},
-    //   {'id': 4, 'itemName': 'Canada'}];
     this.settings = {
       text: 'Select Roles',
       selectAllText: 'Select All',

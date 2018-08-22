@@ -9,6 +9,7 @@ import {Router} from '@angular/router';
   styleUrls: ['./show-users.component.css']
 })
 export class ShowUsersComponent implements OnInit {
+
   user: User;
   previewPhoto;
   users: Array<User>;
@@ -26,7 +27,7 @@ export class ShowUsersComponent implements OnInit {
   }
 
   editSelectedUser() {
-    this.router.navigate(['/editUser']);
+    this.router.navigate(['/content/showUsers/editUser']);
 
   }
 
