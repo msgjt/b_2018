@@ -9,7 +9,7 @@ import {Component, OnInit} from '@angular/core';
     <h2 class="text-center text-uppercase text-secondary mb-0"><label class="help-block text-danger" style="font-size: 2em">404</label></h2>
     <hr class="star-dark mb-5">
     <div class="row justify-content-center">
-      <p class="help-block text-danger" style="font-size: 2em">This is not the page you're looking for!</p>
+      <p class="help-block text-danger" style="font-size: 2em">{{'error.message' | translate}}</p>
     </div>
     <br>
     <br>

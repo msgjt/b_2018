@@ -15,5 +15,8 @@
     "message3": "Parola trebuie sa aiba o lungime de 6-12 caractere si sa contina doar litere sau numere",
     "message4": "Numele utilizatorului este valid.",
     "message5": "Parola valida."
+  },
+  "error": {
+    "message": "Acesta nu este pagina pe care o cauti!"
   }
 }
