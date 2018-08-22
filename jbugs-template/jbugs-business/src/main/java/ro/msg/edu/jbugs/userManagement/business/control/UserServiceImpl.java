@@ -98,7 +98,7 @@ public class UserServiceImpl implements UserService {
     public TokenDto login(String username, String password) throws BusinessException {
         log.info("login: username={}", username);
         Optional<User> user = userDao.getUserByUsernameWithRolesAndPermissions(username);
-        User user1 = user.orElseThrow(() -> new BusinessException(BusinessExceptionCode.USER_VALIDATION_EXCEPTION));
+        User user1 = user.orElseThrow(() -> new BusinessException(BusinessExceptionCode.CAN_NOT_GET_USER));
         validateUserForLogin(user1, password);
         TokenDto tokenDto = TokenDto.builder()
                 .token(JwtManager.getInstance().createToken(user1))
@@ -177,4 +177,22 @@ public class UserServiceImpl implements UserService {
         }
         log.info("setUserStatus: success");
     }
+
+    @Override
+    public UserDto updateUser(UserDto userDto) throws BusinessException {
+        log.trace("updateUser: userDto={}", userDto);
+        User user = userConverter.convertDtoToEntity(userDto);
+        UserValidator.validateUserForUpdate(user);
+        if(user.getPassword() != null && !user.getPassword().equals("")){
+            user.setPassword(Encryptor.encrypt(user.getPassword()));
+        }
+        Optional<User> optionalUser = userDao.updateUser(user);
+        User userResult = optionalUser
+                .orElseThrow(() -> new BusinessException(BusinessExceptionCode.CAN_NOT_UPDATE_USER));
+        UserDto result = userConverter.convertEntityToDto(userResult);
+        log.trace("updateUser: result={}",result);
+        return result;
+    }
+
+
 }

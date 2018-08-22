@@ -13,6 +13,9 @@ import lombok.NoArgsConstructor;
 public enum BusinessExceptionCode {
     INVALID_USER(1000,"User does not exist"),
     USER_DEACTIVATED(1001,"User is deactivated"),
+    CAN_NOT_ADD_USER(1002, "Can't create user"),
+    CAN_NOT_UPDATE_USER(1003, "Can't update user"),
+    CAN_NOT_GET_USER(1004, "Can't get user"),
     USER_VALIDATION_EXCEPTION(1005, "ValidationException"),
     EMAIL_EXISTS_ALREADY(1010, "Email already exists"),
     USERNAME_NOT_VALID(1006, "Wrong username"),

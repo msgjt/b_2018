@@ -2,174 +2,167 @@
 <div class="container">
   <h2 class="text-center text-uppercase text-secondary mb-0">Edit user</h2>
   <hr class="star-dark mb-5">
-  <div style="height: 100px">
-    <form>
-
-      <div class="form-group floating-label-form-group controls mb-0 pb-2">
-        <label for="inputFirstName">First Name</label>
-        <input type="text"
-               name="firstName"
-               id="inputFirstName"
-               class="form-control"
-               [(ngModel)]="model.firstName"
-               placeholder="First name"
-               #firstNameElement
-               #firstNameControl="ngModel"
-               minlength="1"
-               maxlength="20"
-               pattern="^[a-zA-Z]*$"
-               [class.isInvalid]="firstNameControl.invalid && firstNameControl.touched">
-      </div>
-
-      <p style="height: 20px">
-        <small class="help-block text-danger"
-               *ngIf="firstNameControl.invalid && firstNameControl.touched && firstNameControl.value != '' && firstNameControl.value != null">
-          Please enter a valid first name.
-        </small>
-        <small class="help-block text-info" *ngIf="firstNameControl.value == null ||firstNameControl.value == ''">
-          Must be at least 2 characters long and contain only letters.
-        </small>
-        <small class="help-block text-info"
-               *ngIf="firstNameControl.valid && firstNameControl.touched && firstNameControl.value != ''">Valid first
-          name.
-        </small>
-      </p>
-
-      <div class="form-group floating-label-form-group controls mb-0 pb-2">
-        <label for="inputLastName">Last name</label>
-        <input type="text"
-               class="form-control"
-               name="lastName"
-               [(ngModel)]="model.lastName"
-               #lastNameElement
-               #lastNameControl="ngModel"
-               minlength="1"
-               maxlength="20"
-               pattern="^[a-zA-Z]*$"
-               id="inputLastName"
-               placeholder="Last name"
-               [class.isInvalid]="lastNameControl.invalid && lastNameControl.touched">
-      </div>
-
-      <p style="height: 20px">
-        <small class="help-block text-danger"
-               *ngIf="lastNameControl.invalid && lastNameControl.touched && lastNameControl.value != '' && lastNameControl.value != null">
-          Please enter a valid last name.
-        </small>
-        <small class="help-block text-info" *ngIf="lastNameControl.value == null ||lastNameControl.value == ''">
-          Must be at least 2 characters long and contain only letters.
-        </small>
-        <small class="help-block text-info"
-               *ngIf="lastNameControl.valid && lastNameControl.touched && lastNameControl.value != ''">Valid last name.
-        </small>
-      </p>
-
-      <div class="form-row">
-        <div class="form-row">
-          <div class="form-group floating-label-form-group controls mb-0 pb-2 col-md-30">
-            <label for="inputEmail">Email</label>
+  <div class="row">
+    <div class="col-lg-10 mx-auto">
+      <form name="sentMessage" id="contactForm" autocomplete="off" (ngSubmit)="submitForm()" #formControl="ngForm">
+        <div class="control-group">
+          <div class="form-group floating-label-form-group controls mb-0 pb-2">
             <input type="text"
-                   name="email"
+                   id="firstNameInput"
+                   name="firstName"
                    class="form-control"
-                   id="inputEmail"
-                   [(ngModel)]="model.email"
-                   #emailElement
-                   #emailControl="ngModel"
-                   minlength="14"
-                   maxlength="30"
-                   placeholder="@msggroup.com"
-                   pattern="^[A-Za-z0-9._%+-]+@msggroup.com$"
-                   [class.isInvalid]="emailControl.invalid && emailControl.touched">
-
-
-            <p style="height: 20px">
-              <small class="help-block text-danger"
-                     *ngIf="emailControl.invalid && emailControl.touched && emailControl.value != '' &&emailControl.value != null">
-                Please enter a valid email.
-              </small>
-              <small class="help-block text-info" *ngIf="emailControl.value == null || emailControl.value == ''">
-                Must be ending with @msggroup.com
-              </small>
-              <small class="help-block text-info"
-                     *ngIf="emailControl.valid && emailControl.touched && emailControl.value != ''">Valid email.
-              </small>
-            </p>
+                   [(ngModel)]="model.firstName"
+                   required
+                   #firstNameElement
+                   #firstNameControl="ngModel"
+                   minlength="3"
+                   maxlength="20"
+                   pattern="^[a-zA-Z]*$"
+                   placeholder="First Name"
+                   [class.isInvalid]="firstNameControl.invalid && firstNameControl.touched">
           </div>
+          <p style="height: 20px">
+            <small class="help-block text-danger"
+                   *ngIf="firstNameControl.invalid && firstNameControl.touched && firstNameControl.value != '' &&firstNameControl.value != null">
+              Please enter a valid First Name.
+            </small>
+            <small class="help-block text-info" *ngIf="firstNameControl.value == null || firstNameControl.value == ''">
+              Must be 3-20 characters long and contain only letters.
+            </small>
+            <small class="help-block text-info" *ngIf="firstNameControl.valid">Valid First Name.</small>
+          </p>
         </div>
 
-        <div class="row">
-          <div class="form-group floating-label-form-group controls mb-0 pb-2 col-md-30">
-            <label for="inputMobileNumber">Mobile number</label>
+
+        <div class="control-group">
+          <div class="form-group floating-label-form-group controls mb-0 pb-2">
             <input type="text"
+                   id="lastNameInput"
+                   name="lastName"
                    class="form-control"
-                   name="mobileNumber"
-                   id="inputMobileNumber"
-                   [(ngModel)]="model.mobileNumber"
-                   #mobileNumberElement
-                   #mobileNumberControl="ngModel"
-                   minlength="10"
-                   maxlength="15"
-                   placeholder="Mobile Number"
-                   [class.isInvalid]="mobileNumberControl.invalid && mobileNumberControl.touched">
-
-
-            <p style="height: 20px">
-              <small class="help-block text-danger"
-                     *ngIf="mobileNumberControl.invalid && mobileNumberControl.touched && mobileNumberControl.value != '' && mobileNumberControl.value != null">
-                Please enter a valid mobile number.
-              </small>
-              <small class="help-block text-info"
-                     *ngIf="mobileNumberControl.value == null || mobileNumberControl.value == ''">
-                Must contain only mobile numbers from Germany and Romania.
-              </small>
-              <small class="help-block text-info"
-                     *ngIf="mobileNumberControl.valid && mobileNumberControl.touched && mobileNumberControl.value != ''">
-                Valid phone number.
-              </small>
-            </p>
+                   [(ngModel)]="model.lastName"
+                   required
+                   #lastNameElement
+                   #lastNameControl="ngModel"
+                   minlength="3"
+                   maxlength="20"
+                   pattern="^[a-zA-Z]*$"
+                   placeholder="Last Name"
+                   [class.isInvalid]="lastNameControl.invalid && lastNameControl.touched">
           </div>
+          <p style="height: 20px">
+            <small class="help-block text-danger"
+                   *ngIf="lastNameControl.invalid && lastNameControl.touched && lastNameControl.value != '' &&lastNameControl.value != null">
+              Please enter a valid Last Name.
+            </small>
+            <small class="help-block text-info" *ngIf="lastNameControl.value == null || lastNameControl.value == ''">
+              Must be 3-20 characters long and contain only letters.
+            </small>
+            <small class="help-block text-info" *ngIf="lastNameControl.valid">Valid Last Name.</small>
+          </p>
         </div>
-      </div>
 
 
-      <div class="form-row">
-        <div class="form-group floating-label-form-group controls mb-0 pb-2 col-md-6">
-          <label for="inputPassword">Password</label>
-          <input type="password"
-                 id="inputPassword"
-                 name="password"
-                 [(ngModel)]="model.password"
-                 #passwordControl="ngModel"
-                 class="form-control"
-                 placeholder="Password"
-                 minlength="6"
-                 maxlength="20"
-                 aria-describedby="passwordHelpInline"
-                 [class.isInvalid]="passwordControl.invalid && passwordControl.touched">
-
-
+        <div class="control-group">
+          <div class="form-group floating-label-form-group controls mb-0 pb-2">
+            <input type="password"
+                   id="passwordInput"
+                   name="password"
+                   class="form-control"
+                   [(ngModel)]="model.password"
+                   required
+                   #passwordElement
+                   #passwordControl="ngModel"
+                   minlength="6"
+                   maxlength="12"
+                   pattern="^[a-zA-Z0-9]*$"
+                   placeholder="Password"
+                   [class.isInvalid]="passwordControl.invalid && passwordControl.touched">
+          </div>
           <p style="height: 20px">
             <small class="help-block text-danger"
                    *ngIf="passwordControl.invalid && passwordControl.touched && passwordControl.value != '' && passwordControl.value != null">
               Please enter a valid password.
             </small>
-            <small class="help-block text-info"
-                   *ngIf="passwordControl.value == null || passwordControl.value == ''">
-              Must contain between 6-20 characters.
+            <!--<small *ngIf="passwordControl.pristine && passwordControl.value != ''">fsfs</small>-->
+            <small class="help-block text-info" *ngIf="passwordControl.value == null || passwordControl.value == ''">
+              Must be 6-12 characters long and contain only numbers and letters.
             </small>
-            <small class="help-block text-info"
-                   *ngIf="passwordControl.valid && passwordControl.touched && passwordControl.value != ''">
-              Valid password.
-            </small>
+            <small class="help-block text-info" *ngIf="passwordControl.valid">Valid password.</small>
           </p>
         </div>
-      </div>
 
 
-    </form>
-
-    <div class="row">
-      <div class="container">
+        <div class="row">
+          <div class="col-lg-6 mx-auto">
+            <div class="control-group">
+              <div class="form-group floating-label-form-group controls mb-0 pb-2">
+                <input type="text"
+                       id="emailInput"
+                       name="email"
+                       class="form-control"
+                       [(ngModel)]="model.email"
+                       required
+                       #emailElement
+                       #emailControl="ngModel"
+                       minlength="14"
+                       maxlength="30"
+                       pattern="^[A-Za-z0-9._]+@msggroup.com$"
+                       placeholder="Email@msggroup.com"
+                       [class.isInvalid]="emailControl.invalid && emailControl.touched">
+              </div>
+              <p style="height: 20px">
+                <small class="help-block text-danger"
+                       *ngIf="emailControl.invalid && emailControl.touched && emailControl.value != '' &&emailControl.value != null">
+                  Please enter a valid email ex: abc@msggroup.com.
+                </small>
+                <small class="help-block text-info" *ngIf="emailControl.value == null || emailControl.value == ''">
+                  Must contain only numbers, letters, dots and underscores.
+                </small>
+                <small class="help-block text-info" *ngIf="emailControl.valid">Valid email.</small>
+              </p>
+            </div>
+          </div>
+          <div class="col-lg-6 mx-auto">
+            <div class="control-group">
+              <div class="form-group floating-label-form-group controls mb-0 pb-2">
+                <input type="text"
+                       id="Input"
+                       name="mobileNumber"
+                       class="form-control"
+                       [(ngModel)]="model.mobileNumber"
+                       required
+                       #mobileNumberElement
+                       #mobileNumberControl="ngModel"
+                       minlength="10"
+                       maxlength="13"
+                       pattern="^[+0-9]*$"
+                       placeholder="Mobile Number"
+                       [class.isInvalid]="mobileNumberControl.invalid && mobileNumberControl.touched">
+              </div>
+              <p style="height: 20px">
+                <small class="help-block text-danger"
+                       *ngIf="mobileNumberControl.invalid && mobileNumberControl.touched && mobileNumberControl.value != '' &&mobileNumberControl.value != null">
+                  Please enter a valid Mobile Number.
+                </small>
+                <small class="help-block text-info"
+                       *ngIf="mobileNumberControl.value == null || mobileNumberControl.value == ''">
+                  Must be 10-13 characters long and contain only numbers.
+                </small>
+                <small class="help-block text-info" *ngIf="mobileNumberControl.valid">Valid Mobile Number.</small>
+              </p>
+            </div>
+          </div>
+        </div>
+      </form>
+    </div>
+  </div>
+</div>
+<br>
+<div class="container">
+  <div style="height: 10vh" class="row">
+    <div class="col-lg-10 mx-auto">
+      <div style="float: right" class="col-lg-6 mx-auto">
         <angular2-multiselect [data]="itemList"
                               [(ngModel)]="selectedItems"
                               [settings]="settings"
@@ -180,16 +173,12 @@
         </angular2-multiselect>
       </div>
     </div>
-
-    <div style="height: 20px">
-
-    </div>
-
-    <form>
-      <button type="submit" class="btn btn-primary">Submit</button>
-
-    </form>
-
-
   </div>
+</div>
+<br>
+<br>
+<div class="row justify-content-center">
+  <button type="submit" style="border-color: #18BC9C; background-color: #18BC9C"
+          class="btn btn-primary btn-lg" [disabled]="formControl.invalid">Update
+  </button>
 </div>

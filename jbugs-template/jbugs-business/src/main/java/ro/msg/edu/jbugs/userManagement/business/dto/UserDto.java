@@ -4,6 +4,7 @@ import lombok.*;
 
 import javax.validation.constraints.NotNull;
 import java.io.Serializable;
+import java.util.List;
 
 @NoArgsConstructor
 @AllArgsConstructor
@@ -21,5 +22,5 @@ public class UserDto extends BaseDto{
     private String mobileNumber;
     private String email;
     private String status;
-    private String[] roles;
+    private List<RoleDto> roles;
 }

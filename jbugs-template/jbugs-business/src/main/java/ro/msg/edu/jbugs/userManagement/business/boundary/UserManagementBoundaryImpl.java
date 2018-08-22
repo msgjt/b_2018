@@ -1,6 +1,8 @@
 package ro.msg.edu.jbugs.userManagement.business.boundary;
 
+import ro.msg.edu.jbugs.userManagement.business.control.RoleService;
 import ro.msg.edu.jbugs.userManagement.business.control.UserService;
+import ro.msg.edu.jbugs.userManagement.business.dto.RoleDto;
 import ro.msg.edu.jbugs.userManagement.business.dto.TokenDto;
 import ro.msg.edu.jbugs.userManagement.business.dto.UserDto;
 import ro.msg.edu.jbugs.userManagement.business.exception.BusinessException;
@@ -15,14 +17,27 @@ public class UserManagementBoundaryImpl implements UserManagementBoundary {
     @EJB
     private UserService userService;
 
+    @EJB
+    private RoleService roleService;
+
     @Override
     public UserDto createUser(UserDto userDto) throws BusinessException {
         return userService.createUser(userDto);
     }
 
     @Override
+    public UserDto updateUser(UserDto userDto) throws BusinessException {
+        return userService.updateUser(userDto);
+    }
+
+    @Override
     public List<UserDto> getAllUsers() {
         return userService.getAllUsers();
+    }
+
+    @Override
+    public List<RoleDto> getAllRoles() {
+        return roleService.getAllRoles();
     }
 
     @Override

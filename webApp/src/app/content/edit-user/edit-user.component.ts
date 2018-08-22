@@ -1,5 +1,7 @@
 import {Component, OnInit} from '@angular/core';
 import {User} from '../../shared/user';
+import {ContentService} from '../shared/content.service';
+import {Role} from '../../shared/role';
 
 @Component({
   selector: 'app-edit-user',
@@ -9,31 +11,43 @@ import {User} from '../../shared/user';
 export class EditUserComponent implements OnInit {
 
   model: User;
+  roles: Array<Role>;
   itemList = [];
   selectedItems = [];
   settings = {};
 
-  constructor() {
+  constructor(private contentService: ContentService) {
     this.model = new User();
   }
 
-  ngOnInit() {
-    this.itemList = [
-      {'id': 1, 'itemName': 'India'},
-      {'id': 2, 'itemName': 'Singapore'},
-      {'id': 3, 'itemName': 'Australia'},
-      {'id': 4, 'itemName': 'Canada'},
-      {'id': 5, 'itemName': 'South Korea'},
-      {'id': 6, 'itemName': 'Brazil'}
-    ];
+  submitForm() {
+    console.log('submitted');
+  }
 
-    this.selectedItems = [
-      {'id': 1, 'itemName': 'India'},
-      {'id': 2, 'itemName': 'Singapore'},
-      {'id': 3, 'itemName': 'Australia'},
-      {'id': 4, 'itemName': 'Canada'}];
+  ngOnInit() {
+    // this.itemList = [
+    //   {'id': 1, 'itemName': 'India'},
+    //   {'id': 2, 'itemName': 'Singapore'},
+    //   {'id': 3, 'itemName': 'Australia'},
+    //   {'id': 4, 'itemName': 'Canada'},
+    //   {'id': 5, 'itemName': 'South Korea'},
+    //   {'id': 6, 'itemName': 'Brazil'}
+    // ];
+
+    this.contentService.getAllRoles()
+      .subscribe(roles => this.roles = roles,
+        err => console.log(JSON.stringify(err)),
+        () => {
+        this.roles.forEach(r => this.itemList.push({'id': r.id, 'itemName': r.roleType}));
+        });
+
+    // this.selectedItems = [
+    //   {'id': 1, 'itemName': 'India'},
+    //   {'id': 2, 'itemName': 'Singapore'},
+    //   {'id': 3, 'itemName': 'Australia'},
+    //   {'id': 4, 'itemName': 'Canada'}];
     this.settings = {
-      text: 'Select Countries',
+      text: 'Select Roles',
       selectAllText: 'Select All',
       unSelectAllText: 'UnSelect All',
       classes: 'myclass custom-class'

@@ -45,4 +45,13 @@ public class RoleDAOImpl implements RoleDAO {
             r.setUsers(us);
         }
     }
+
+    @Override
+    public List<Role> getAllRoles() {
+        log.info("getAllRoles: --- entered");
+        TypedQuery<Role> query = em.createNamedQuery(Role.GET_ALL_ROLES, Role.class);
+        List<Role> roles = query.getResultList();
+        log.info("getAllRoles: result={}", roles);
+        return roles;
+    }
 }

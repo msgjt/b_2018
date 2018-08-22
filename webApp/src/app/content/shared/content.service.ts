@@ -2,6 +2,7 @@ import {Injectable} from '@angular/core';
 import {HttpClient} from '@angular/common/http';
 import {Observable} from 'rxjs';
 import {User} from '../../shared/user';
+import {Role} from '../../shared/role';
 
 @Injectable()
 export class ContentService {
@@ -22,5 +23,11 @@ export class ContentService {
     const url = `${this.baseUrl}/users`;
     return this.httpClient
       .get<Array<User>>(url);
+  }
+
+  getAllRoles(): Observable<Array<Role>> {
+    const url = `${this.baseUrl}/roles`;
+    return this.httpClient
+      .get<Array<Role>>(url);
   }
 }
