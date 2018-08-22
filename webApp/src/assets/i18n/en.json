@@ -16,5 +16,8 @@
     "message3": "Must be 6-12 characters long and contain only numbers and letters.",
     "message4": "Valid username.",
     "message5": "Valid password."
+  },
+  "error": {
+    "message": "This is not the page you're looking for!"
   }
 }
