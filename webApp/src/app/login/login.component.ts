@@ -12,6 +12,7 @@ export class LoginComponent implements OnInit {
 
   model: User;
   loggedIn: boolean;
+  recaptcha: boolean;
 
   constructor(private loginService: LoginService,
               private router: Router) {
@@ -57,5 +58,13 @@ export class LoginComponent implements OnInit {
           this.loggedIn = false;
           alert('logout successful');
         });
+  }
+
+  onScriptLoad() {
+    console.log('Google reCAPTCHA loaded and is ready for use!');
+  }
+
+  onScriptError() {
+    console.log('Something went long when loading the Google reCAPTCHA');
   }
 }

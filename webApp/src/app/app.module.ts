@@ -18,6 +18,10 @@ import { EditUserComponent } from './content/edit-user/edit-user.component';
 import {ShowUsersComponent} from './content/show-users/show-users.component';
 import { WelcomeComponent } from './content/welcome/welcome.component';
 import {AngularMultiSelectModule} from 'angular2-multiselect-dropdown';
+import { RecaptchaModule } from 'angular-google-recaptcha';
+
+// TODO should be taken from somekind of config?
+const SITE_KEY = '6LeLWmsUAAAAAPRM65RcHUjnHwdCmIJUTceUvP-k';
 
 @NgModule({
   declarations: [
@@ -43,7 +47,10 @@ import {AngularMultiSelectModule} from 'angular2-multiselect-dropdown';
         deps: [HttpClient]
       }
     }),
-    AngularMultiSelectModule
+    AngularMultiSelectModule,
+    RecaptchaModule.forRoot({
+      siteKey: SITE_KEY,
+    }),
 
 
   ],
