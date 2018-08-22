@@ -23,13 +23,13 @@ public class UserValidator {
     }
 
     public static void validateUserForUpdate(User user) throws BusinessException {
-        if(user == null)
+        if (user == null)
             throw new BusinessException(BusinessExceptionCode.USER_VALIDATION_EXCEPTION);
-        if (user.getEmail() != null && user.getMobileNumber() != null) {
-            if (!validEmail(user.getEmail()) || !validPhoneNumber(user.getMobileNumber())) {
-                throw new BusinessException(BusinessExceptionCode.USER_VALIDATION_EXCEPTION);
-            }
-        }
+        if (user.getEmail() != null && !user.getEmail().equals("") && !validEmail(user.getEmail()))
+            throw new BusinessException(BusinessExceptionCode.USER_VALIDATION_EXCEPTION);
+        if (user.getMobileNumber() != null && !user.getMobileNumber().equals("") && !validPhoneNumber(user.getMobileNumber()))
+            throw new BusinessException(BusinessExceptionCode.USER_VALIDATION_EXCEPTION);
+
     }
 
     private static boolean userRequiredFieldsNotEmpty(User user) {
@@ -66,7 +66,7 @@ public class UserValidator {
         HashSet<RoleType> toReturn = new HashSet<>();
         if (roles.size() == 0 || roles.size() > 5)
             return toReturn;
-        for (RoleDto role: roles) {
+        for (RoleDto role : roles) {
             try {
                 if (!toReturn.add(RoleType.valueOf(role.getRoleType()))) {
                     throw new IllegalArgumentException();
@@ -75,6 +75,6 @@ public class UserValidator {
                 return new HashSet<>();
             }
         }
-        return  toReturn;
+        return toReturn;
     }
 }

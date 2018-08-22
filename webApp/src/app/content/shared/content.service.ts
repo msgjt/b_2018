@@ -19,6 +19,14 @@ export class ContentService {
       .post<User>(url, body);
   }
 
+  updateUser(id: number, firstName: string, lastName: string, email: string,
+             password: string, mobileNumber: string, roles: Array<Role>): Observable<User> {
+    const url = `${this.baseUrl}/users/update`;
+    const body = {id, firstName, lastName, email, password, mobileNumber, roles};
+    return this.httpClient
+      .put<User>(url, body);
+  }
+
   getAllUsers(): Observable<Array<User>> {
     const url = `${this.baseUrl}/users`;
     return this.httpClient
@@ -27,6 +35,12 @@ export class ContentService {
 
   getAllRoles(): Observable<Array<Role>> {
     const url = `${this.baseUrl}/roles`;
+    return this.httpClient
+      .get<Array<Role>>(url);
+  }
+
+  getUserRolesById(id: number): Observable<Array<Role>> {
+    const url = `${this.baseUrl}/roles/${id}`;
     return this.httpClient
       .get<Array<Role>>(url);
   }

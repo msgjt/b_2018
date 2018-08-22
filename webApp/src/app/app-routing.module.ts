@@ -12,10 +12,10 @@ import {WelcomeComponent} from './content/welcome/welcome.component';
 const routes: Routes = [
   {path: '', redirectTo: '/login', pathMatch: 'full'},
   {path: 'login', component: LoginComponent},
-  {path: 'content/add', component: AddUserComponent},
+  {path: 'user/add', component: AddUserComponent},
   {path: 'content/dummy', component: DummyContentComponent},
-  {path: 'showUsers', component: ShowUsersComponent},
-  {path: 'editUser', component: EditUserComponent},
+  {path: 'user/show', component: ShowUsersComponent},
+  {path: 'user/edit', component: EditUserComponent},
   {path: 'welcome', component: WelcomeComponent},
   {path: '**', component: ErrorComponent}
 
