@@ -52,5 +52,10 @@
     "selectroles": "Select Roles",
     "selectall": "Select all",
     "unselectall": "Unselect all"
+  },
+  "show": {
+    "show": "Show users",
+    "status": "Account status",
+    "users": "Users"
   }
 }

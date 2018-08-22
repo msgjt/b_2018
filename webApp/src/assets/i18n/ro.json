@@ -51,5 +51,10 @@
     "selectroles": "Selecteaza Rol",
     "selectall": "Selecteaza tot",
     "unselectall": "Deselecteaza tot"
+  },
+  "show": {
+    "show": "Afisare utilizatori",
+    "status": "Status cont",
+    "users": "Utilizatori"
   }
 }
