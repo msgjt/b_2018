@@ -24,28 +24,6 @@ public class RoleDAOImpl implements RoleDAO {
     @PersistenceContext(unitName = "jbugs-persistence")
     private EntityManager em;
 
-
-    @Override
-    public HashSet<Role> getRolesByType(HashSet<RoleType> types) {
-        TypedQuery<Role> query = em.createNamedQuery(Role.GET_BY_TYPES, Role.class);
-        List<RoleType> typesAsList = new ArrayList<>(types);
-        List<String> _types = typesAsList.stream().map(Object::toString).collect(Collectors.toList());
-        query.setParameter("types", typesAsList);
-        List<Role> roles = query.getResultList();
-        HashSet<Role> toReturn = new HashSet<Role>(roles);
-        log.info("getRoles: result={}", toReturn.toString());
-        return toReturn;
-    }
-
-    @Override
-    public void addUser(User user, HashSet<Role> roles) {
-        for (Role r : roles) {
-            Set<User> us = r.getUsers();
-            us.add(user);
-            r.setUsers(us);
-        }
-    }
-
     @Override
     public List<Role> getAllRoles() {
         log.info("getAllRoles: --- entered");

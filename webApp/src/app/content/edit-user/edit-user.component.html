@@ -85,7 +85,7 @@
             <small class="help-block text-info" *ngIf="passwordControl.value == null || passwordControl.value == ''">
               {{'edit.message4' | translate}}
             </small>
-            <small class="help-block text-info" *ngIf="passwordControl.valid">{{'edit.message12' | translate}}</small>
+            <small class="help-block text-info" *ngIf="passwordControl.valid && passwordControl.value != '' && passwordControl.value != null">{{'edit.message12' | translate}}</small>
           </p>
         </div>
 
@@ -158,11 +158,7 @@
                 <angular2-multiselect [data]="itemList"
                                       name="dropdown"
                                       [(ngModel)]="selectedItems"
-                                      [settings]="settings"
-                                      (onSelect)="onItemSelect()"
-                                      (onDeSelect)="OnItemDeSelect()"
-                                      (onSelectAll)="onSelectAll()"
-                                      (onDeSelectAll)="onDeSelectAll()">
+                                      [settings]="settings">
                 </angular2-multiselect>
               </div>
             </div>

@@ -13,10 +13,6 @@ import java.util.List;
  */
 public interface RoleDAO {
 
-    HashSet<Role> getRolesByType(@NotNull HashSet<RoleType> types);
-
-    void addUser(@NotNull User user, @NotNull HashSet<Role> roles);
-
     List<Role> getAllRoles();
 
     List<Role> getUserRolesById(@NotNull Long id);

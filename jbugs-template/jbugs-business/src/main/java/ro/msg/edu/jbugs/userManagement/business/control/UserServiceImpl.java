@@ -7,7 +7,6 @@ import ro.msg.edu.jbugs.userManagement.business.utils.JwtManager;
 import ro.msg.edu.jbugs.userManagement.business.utils.UtilBean;
 import ro.msg.edu.jbugs.userManagement.business.validator.UserValidator;
 import ro.msg.edu.jbugs.userManagement.persistence.dao.RoleDAO;
-import ro.msg.edu.jbugs.userManagement.persistence.dao.RoleDAOImpl;
 import ro.msg.edu.jbugs.userManagement.persistence.dao.UserDao;
 import ro.msg.edu.jbugs.userManagement.business.exception.BusinessException;
 import ro.msg.edu.jbugs.userManagement.persistence.entity.*;
@@ -15,16 +14,11 @@ import ro.msg.edu.jbugs.userManagement.business.dto.UserDto;
 import ro.msg.edu.jbugs.userManagement.business.utils.Encryptor;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
-import ro.msg.edu.jbugs.userManagement.persistence.entity.enums.RoleType;
 import ro.msg.edu.jbugs.userManagement.persistence.entity.enums.UserStatus;
 
 import javax.ejb.EJB;
 import javax.ejb.Stateless;
 import javax.inject.Inject;
-import javax.management.AttributeChangeNotification;
-import javax.management.MBeanNotificationInfo;
-import javax.management.Notification;
-import javax.management.NotificationBroadcasterSupport;
 import javax.validation.constraints.NotNull;
 import java.util.*;
 import java.util.stream.Stream;
@@ -57,32 +51,26 @@ public class UserServiceImpl implements UserService {
     public UserDto createUser(UserDto userDto) throws BusinessException {
         log.info("createUser: userDto={}", userDto);
         User user = userConverter.convertDtoToEntity(userDto);
-
         normalizeUser(user);
         UserValidator.validateUser(user);
-//        HashSet<RoleType> roles = UserValidator.validateRoles(userDto.getRoles());
-//        if (roles.size() == 0)
-//            throw new BusinessException(BusinessExceptionCode.ROLES_NOT_VALID);
-
-//        if (userDao.getUserWithEmail(user.getEmail()).isPresent()) {
-//            throw new BusinessException(BusinessExceptionCode.EMAIL_EXISTS_ALREADY);
-//        }
-
-//        HashSet<Role> roleEntities = roleDAO.getRolesByType(roles);
-//
-//        user.setRoles(roleEntities);
+        validateUserForCreation(user);
         user.setUsername(generateRealUsername(user.getFirstName(), user.getLastName()));
         user.setPassword(Encryptor.encrypt(userDto.getPassword()));
         user.setStatus(UserStatus.ACTIVE);
-        Optional<User> user1 = userDao.addUser(user);
-//        if (user1.isPresent()) {
-//            log.info("createUser: adding user ro roles={}", roleEntities);
-//            roleDAO.addUser(user1.get(), roleEntities);
-//        }
+        Optional<User> user1 = userDao.createUser(user);
         UserDto userDto1 = user1.map(userConverter::convertEntityToDto)
                 .orElseThrow(() -> new BusinessException(BusinessExceptionCode.CAN_NOT_ADD_USER));
         log.info("createUser: result={}", userDto1);
         return userDto1;
+    }
+
+    private void validateUserForCreation(User user) throws BusinessException {
+        if(user.getRoles() == null || user.getRoles().isEmpty()){
+            throw new BusinessException(BusinessExceptionCode.USER_SHOULD_HAVE_AT_LEAST_ONE_ROLE);
+        }
+        if (userDao.getUserWithEmail(user.getEmail()).isPresent()) {
+            throw new BusinessException(BusinessExceptionCode.EMAIL_EXISTS_ALREADY);
+        }
     }
 
     private void normalizeUser(User user) {

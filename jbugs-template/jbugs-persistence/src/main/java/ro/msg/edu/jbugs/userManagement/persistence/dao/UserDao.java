@@ -12,7 +12,7 @@ import java.util.Optional;
  */
 public interface UserDao {
 
-    Optional<User> addUser(@NotNull User user);
+    Optional<User> createUser(@NotNull User user);
 
     Optional<User> updateUser(@NotNull User user);
 

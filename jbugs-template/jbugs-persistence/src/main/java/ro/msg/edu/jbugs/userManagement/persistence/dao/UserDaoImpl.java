@@ -1,6 +1,5 @@
 package ro.msg.edu.jbugs.userManagement.persistence.dao;
 
-import ro.msg.edu.jbugs.userManagement.persistence.entity.Role;
 import ro.msg.edu.jbugs.userManagement.persistence.entity.User;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
@@ -13,8 +12,6 @@ import javax.persistence.Query;
 import javax.persistence.TypedQuery;
 import java.util.List;
 import java.util.Optional;
-import java.util.Set;
-import java.util.stream.Collectors;
 
 @Stateless
 public class UserDaoImpl implements UserDao {
@@ -24,16 +21,16 @@ public class UserDaoImpl implements UserDao {
     private EntityManager em;
 
     @Override
-    public Optional<User> addUser(User user) {
-        log.info("addUser: user={}", user);
+    public Optional<User> createUser(User user) {
+        log.info("createUser: user={}", user);
         Optional<User> userOptional;
         try {
             em.persist(user);
-            userOptional = Optional.ofNullable(user);
+            userOptional = Optional.of(user);
         } catch (RuntimeException ex) {
             userOptional = Optional.empty();
         }
-        log.info("addUser: result={}", user);
+        log.info("createUser: result={}", user);
         return userOptional;
     }
 

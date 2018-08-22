@@ -86,26 +86,4 @@ export class EditUserComponent implements OnInit {
       };
     });
   }
-
-
-  onItemSelect() {
-    console.log('on select');
-    console.log(this.selectedItems);
-  }
-
-  OnItemDeSelect() {
-    console.log('OnItemDeSelect');
-    console.log(this.selectedItems);
-  }
-
-  onSelectAll() {
-    console.log('onSelectAll');
-    console.log(this.selectedItems);
-  }
-
-  onDeSelectAll() {
-    console.log('onDeSelectAll');
-    console.log(this.selectedItems);
-  }
-
 }
