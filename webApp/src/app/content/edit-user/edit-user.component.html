@@ -144,7 +144,8 @@
                        *ngIf="mobileNumberControl.value == null || mobileNumberControl.value == ''">
                   {{'edit.message9' | translate}}
                 </small>
-                <small class="help-block text-info" *ngIf="mobileNumberControl.valid">{{'edit.message14' | translate}}</small>
+                <small class="help-block text-info" *ngIf="mobileNumberControl.valid">{{'edit.message14' | translate}}
+                </small>
               </p>
             </div>
           </div>
@@ -172,37 +173,10 @@
         <div class="row justify-content-center">
           <button type="submit" style="border-color: #18BC9C; background-color: #18BC9C"
                   [disabled]="formControl.invalid"
-                  class="btn btn-primary btn-lg">Update
+                  class="btn btn-primary btn-lg">{{'edit.update' | translate}}
           </button>
         </div>
       </form>
     </div>
   </div>
-      </form>
-    </div>
-  </div>
-</div>
-<br>
-<div class="container">
-  <div style="height: 10vh" class="row">
-    <div class="col-lg-10 mx-auto">
-      <div style="float: right" class="col-lg-6 mx-auto">
-        <angular2-multiselect [data]="itemList"
-                              [(ngModel)]="selectedItems"
-                              [settings]="settings"
-                              (onSelect)="onItemSelect()"
-                              (onDeSelect)="OnItemDeSelect()"
-                              (onSelectAll)="onSelectAll()"
-                              (onDeSelectAll)="onDeSelectAll()">
-        </angular2-multiselect>
-      </div>
-    </div>
-  </div>
-</div>
-<br>
-<br>
-<div class="row justify-content-center">
-  <button type="submit" style="border-color: #18BC9C; background-color: #18BC9C"
-          class="btn btn-primary btn-lg" [disabled]="formControl.invalid">{{'edit.update' | translate}}
-  </button>
 </div>

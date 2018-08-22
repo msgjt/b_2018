@@ -34,7 +34,7 @@
     "lastname": "Last name",
     "mobilenr": "Mobil number",
     "password": "Password",
-    "update": "Submit",
+    "update": "Update",
     "message1": "Please enter a valid First Name.",
     "message2": "Must be 3-20 characters long and contain only letters.",
     "message3": "Please enter a valid Last Name.",
@@ -56,6 +56,7 @@
   "show": {
     "show": "Show users",
     "status": "Account status",
-    "users": "Users"
+    "users": "Users",
+    "email": "Email"
   }
 }

@@ -55,6 +55,7 @@
   "show": {
     "show": "Afisare utilizatori",
     "status": "Status cont",
-    "users": "Utilizatori"
+    "users": "Utilizatori",
+    "email": "Email"
   }
 }
