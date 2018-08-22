@@ -1,25 +1,28 @@
 package ro.msg.edu.jbugs.userManagement.client.exception;
 
-public class ClientException extends Exception {
-    private ClientExceptionCode ClientExceptionCode;
+import lombok.Getter;
 
-    public ClientException(ClientExceptionCode ClientExceptionCode) {
-        super(ClientExceptionCode.getMessage());
-        this.ClientExceptionCode = ClientExceptionCode;
+@Getter
+public class ClientException extends Exception {
+    private ClientExceptionCode clientExceptionCode;
+
+    public ClientException(ClientExceptionCode clientExceptionCode) {
+        super(clientExceptionCode.getMessage());
+        this.clientExceptionCode = clientExceptionCode;
     }
 
     public ClientException(ClientExceptionCode code, String message) {
         super(message);
-        ClientExceptionCode = code;
+        clientExceptionCode = code;
     }
 
     public ClientException(ClientExceptionCode code, String message, Throwable cause) {
         super(message, cause);
-        ClientExceptionCode = code;
+        clientExceptionCode = code;
     }
 
     public ClientException(ClientExceptionCode code, Throwable cause) {
         super(cause);
-        ClientExceptionCode = code;
+        clientExceptionCode = code;
     }
 }
