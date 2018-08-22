@@ -1,0 +1,33 @@
+<div style="height: 100px"></div>
+<div class="container">
+  <h2 class="text-center text-uppercase text-secondary mb-0">Roles</h2>
+  <hr class="star-dark mb-5">
+  <div class="row justify-content-center">
+    <div class="col-md-12 mx-auto">
+      <table class="table">
+        <thead style="background-color: #1a252f; color: white">
+        <tr>
+          <th scope="col">#</th>
+          <th scope="col">Type</th>
+          <th scope="col"></th>
+        </tr>
+        </thead>
+        <tbody>
+
+        <tr *ngFor="let role of roles; let i = index" [attr.data-index]="i">
+          <td scope="col">{{i + 1}}</td>
+          <td>{{role.roleType}}</td>
+          <td><i class="material-icons" (click)="editSelectedRole()">border_color</i>
+          </td>
+
+
+
+        </tr>
+
+        </tbody>
+      </table>
+    </div>
+  </div>
+</div>
+
+
