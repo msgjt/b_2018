@@ -6,6 +6,8 @@ import ro.msg.edu.jbugs.userManagement.business.exception.BusinessExceptionCode;
 import ro.msg.edu.jbugs.userManagement.business.utils.JwtManager;
 import ro.msg.edu.jbugs.userManagement.business.utils.UtilBean;
 import ro.msg.edu.jbugs.userManagement.business.validator.UserValidator;
+import ro.msg.edu.jbugs.userManagement.persistence.dao.RoleDAO;
+import ro.msg.edu.jbugs.userManagement.persistence.dao.RoleDAOImpl;
 import ro.msg.edu.jbugs.userManagement.persistence.dao.UserDao;
 import ro.msg.edu.jbugs.userManagement.business.exception.BusinessException;
 import ro.msg.edu.jbugs.userManagement.persistence.entity.*;
@@ -13,6 +15,7 @@ import ro.msg.edu.jbugs.userManagement.business.dto.UserDto;
 import ro.msg.edu.jbugs.userManagement.business.utils.Encryptor;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
+import ro.msg.edu.jbugs.userManagement.persistence.entity.enums.RoleType;
 import ro.msg.edu.jbugs.userManagement.persistence.entity.enums.UserStatus;
 
 import javax.ejb.EJB;
@@ -42,6 +45,9 @@ public class UserServiceImpl implements UserService {
     private UserDao userDao;
 
     @EJB
+    private RoleDAO roleDAO;
+
+    @EJB
     private UtilBean utilBean;
 
     @Inject
@@ -51,15 +57,28 @@ public class UserServiceImpl implements UserService {
     public UserDto createUser(UserDto userDto) throws BusinessException {
         log.info("createUser: userDto={}", userDto);
         User user = userConverter.convertDtoToEntity(userDto);
+
         normalizeUser(user);
         UserValidator.validateUser(user);
+        HashSet<RoleType> roles = UserValidator.validateRoles(userDto.getRoles());
+        if (roles.size() == 0)
+            throw new BusinessException(BusinessExceptionCode.ROLES_NOT_VALID);
+
 //        if (userDao.getUserWithEmail(user.getEmail()).isPresent()) {
 //            throw new BusinessException(BusinessExceptionCode.EMAIL_EXISTS_ALREADY);
 //        }
+
+        HashSet<Role> roleEntities = roleDAO.getRolesByType(roles);
+
+        user.setRoles(roleEntities);
         user.setUsername(generateRealUsername(user.getFirstName(), user.getLastName()));
         user.setPassword(Encryptor.encrypt(userDto.getPassword()));
         user.setStatus(UserStatus.ACTIVE);
         Optional<User> user1 = userDao.addUser(user);
+        if (user1.isPresent()) {
+            log.info("createUser: adding user ro roles={}", roleEntities);
+            roleDAO.addUser(user1.get(), roleEntities);
+        }
         UserDto userDto1 = user1.map(userConverter::convertEntityToDto).orElse(UserDto.builder().build());
         log.info("createUser: result={}", userDto1);
 
@@ -83,7 +102,7 @@ public class UserServiceImpl implements UserService {
     public TokenDto login(String username, String password) throws BusinessException {
         log.info("login: username={}", username);
         Optional<User> user = userDao.getUserByUsernameWithRolesAndPermissions(username);
-        User user1 = user.orElseThrow(() -> new BusinessException(BusinessExceptionCode.USER_VALIDATION_EXCEPTION));
+        User user1 = user.orElseThrow(() -> new BusinessException(BusinessExceptionCode.CAN_NOT_GET_USER));
         validateUserForLogin(user1, password);
         TokenDto tokenDto = TokenDto.builder()
                 .token(JwtManager.getInstance().createToken(user1))
@@ -162,4 +181,22 @@ public class UserServiceImpl implements UserService {
         }
         log.info("setUserStatus: success");
     }
+
+    @Override
+    public UserDto updateUser(UserDto userDto) throws BusinessException {
+        log.trace("updateUser: userDto={}", userDto);
+        User user = userConverter.convertDtoToEntity(userDto);
+        UserValidator.validateUserForUpdate(user);
+        if(user.getPassword() != null && !user.getPassword().equals("")){
+            user.setPassword(Encryptor.encrypt(user.getPassword()));
+        }
+        Optional<User> optionalUser = userDao.updateUser(user);
+        User userResult = optionalUser
+                .orElseThrow(() -> new BusinessException(BusinessExceptionCode.CAN_NOT_UPDATE_USER));
+        UserDto result = userConverter.convertEntityToDto(userResult);
+        log.trace("updateUser: result={}",result);
+        return result;
+    }
+
+
 }

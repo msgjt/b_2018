@@ -1,0 +1,10 @@
+<div class="container">
+  <angular2-multiselect [data]="itemList"
+                        [(ngModel)]="selectedItems"
+                        [settings]="settings"
+                        (onSelect)="onItemSelect()"
+                        (onDeSelect)="OnItemDeSelect()"
+                        (onSelectAll)="onSelectAll()"
+                        (onDeSelectAll)="onDeSelectAll()">
+  </angular2-multiselect>
+</div>

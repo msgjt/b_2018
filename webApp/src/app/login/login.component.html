@@ -29,6 +29,7 @@
               {{'login.message3' | translate }}
             </small>
             <small class="help-block text-info" *ngIf="usernameControl.valid">{{'login.message4' | translate }}</small>
+
           </div>
           <div class="control-group">
             <div class="form-group floating-label-form-group controls mb-0 pb-2">
@@ -46,6 +47,7 @@
                      placeholder="{{'login.password' | translate }}"
                      [class.isInvalid]="passwordControl.invalid && passwordControl.touched">
             </div>
+
             <small class="help-block text-danger"
                    *ngIf="passwordControl.invalid && passwordControl.touched && passwordControl.value != '' && passwordControl.value != null">
               {{'login.message2' | translate }}
@@ -54,6 +56,7 @@
               {{'login.message3' | translate }}
             </small>
             <small class="help-block text-info" *ngIf="passwordControl.valid">{{'login.message5' | translate }}</small>
+
           </div>
           <br>
           <div class="row justify-content-center">
@@ -79,3 +82,4 @@
     </div>
   </div>
 </section>
+

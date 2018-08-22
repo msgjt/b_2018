@@ -4,6 +4,8 @@ import lombok.*;
 import ro.msg.edu.jbugs.userManagement.persistence.entity.enums.UserStatus;
 
 import javax.persistence.*;
+import javax.validation.constraints.NotNull;
+import javax.validation.constraints.Size;
 import java.util.HashSet;
 import java.util.Set;
 
@@ -32,6 +34,7 @@ public class User extends BaseEntity<Long> {
     public static final String GET_USER_BY_USERNAME_WITH_ROLES_AND_PERMISSIONS = "getUserByUsernameWithRolesAndPermissions";
     public static final String UPDATE_USER_STATUS_BY_USERNAME = "updateUserStatusByUsername";
 
+
     private String firstName;
     private String lastName;
     private String username;
@@ -42,7 +45,7 @@ public class User extends BaseEntity<Long> {
     @Enumerated(EnumType.STRING)
     private UserStatus status;
 
-    @ManyToMany(cascade = CascadeType.ALL)
+    @ManyToMany(cascade = {CascadeType.MERGE})
     private Set<Role> roles = new HashSet<>();
 
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "user")
@@ -53,6 +56,5 @@ public class User extends BaseEntity<Long> {
 
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "assignee")
     private Set<Bug> bugsAssigned = new HashSet<>();
-
 
 }

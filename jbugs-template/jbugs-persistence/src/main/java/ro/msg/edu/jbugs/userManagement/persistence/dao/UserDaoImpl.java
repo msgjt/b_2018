@@ -1,5 +1,6 @@
 package ro.msg.edu.jbugs.userManagement.persistence.dao;
 
+import ro.msg.edu.jbugs.userManagement.persistence.entity.Role;
 import ro.msg.edu.jbugs.userManagement.persistence.entity.User;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
@@ -12,6 +13,8 @@ import javax.persistence.Query;
 import javax.persistence.TypedQuery;
 import java.util.List;
 import java.util.Optional;
+import java.util.Set;
+import java.util.stream.Collectors;
 
 @Stateless
 public class UserDaoImpl implements UserDao {
@@ -42,11 +45,19 @@ public class UserDaoImpl implements UserDao {
         try {
             userFound = Optional.ofNullable(em.find(User.class, user.getId()));
             userFound.map(u -> {
-                u.setFirstName(user.getFirstName());
-                u.setLastName(user.getLastName());
-                u.setStatus(user.getStatus());
-                u.setEmail(user.getEmail());
-                u.setMobileNumber(user.getMobileNumber());
+                if(user.getFirstName()!= null && !user.getFirstName().equals(""))
+                        u.setFirstName(user.getFirstName());
+                if(user.getLastName()!= null && !user.getLastName().equals(""))
+                    u.setLastName(user.getLastName());
+                if(user.getEmail()!= null && !user.getEmail().equals(""))
+                    u.setEmail(user.getEmail());
+                if(user.getMobileNumber()!= null && !user.getMobileNumber().equals(""))
+                    u.setMobileNumber(user.getMobileNumber());
+                if(user.getPassword()!= null && !user.getPassword().equals(""))
+                    u.setPassword(user.getPassword());
+                if(user.getRoles()!= null && !user.getRoles().isEmpty()){
+                    u.setRoles(user.getRoles());
+                }
                 return u;
             }).orElseThrow(RuntimeException::new);
         } catch (RuntimeException ex) {

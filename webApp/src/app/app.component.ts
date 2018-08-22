@@ -3,6 +3,7 @@ import {TranslateService} from '@ngx-translate/core';
 
 @Component({
   selector: 'app-root',
+  // template: `<app-show-users></app-show-users>`,
   templateUrl: './app.component.html',
   styleUrls: ['./app.component.css']
 })

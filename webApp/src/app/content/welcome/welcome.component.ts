@@ -1,24 +1,21 @@
 import {Component, OnInit} from '@angular/core';
-import {ContentService} from '../shared/content.service';
-import {User} from '../../shared/user';
 
 @Component({
-  selector: 'app-add-user',
-  templateUrl: './add-user.component.html',
-  styleUrls: ['./add-user.component.css']
+  selector: 'app-welcome',
+  templateUrl: './welcome.component.html',
+  styleUrls: ['./welcome.component.css']
 })
-export class AddUserComponent implements OnInit {
+export class WelcomeComponent implements OnInit {
 
-  model: User;
   itemList = [];
   selectedItems = [];
   settings = {};
 
-  constructor(private adminService: ContentService) {
-    this.model = new User();
+  constructor() {
   }
 
   ngOnInit() {
+
     this.itemList = [
       {'id': 1, 'itemName': 'India'},
       {'id': 2, 'itemName': 'Singapore'},
@@ -39,19 +36,8 @@ export class AddUserComponent implements OnInit {
       unSelectAllText: 'UnSelect All',
       classes: 'myclass custom-class'
     };
-  }
 
-  clearFields() {
-    this.model = new User();
-  }
 
-  submitForm() {
-    if (this.model.firstName && this.model.lastName && this.model.password && this.model.email && this.model.mobileNumber) {
-      this.adminService.addUser(this.model.firstName, this.model.lastName, this.model.email, this.model.password, this.model.mobileNumber)
-        .subscribe(result => console.log(result),
-          error => console.log(JSON.stringify(error)),
-          () => this.clearFields());
-    }
   }
 
   onItemSelect() {
@@ -73,6 +59,4 @@ export class AddUserComponent implements OnInit {
     console.log('onDeSelectAll');
     console.log(this.selectedItems);
   }
-
-
 }

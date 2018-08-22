@@ -29,7 +29,7 @@ public class UserResource {
     @EJB
     private SessionBean sessionBean;
 
-    @AuthorizationSecured({PermissionType.PERMISSION_MANAGEMENT, PermissionType.USER_MANAGEMENT})
+//    @AuthorizationSecured({PermissionType.PERMISSION_MANAGEMENT, PermissionType.USER_MANAGEMENT})
     @GET
     public List<UserDto> getUsers() throws BusinessException {
         log.info("getUsers: --entered");
@@ -70,6 +70,15 @@ public class UserResource {
         log.info("addUser: userDto={}",userDto);
         UserDto result = userManagementBoundary.createUser(userDto);
         log.info("addUser: result={}",result);
+        return Response.status(Response.Status.OK).entity(result).build();
+    }
+
+    @Path("/update")
+    @PUT
+    public Response updateUser(UserDto userDto) throws BusinessException {
+        log.info("updateUser: userDto={}",userDto);
+        UserDto result = userManagementBoundary.updateUser(userDto);
+        log.info("updateUser: result={}",result);
         return Response.status(Response.Status.OK).entity(result).build();
     }
 

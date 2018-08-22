@@ -58,7 +58,6 @@ public class TestServlet extends HttpServlet {
 //            message = "failed!";
 //        }
 
-
         Optional<User> optionalUser = userDao.getUserByUsernameWithRolesAndPermissions("macarc");
 
         response.setContentType("text/html;charset=UTF-8");
