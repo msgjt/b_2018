@@ -1,6 +1,5 @@
 package ro.msg.edu.jbugs.userManagement.business.validator;
 
-import com.sun.javaws.exceptions.InvalidArgumentException;
 import ro.msg.edu.jbugs.userManagement.business.dto.RoleDto;
 import ro.msg.edu.jbugs.userManagement.business.exception.BusinessException;
 import ro.msg.edu.jbugs.userManagement.business.exception.BusinessExceptionCode;
