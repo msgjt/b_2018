@@ -17,6 +17,10 @@
     "message4": "Valid username.",
     "message5": "Valid password."
   },
+  "bugs":{
+    "bugs": "Bugs"
+  },
+
   "error": {
     "message": "This is not the page you're looking for!"
   }

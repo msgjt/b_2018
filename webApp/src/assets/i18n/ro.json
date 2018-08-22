@@ -16,6 +16,9 @@
     "message4": "Numele utilizatorului este valid.",
     "message5": "Parola valida."
   },
+  "bugs":{
+    "bugs": "Buguri"
+  },
   "error": {
     "message": "Acesta nu este pagina pe care o cauti!"
   }

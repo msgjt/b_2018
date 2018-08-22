@@ -19,6 +19,9 @@ import {ShowUsersComponent} from './content/show-users/show-users.component';
 import { WelcomeComponent } from './content/welcome/welcome.component';
 import {AngularMultiSelectModule} from 'angular2-multiselect-dropdown';
 import { RecaptchaModule } from 'angular-google-recaptcha';
+import {DataTableModule} from 'angular2-datatable';
+import { BuglisterComponent } from './content/buglister/buglister.component';
+import { DataFilterPipe } from './content/buglister/data-filter.pipe';
 
 // TODO should be taken from somekind of config?
 const SITE_KEY = '6LeLWmsUAAAAAPRM65RcHUjnHwdCmIJUTceUvP-k';
@@ -33,7 +36,9 @@ const SITE_KEY = '6LeLWmsUAAAAAPRM65RcHUjnHwdCmIJUTceUvP-k';
     DummyContentComponent,
     EditUserComponent,
     ShowUsersComponent,
-    WelcomeComponent
+    WelcomeComponent,
+    BuglisterComponent,
+    DataFilterPipe
   ],
   imports: [
     BrowserModule,
@@ -51,8 +56,7 @@ const SITE_KEY = '6LeLWmsUAAAAAPRM65RcHUjnHwdCmIJUTceUvP-k';
     RecaptchaModule.forRoot({
       siteKey: SITE_KEY,
     }),
-
-
+    DataTableModule
   ],
   providers: [
     LoginService,
