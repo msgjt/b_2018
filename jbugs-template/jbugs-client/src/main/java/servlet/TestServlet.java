@@ -2,6 +2,8 @@ package servlet;
 
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.sql.Date;
+import java.time.LocalDate;
 import java.util.Optional;
 
 import javax.ejb.EJB;
@@ -12,8 +14,14 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import ro.msg.edu.jbugs.userManagement.business.control.UserService;
+import ro.msg.edu.jbugs.userManagement.business.converter.UserConverter;
+import ro.msg.edu.jbugs.userManagement.persistence.dao.BugDao;
 import ro.msg.edu.jbugs.userManagement.persistence.dao.UserDao;
+import ro.msg.edu.jbugs.userManagement.persistence.entity.Bug;
 import ro.msg.edu.jbugs.userManagement.persistence.entity.User;
+import ro.msg.edu.jbugs.userManagement.persistence.entity.enums.BugStatusType;
+import ro.msg.edu.jbugs.userManagement.persistence.entity.enums.SeverityType;
+import ro.msg.edu.jbugs.userManagement.persistence.entity.enums.UserStatus;
 
 @WebServlet(urlPatterns = {"/TestServlet"})
 public class TestServlet extends HttpServlet {
@@ -23,6 +31,12 @@ public class TestServlet extends HttpServlet {
 
     @EJB
     private UserDao userDao;
+
+    @EJB
+    private BugDao bugDao;
+
+    @EJB
+    private UserConverter userConverter;
 
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
@@ -59,6 +73,27 @@ public class TestServlet extends HttpServlet {
 //        }
 
         Optional<User> optionalUser = userDao.getUserByUsernameWithRolesAndPermissions("macarc");
+        User user = new User();
+        user.setFirstName("qwerty");
+        user.setLastName("asdfg");
+        user.setId(1l);
+        user.setPassword("fd");
+        user.setStatus(UserStatus.ACTIVE);
+        userDao.addUser(user);
+//        Optional<User> userOptional = userDao.getUserByUsername("admina");
+//        User user = userOptional.get();
+//        userDao.addUser(user);
+//        Bug bug = new Bug();
+//        bug.setTitle("qwerty");
+//        bug.setVersion("1");
+//        bug.setStatusType(BugStatusType.IN_PROGRESS);
+//        bug.setSeverityType(SeverityType.HIGH);
+//        bug.setDescription("d");
+//        bug.setDueDate(Date.valueOf(LocalDate.now()));
+//        bug.setCreator(user);
+//        bug.setAssignee(user);
+//        bug.setId(1l);
+//        bugDao.addBug(bug);
 
         response.setContentType("text/html;charset=UTF-8");
         try (PrintWriter out = response.getWriter()) {

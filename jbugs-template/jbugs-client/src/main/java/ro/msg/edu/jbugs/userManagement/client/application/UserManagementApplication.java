@@ -1,5 +1,6 @@
 package ro.msg.edu.jbugs.userManagement.client.application;
 
+import ro.msg.edu.jbugs.userManagement.client.resources.BugResource;
 import ro.msg.edu.jbugs.userManagement.client.resources.UserResource;
 
 import javax.ws.rs.ApplicationPath;
@@ -14,6 +15,7 @@ public class UserManagementApplication extends Application{
     public Set<Class<?>> getClasses() {
         final Set<Class<?>> classes = new HashSet<>();
         classes.add(UserResource.class);
+        classes.add(BugResource.class);
         return super.getClasses();
     }
 }
