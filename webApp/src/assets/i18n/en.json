@@ -1,0 +1,20 @@
+{
+
+  "app": {
+    "text": "This is a simple demonstration app for ngx-translate",
+    "adduser": "Add user",
+    "login": "Login",
+    "content": "Content"
+  },
+  "login": {
+    "login": "Login",
+    "logout": "Logout",
+    "username": "Username",
+    "password": "Password",
+    "message1": "Please enter a valid username.",
+    "message2": "Please enter a valid password.",
+    "message3": "Must be 6-12 characters long and contain only numbers and letters.",
+    "message4": "Valid username.",
+    "message5": "Valid password."
+  }
+}

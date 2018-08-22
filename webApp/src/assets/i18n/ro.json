@@ -1,0 +1,19 @@
+{
+  "app": {
+    "text": "This is a simple demonstration app for ngx-translate",
+    "adduser": "Adaugare utilizator",
+    "login": "Autentificare",
+    "content": "Continut"
+  },
+  "login": {
+    "login": "Autentificare",
+    "logout": "Delogare",
+    "username": "Nume utilizator",
+    "password": "Parola",
+    "message1": "Te rog sa introduci un nume de utilizator valid.",
+    "message2": "Te rog sa introduci o parola valida.",
+    "message3": "Parola trebuie sa aiba o lungime de 6-12 caractere si sa contina doar litere sau numere",
+    "message4": "Numele utilizatorului este valid.",
+    "message5": "Parola valida."
+  }
+}
