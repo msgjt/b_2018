@@ -29,7 +29,6 @@ public class UserDaoImpl implements UserDao {
         Optional<User> userOptional;
         try {
             em.persist(user);
-            em.flush();
             userOptional = Optional.ofNullable(user);
         } catch (RuntimeException ex) {
             userOptional = Optional.empty();

@@ -64,7 +64,7 @@ public class UserResource {
     }
 
     @Path("/add")
-    @AuthorizationSecured(PermissionType.USER_MANAGEMENT)
+//    @AuthorizationSecured(PermissionType.USER_MANAGEMENT)
     @POST
     public Response addUser(UserDto userDto) throws BusinessException {
         log.info("addUser: userDto={}",userDto);

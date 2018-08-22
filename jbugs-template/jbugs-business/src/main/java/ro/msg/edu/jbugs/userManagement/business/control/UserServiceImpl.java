@@ -56,28 +56,28 @@ public class UserServiceImpl implements UserService {
 
         normalizeUser(user);
         UserValidator.validateUser(user);
-        HashSet<RoleType> roles = UserValidator.validateRoles(userDto.getRoles());
-        if (roles.size() == 0)
-            throw new BusinessException(BusinessExceptionCode.ROLES_NOT_VALID);
+//        HashSet<RoleType> roles = UserValidator.validateRoles(userDto.getRoles());
+//        if (roles.size() == 0)
+//            throw new BusinessException(BusinessExceptionCode.ROLES_NOT_VALID);
 
 //        if (userDao.getUserWithEmail(user.getEmail()).isPresent()) {
 //            throw new BusinessException(BusinessExceptionCode.EMAIL_EXISTS_ALREADY);
 //        }
 
-        HashSet<Role> roleEntities = roleDAO.getRolesByType(roles);
-
-        user.setRoles(roleEntities);
+//        HashSet<Role> roleEntities = roleDAO.getRolesByType(roles);
+//
+//        user.setRoles(roleEntities);
         user.setUsername(generateRealUsername(user.getFirstName(), user.getLastName()));
         user.setPassword(Encryptor.encrypt(userDto.getPassword()));
         user.setStatus(UserStatus.ACTIVE);
         Optional<User> user1 = userDao.addUser(user);
-        if (user1.isPresent()) {
-            log.info("createUser: adding user ro roles={}", roleEntities);
-            roleDAO.addUser(user1.get(), roleEntities);
-        }
-        UserDto userDto1 = user1.map(userConverter::convertEntityToDto).orElse(UserDto.builder().build());
+//        if (user1.isPresent()) {
+//            log.info("createUser: adding user ro roles={}", roleEntities);
+//            roleDAO.addUser(user1.get(), roleEntities);
+//        }
+        UserDto userDto1 = user1.map(userConverter::convertEntityToDto)
+                .orElseThrow(() -> new BusinessException(BusinessExceptionCode.CAN_NOT_ADD_USER));
         log.info("createUser: result={}", userDto1);
-
         return userDto1;
     }
 
