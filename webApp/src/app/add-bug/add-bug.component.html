@@ -1,6 +1,6 @@
 <div style="height: 100px"></div>
 <div class="container">
-  <h2 class="text-center text-uppercase text-secondary mb-0">Add a bug</h2>
+  <h2 class="text-center text-uppercase text-secondary mb-0">Add a bug </h2>
   <hr class="star-dark mb-5">
   <div class="control-group">
     <div class="control-group">
@@ -30,63 +30,62 @@
         <small class="help-block text-info" *ngIf="firstNameControl.valid">Valid Title.</small>
       </p>
     </div>
-
-
-    <div class="control-group">
-      <div class="form-group floating-label-form-group controls mb-0 pb-2">
-        <input type="text"
-               id="DescriptionInput"
-               name="description"
-               class="form-control"
-               [(ngModel)]="model.description"
-               required
-               #lastNameElement
-               #lastNameControl="ngModel"
-               minlength="6"
-               maxlength="40"
-               pattern="^[a-zA-Z]*$"
-               placeholder="Description"
-               [class.isInvalid]="lastNameControl.invalid && lastNameControl.touched">
-      </div>
-      <p style="height: 20px">
-        <small class="help-block text-danger"
-               *ngIf="lastNameControl.invalid && lastNameControl.touched && lastNameControl.value != '' &&lastNameControl.value != null">
-          Please enter a valid Description.
-        </small>
-        <small class="help-block text-info" *ngIf="lastNameControl.value == null || lastNameControl.value == ''">
-          Must be 6-40 characters long and contain only letters.
-        </small>
-        <small class="help-block text-info" *ngIf="lastNameControl.valid">Valid Description.</small>
-      </p>
+  </div>
+  <div class="control-group">
+    <div class="form-group floating-label-form-group controls mb-0 pb-2">
+      <input type="text"
+             id="DescriptionInput"
+             name="description"
+             class="form-control"
+             [(ngModel)]="model.description"
+             required
+             #lastNameElement
+             #lastNameControl="ngModel"
+             minlength="6"
+             maxlength="40"
+             pattern="^[a-zA-Z]*$"
+             placeholder="Description"
+             [class.isInvalid]="lastNameControl.invalid && lastNameControl.touched">
     </div>
+    <p style="height: 20px">
+      <small class="help-block text-danger"
+             *ngIf="lastNameControl.invalid && lastNameControl.touched && lastNameControl.value != '' &&lastNameControl.value != null">
+        Please enter a valid Description.
+      </small>
+      <small class="help-block text-info" *ngIf="lastNameControl.value == null || lastNameControl.value == ''">
+        Must be 6-40 characters long and contain only letters.
+      </small>
+      <small class="help-block text-info" *ngIf="lastNameControl.valid">Valid Description.</small>
+    </p>
 
-    <div class="control-group">
-      <div class="form-group floating-label-form-group controls mb-0 pb-2">
-        <input type="text"
-               id="VersionInput"
-               name="version"
-               class="form-control"
-               [(ngModel)]="model.version"
-               required
-               #lastNameElement
-               #lastNameControl="ngModel"
-               minlength="1"
-               maxlength="3"
-               placeholder="Version"
-               [class.isInvalid]="lastNameControl.invalid && lastNameControl.touched">
+    <div>
+      <div class="control-group">
+        <div class="form-group floating-label-form-group controls mb-0 pb-2">
+          <input type="text"
+                 id="VersionInput"
+                 name="version"
+                 class="form-control"
+                 [(ngModel)]="model.version"
+                 required
+                 #lastNameElement
+                 #lastNameControl="ngModel"
+                 minlength="1"
+                 maxlength="3"
+                 placeholder="Version"
+                 [class.isInvalid]="lastNameControl.invalid && lastNameControl.touched">
+        </div>
+        <p style="height: 20px">
+          <small class="help-block text-danger"
+                 *ngIf="lastNameControl.invalid && lastNameControl.touched && lastNameControl.value != '' &&lastNameControl.value != null">
+            Please enter a valid Version.
+          </small>
+          <small class="help-block text-info" *ngIf="lastNameControl.value == null || lastNameControl.value == ''">
+            Must be 1-3 characters long.
+          </small>
+          <small class="help-block text-info" *ngIf="lastNameControl.valid">Valid Version.</small>
+        </p>
       </div>
-      <p style="height: 20px">
-        <small class="help-block text-danger"
-               *ngIf="lastNameControl.invalid && lastNameControl.touched && lastNameControl.value != '' &&lastNameControl.value != null">
-          Please enter a valid Version.
-        </small>
-        <small class="help-block text-info" *ngIf="lastNameControl.value == null || lastNameControl.value == ''">
-          Must be 1-3 characters long.
-        </small>
-        <small class="help-block text-info" *ngIf="lastNameControl.valid">Valid Version.</small>
-      </p>
     </div>
-
     <div class="control-group">
       <div class="form-group floating-label-form-group controls mb-0 pb-2">
         <input type="text"
@@ -111,7 +110,10 @@
         </small>
         <small class="help-block text-info" *ngIf="lastNameControl.valid">Valid Version.</small>
       </p>
+
     </div>
+  </div>
+  <div>
 
 
     <div class="control-group">
@@ -138,14 +140,41 @@
         <small class="help-block text-info" *ngIf="lastNameControl.valid">Valid Target Date.</small>
       </p>
     </div>
-    <select [(ngModel)]="selectedValue">
-      <option *ngFor="let p of priorityList" [ngValue]="p">{{p}}</option>
-    </select>
-    <br>
-    <br>
-    <select [(ngModel)]="selectedValue">
-      <option *ngFor="let s of statusList" [ngValue]="s">{{s}}</option>
-    </select>
+    <div>
+      <h4 class="text-secondary mb-0">Choose who to assign</h4>
+      <br>
+      <select class=form-control [(ngModel)]="assignee" required style="width: 15%;
+      height: 25%;
+    padding: 12px 20px;
+    margin: 8px 1px;
+    display: inline-block;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    box-sizing: border-box;">
+
+        <option *ngFor="let u of users" [ngValue]="u">{{u.username}}</option>
+      </select>
+      <br>
+    </div>
+
+    <div>
+      <h4 class="text-secondary mb-0">Choose Severity</h4>
+      <br>
+      <select class=form-control [(ngModel)]="priority" required style="width: 15%;
+      height: 25%;
+    padding: 12px 20px;
+    margin: 8px 1px;
+    display: inline-block;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    box-sizing: border-box;">
+
+        <option *ngFor="let p of priorityList" [ngValue]="p">{{p}}</option>
+      </select>
+      <br>
+    </div>
+
+
   </div>
 
 </div>
