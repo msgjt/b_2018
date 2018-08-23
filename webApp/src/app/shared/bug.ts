@@ -6,6 +6,7 @@ export class Bug {
   private _version: string;
   private _CreatedBy: string;
   private _dueDate: Date;
+  private _statusType: string;
 
 
   get id(): number {
@@ -63,5 +64,13 @@ export class Bug {
 
   set dueDate(value: Date) {
     this._dueDate = value;
+  }
+
+  get statusType(): string {
+    return this._statusType;
+  }
+
+  set statusType(value: string) {
+    this._statusType = value;
   }
 }
