@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import {BugsService} from '../shared/bugs.service';
 import {Bug} from '../../shared/Bug';
+import {SearchCriteria} from '../../shared/SearchCriteria';
 
 @Component({
   selector: 'app-show-bugs',
@@ -36,10 +37,16 @@ export class ShowBugsComponent implements OnInit {
   }
 
   onNext() {
-    console.log("onNext");
+    console.log('onNext');
   }
 
   onPrev() {
-    console.log("onPrev");
+    console.log('onPrev');
+  }
+
+  doQuery() {
+    console.log('doQuery');
+    const crit: SearchCriteria = {title: 'alma', fixedVersion: '0.11', status: 'CLOSED'};
+    this.bugsService.getBugs(crit);
   }
 }

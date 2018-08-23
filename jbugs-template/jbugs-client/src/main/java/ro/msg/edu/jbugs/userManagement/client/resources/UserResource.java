@@ -82,25 +82,4 @@ public class UserResource {
         log.info("updateUser: result={}",result);
         return Response.status(Response.Status.OK).entity(result).build();
     }
-
-    @GET
-    public List<BugDto> getBugs(
-            @DefaultValue("") @QueryParam("title") String title,
-            @DefaultValue("") @QueryParam("version") String version,
-            @DefaultValue("") @QueryParam("status") String status
-
-    ) throws BusinessException {
-        log.info("getBugs: --entered");
-
-        SearchCriteria criteria = new SearchCriteria();
-                criteria.setTitle(title);
-                criteria.setVersion(version);
-                criteria.setStatus(version);
-
-        List<UserDto> allUsers = userManagementBoundary.getAllUsers();
-        log.info("getUsers: result={}", allUsers);
-        return allUsers;
-    }
-
-
 }
