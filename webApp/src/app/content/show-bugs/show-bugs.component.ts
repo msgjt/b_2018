@@ -16,6 +16,8 @@ export class ShowBugsComponent implements OnInit {
   public sortBy = 'email';
   public sortOrder = 'asc';
 
+  public disableNext = false;
+
   constructor(private bugsService: BugsService) {
   }
 
@@ -32,21 +34,21 @@ export class ShowBugsComponent implements OnInit {
   }
 
   getBugs(): void {
-    this.bugsService.getAllBugs()
-      .subscribe(bugs => this.data = bugs);
+    this.bugsService.getBugs().subscribe(bugs => this.data = bugs);
   }
 
   onNext() {
     console.log('onNext');
+    this.bugsService.getNext().subscribe(bugs => {this.data = bugs; this.disableNext = this.data.length < 25; });
+
   }
 
   onPrev() {
     console.log('onPrev');
+    this.bugsService.getPrev().subscribe(bugs => this.data = bugs);
   }
 
   doQuery() {
     console.log('doQuery');
-    const crit: SearchCriteria = {title: 'alma', fixedVersion: '0.11', status: 'CLOSED'};
-    this.bugsService.getBugs(crit);
   }
 }
