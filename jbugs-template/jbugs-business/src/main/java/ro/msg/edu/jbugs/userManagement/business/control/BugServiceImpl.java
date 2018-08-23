@@ -31,8 +31,6 @@ public class BugServiceImpl implements BugService{
         log.info("Test: bug={}", bug);
         Optional<Bug> bug1 = bugDao.addBug(bug);
         log.info("Test: bug1={}", bug1);
-        //BugDto bugDto1 = bug1.map(bugConverter::convertEntityToDto).orElse(BugDto.builder().build());
-        //log.info("Test: bugDto={}", bugDto1);
         return bugDto;
     }
 }

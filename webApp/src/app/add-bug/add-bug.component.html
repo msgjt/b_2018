@@ -16,7 +16,7 @@
                minlength="3"
                maxlength="20"
                pattern="^[a-zA-Z]*$"
-               placeholder="title"
+               placeholder="Title"
                [class.isInvalid]="firstNameControl.invalid && firstNameControl.touched">
       </div>
       <p style="height: 20px">
@@ -87,6 +87,32 @@
       </p>
     </div>
 
+    <div class="control-group">
+      <div class="form-group floating-label-form-group controls mb-0 pb-2">
+        <input type="text"
+               id="FixedInVersionInput"
+               name="version"
+               class="form-control"
+               [(ngModel)]="model.fixedInVersion"
+               #lastNameElement
+               #lastNameControl="ngModel"
+               minlength="1"
+               maxlength="3"
+               placeholder="Fixed in verion"
+               [class.isInvalid]="lastNameControl.invalid && lastNameControl.touched">
+      </div>
+      <p style="height: 20px">
+        <small class="help-block text-danger"
+               *ngIf="lastNameControl.invalid && lastNameControl.touched && lastNameControl.value != '' &&lastNameControl.value != null">
+          Please enter a valid Version.
+        </small>
+        <small class="help-block text-info" *ngIf="lastNameControl.value == null || lastNameControl.value == ''">
+          Must be 1-3 characters long.
+        </small>
+        <small class="help-block text-info" *ngIf="lastNameControl.valid">Valid Version.</small>
+      </p>
+    </div>
+
 
     <div class="control-group">
       <div class="form-group floating-label-form-group controls mb-0 pb-2">
@@ -112,55 +138,20 @@
         <small class="help-block text-info" *ngIf="lastNameControl.valid">Valid Target Date.</small>
       </p>
     </div>
-
-    <div class="control-group">
-      <div class="form-group floating-label-form-group controls mb-0 pb-2">
-        <input type="text"
-               id="CreatedByInput"
-               name="createdBy"
-               class="form-control"
-               [(ngModel)]="model.CreatedBy"
-               required
-               #lastNameElement
-               #lastNameControl="ngModel"
-               minlength="5"
-               maxlength="6"
-               placeholder="Created By"
-               [class.isInvalid]="lastNameControl.invalid && lastNameControl.touched">
-      </div>
-      <p style="height: 20px">
-        <small class="help-block text-danger"
-               *ngIf="lastNameControl.invalid && lastNameControl.touched && lastNameControl.value != '' &&lastNameControl.value != null">
-          Please enter a valid Username.
-        </small>
-        <small class="help-block text-info" *ngIf="lastNameControl.value == null || lastNameControl.value == ''">
-          Must be 6 characters long.
-        </small>
-        <small class="help-block text-info" *ngIf="lastNameControl.valid">Valid Username.</small>
-      </p>
-    </div>
-
-    <div class="container">
-      <div style="height: 10vh" class="row">
-        <div class="col-lg-10 mx-auto">
-          <div style="float: right" class="col-lg-6 mx-auto">
-            <angular2-multiselect [data]="itemList"
-                                  [(ngModel)]="selectedItems"
-                                  [settings]="settings"
-                                  (onSelect)="onItemSelect()"
-                                  (onDeSelect)="OnItemDeSelect()"
-                                  (onSelectAll)="onSelectAll()"
-                                  (onDeSelectAll)="onDeSelectAll()">
-            </angular2-multiselect>
-          </div>
-        </div>
-      </div>
-    </div>
-
+    <select [(ngModel)]="selectedValue">
+      <option *ngFor="let p of priorityList" [ngValue]="p">{{p}}</option>
+    </select>
+    <br>
+    <br>
+    <select [(ngModel)]="selectedValue">
+      <option *ngFor="let s of statusList" [ngValue]="s">{{s}}</option>
+    </select>
   </div>
-  <div class="row justify-content-center">
-    <button type="submit" style="border-color: #18BC9C; background-color: #18BC9C"
-            class="btn btn-primary btn-lg">Create
-    </button>
-  </div>
+
 </div>
+<div class="row justify-content-center">
+  <button type="submit" style="border-color: #18BC9C; background-color: #18BC9C" (click)="onadd()"
+          class="btn btn-primary btn-lg">Create
+  </button>
+</div>
+

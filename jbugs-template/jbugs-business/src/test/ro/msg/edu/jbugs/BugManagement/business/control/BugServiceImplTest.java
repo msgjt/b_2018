@@ -55,16 +55,8 @@ public class BugServiceImplTest{
 
     @Test
     public void createBugTest() throws BusinessException {
-//        User user= new User();
-//        user.setLastName("a");
-//        user.setFirstName("b");
-//        user.setEmail("qw!qw");
-//        user.setStatus(UserStatus.ACTIVE);
-//        userService.createUser(userConverter.convertEntityToDto(user));
 
         BugDto bugDto = new BugDto();
-//        bugDto.setCreator(user);
-//        bugDto.setAssignee(user);
         bugDto.setId(1l);
         bugDto.setTitle("titlu1");
         bugDto.setDescription("descript");
@@ -73,7 +65,7 @@ public class BugServiceImplTest{
         bugDto.setSeverityType(SeverityType.HIGH);
         bugDto.setBugStatusType(BugStatusType.OPEN);
 
-        bugService.createBug(bugDto);
-        //assertEquals(bugDto,bugService.createBug(bugDto));
+        BugDto bugDto1 =bugService.createBug(bugDto);
+        //assertEquals(bugDto,bugDto1);
     }
 }
