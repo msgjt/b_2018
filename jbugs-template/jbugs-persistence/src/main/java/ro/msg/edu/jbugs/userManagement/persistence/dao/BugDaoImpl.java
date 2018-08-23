@@ -29,18 +29,19 @@ public class BugDaoImpl implements BugDao {
     @Override
     public Optional<Bug> addBug(Bug bug) {
         log.info("addBug: bug={}", bug);
-        Optional<Bug> bugOptional;
+        Optional<Bug> bugOptional ;
         try {
             em.persist(bug);
-            em.flush();
-            bugOptional = Optional.ofNullable(bug);
+            bugOptional = Optional.of(bug);
         } catch (RuntimeException ex) {
             bugOptional = Optional.empty();
-            //log.info("bug not inserted");
+            log.info("bug not inserted");
             log.info(ex.getStackTrace());
         }
-        log.info("addBug: result={}", bug);
+        log.info("addBug: result={}", bugOptional);
         return bugOptional;
     }
+
+
 
 }

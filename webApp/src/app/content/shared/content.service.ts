@@ -3,6 +3,7 @@ import {HttpClient} from '@angular/common/http';
 import {Observable} from 'rxjs';
 import {User} from '../../shared/user';
 import {Role} from '../../shared/role';
+import {Bug} from '../../shared/bug';
 
 @Injectable()
 export class ContentService {
@@ -29,5 +30,12 @@ export class ContentService {
     const url = `${this.baseUrl}/roles`;
     return this.httpClient
       .get<Array<Role>>(url);
+  }
+
+  addbug(title: string, description: string, version: string, fixedInVersion: string) {
+    const url = `${this.baseUrl}/bugs/add`;
+    const body = {title, description, version, fixedInVersion};
+    return this.httpClient
+      .post<Bug>(url, body);
   }
 }

@@ -38,7 +38,8 @@ const SITE_KEY = '6LeLWmsUAAAAAPRM65RcHUjnHwdCmIJUTceUvP-k';
     ShowUsersComponent,
     WelcomeComponent,
     ShowBugsComponent,
-    DataFilterPipe
+    DataFilterPipe,
+    AddBugComponent
   ],
   imports: [
     BrowserModule,
@@ -52,11 +53,9 @@ const SITE_KEY = '6LeLWmsUAAAAAPRM65RcHUjnHwdCmIJUTceUvP-k';
         deps: [HttpClient]
       }
     }),
-    AngularMultiSelectModule,
-    RecaptchaModule.forRoot({
-      siteKey: SITE_KEY,
-    }),
-    DataTableModule
+    AngularMultiSelectModule
+
+
   ],
   providers: [
     LoginService,

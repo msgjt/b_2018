@@ -18,7 +18,8 @@ import java.util.Optional;
 public class BugServiceImpl implements BugService{
     private static final Logger log = LogManager.getLogger(UserServiceImpl.class);
 
-    private BugDao bugDao = new BugDaoImpl();
+    @EJB
+    private BugDao bugDao;
 
 
     private BugConverter bugConverter = new BugConverter();
@@ -27,9 +28,9 @@ public class BugServiceImpl implements BugService{
     public BugDto createBug(BugDto bugDto) throws BusinessException {
         log.info("createBug: bugDto={}", bugDto);
         Bug bug = bugConverter.convertDtoToEntity(bugDto);
-        //TODO de verificat addaugarea
+        log.info("Test: bug={}", bug);
         Optional<Bug> bug1 = bugDao.addBug(bug);
-        BugDto bugDto1 = bug1.map(bugConverter::convertEntityToDto).orElse(BugDto.builder().build());
+        log.info("Test: bug1={}", bug1);
         return bugDto;
     }
 }
