@@ -20,8 +20,8 @@ import { WelcomeComponent } from './content/welcome/welcome.component';
 import {AngularMultiSelectModule} from 'angular2-multiselect-dropdown';
 import { RecaptchaModule } from 'angular-google-recaptcha';
 import {DataTableModule} from 'angular2-datatable';
-import { BuglisterComponent } from './content/buglister/buglister.component';
-import { DataFilterPipe } from './content/buglister/data-filter.pipe';
+import { ShowBugsComponent } from './content/show-bugs/show-bugs.component';
+import { DataFilterPipe } from './content/show-bugs/data-filter.pipe';
 
 // TODO should be taken from somekind of config?
 const SITE_KEY = '6LeLWmsUAAAAAPRM65RcHUjnHwdCmIJUTceUvP-k';
@@ -37,7 +37,7 @@ const SITE_KEY = '6LeLWmsUAAAAAPRM65RcHUjnHwdCmIJUTceUvP-k';
     EditUserComponent,
     ShowUsersComponent,
     WelcomeComponent,
-    BuglisterComponent,
+    ShowBugsComponent,
     DataFilterPipe
   ],
   imports: [
