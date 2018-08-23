@@ -19,9 +19,12 @@ import {ShowUsersComponent} from './content/show-users/show-users.component';
 import { WelcomeComponent } from './content/welcome/welcome.component';
 import {AngularMultiSelectModule} from 'angular2-multiselect-dropdown';
 import { RecaptchaModule } from 'angular-google-recaptcha';
+<<<<<<< HEAD
 import {DataTableModule} from 'angular2-datatable';
 import { ShowBugsComponent } from './content/show-bugs/show-bugs.component';
 import { DataFilterPipe } from './content/show-bugs/data-filter.pipe';
+=======
+>>>>>>> parent of 66c43249... added bugs table (template)
 
 // TODO should be taken from somekind of config?
 const SITE_KEY = '6LeLWmsUAAAAAPRM65RcHUjnHwdCmIJUTceUvP-k';
@@ -36,10 +39,14 @@ const SITE_KEY = '6LeLWmsUAAAAAPRM65RcHUjnHwdCmIJUTceUvP-k';
     DummyContentComponent,
     EditUserComponent,
     ShowUsersComponent,
+<<<<<<< HEAD
     WelcomeComponent,
     ShowBugsComponent,
     DataFilterPipe,
     AddBugComponent
+=======
+    WelcomeComponent
+>>>>>>> parent of 66c43249... added bugs table (template)
   ],
   imports: [
     BrowserModule,
@@ -53,7 +60,14 @@ const SITE_KEY = '6LeLWmsUAAAAAPRM65RcHUjnHwdCmIJUTceUvP-k';
         deps: [HttpClient]
       }
     }),
+<<<<<<< HEAD
     AngularMultiSelectModule
+=======
+    AngularMultiSelectModule,
+    RecaptchaModule.forRoot({
+      siteKey: SITE_KEY,
+    }),
+>>>>>>> parent of 66c43249... added bugs table (template)
 
 
   ],
