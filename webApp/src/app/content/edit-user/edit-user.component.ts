@@ -15,6 +15,7 @@ import {LangChangeEvent, TranslateService} from '@ngx-translate/core';
 export class EditUserComponent implements OnInit {
 
   model: User;
+  role: Role;
   roles: Array<Role>;
   itemList = [];
   selectedItems = [];
@@ -91,6 +92,7 @@ export class EditUserComponent implements OnInit {
   onItemSelect() {
     console.log('on select');
     console.log(this.selectedItems);
+
   }
 
   OnItemDeSelect() {

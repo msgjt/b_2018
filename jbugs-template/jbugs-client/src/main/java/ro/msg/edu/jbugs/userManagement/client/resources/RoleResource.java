@@ -9,6 +9,7 @@ import ro.msg.edu.jbugs.userManagement.business.exception.BusinessException;
 import javax.ejb.EJB;
 import javax.ws.rs.*;
 import javax.ws.rs.core.MediaType;
+import javax.ws.rs.core.Response;
 import java.util.List;
 
 @Path("/roles")
@@ -35,5 +36,14 @@ public class RoleResource {
         List<RoleDto> userRoles = userManagementBoundary.getUserRolesById(id);
         log.info("getRoles: result={}", userRoles);
         return userRoles;
+    }
+
+    @Path("/update")
+    @PUT
+    public Response updateRole(RoleDto roleDto) throws BusinessException{
+        log.info("updateRole: roleDto={}", roleDto);
+        RoleDto result = userManagementBoundary.updateRole(roleDto);
+        log.info("updateRole: result={}", result);
+        return Response.status(Response.Status.OK).entity(result).build();
     }
 }

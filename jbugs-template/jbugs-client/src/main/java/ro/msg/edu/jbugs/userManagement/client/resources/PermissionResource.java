@@ -7,10 +7,7 @@ import ro.msg.edu.jbugs.userManagement.business.dto.PermissionDto;
 import ro.msg.edu.jbugs.userManagement.business.exception.BusinessException;
 
 import javax.ejb.EJB;
-import javax.ws.rs.Consumes;
-import javax.ws.rs.GET;
-import javax.ws.rs.Path;
-import javax.ws.rs.Produces;
+import javax.ws.rs.*;
 import javax.ws.rs.core.MediaType;
 import java.util.List;
 
@@ -29,5 +26,14 @@ public class PermissionResource {
         List<PermissionDto> allPermissions = userManagementBoundary.getAllPermissions();
         log.info("getPermissions: result={}", allPermissions);
         return allPermissions;
+    }
+
+    @GET
+    @Path("/{id}")
+    public List<PermissionDto> getRolePermissionsById(@PathParam("id") Long id) {
+        log.info("getRolePermissionsById: id={}", id);
+        List<PermissionDto> rolePermissions = userManagementBoundary.getRolePermissionsById(id);
+        log.info("getPermissions: result={}", rolePermissions);
+        return rolePermissions;
     }
 }

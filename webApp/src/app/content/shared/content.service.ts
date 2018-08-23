@@ -28,6 +28,14 @@ export class ContentService {
       .put<User>(url, body);
   }
 
+  updateRole(id: number, permissions: Array<Permission>): Observable<Role> {
+    const url = `${this.baseUrl}/roles/update`;
+    const body = {id, permissions};
+    return this.httpClient
+      .put<Role>(url, body);
+
+  }
+
   getAllUsers(): Observable<Array<User>> {
     const url = `${this.baseUrl}/users`;
     return this.httpClient
@@ -44,6 +52,13 @@ export class ContentService {
     const url = `${this.baseUrl}/roles/${id}`;
     return this.httpClient
       .get<Array<Role>>(url);
+  }
+
+  getRolePermissionsById(id: number): Observable<Array<Permission>> {
+    const url = `${this.baseUrl}/permissions/${id}`;
+    return this.httpClient
+      .get<Array<Permission>>(url);
+
   }
 
   getAllPermissions(): Observable<Array<Permission>> {

@@ -31,4 +31,12 @@ public class PermissionServiceImpl implements PermissionService {
         log.info("getAllPermissions: result={}", permissions);
         return permissions;
     }
+
+    @Override
+    public List<PermissionDto> getRolePermissionsById(Long id) {
+        log.info("getRolePermissionsById: id={}", id);
+        List<PermissionDto> permissions = new ArrayList<>(permissionConverter.convertEntitiesToDtos(permissionDAO.getRolePermissionsById(id)));
+        log.info("getRolePermissionsById: result={}", permissions);
+        return permissions;
+    }
 }

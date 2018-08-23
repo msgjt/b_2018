@@ -6,4 +6,6 @@ export class Role {
     this.id = id;
     this.roleType = roleType;
   }
+
+
 }

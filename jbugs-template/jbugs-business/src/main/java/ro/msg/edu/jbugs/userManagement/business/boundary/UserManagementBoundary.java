@@ -15,6 +15,8 @@ public interface UserManagementBoundary {
 
     UserDto updateUser(UserDto userDto) throws BusinessException;
 
+    RoleDto updateRole(RoleDto roleDto) throws BusinessException;
+
     public List<UserDto> getAllUsers();
 
     public List<RoleDto> getAllRoles();
@@ -22,6 +24,8 @@ public interface UserManagementBoundary {
     public List<PermissionDto> getAllPermissions();
 
     List<RoleDto> getUserRolesById(Long id);
+
+    List<PermissionDto> getRolePermissionsById(Long id);
 
     public TokenDto login(String username, String password) throws BusinessException;
 }

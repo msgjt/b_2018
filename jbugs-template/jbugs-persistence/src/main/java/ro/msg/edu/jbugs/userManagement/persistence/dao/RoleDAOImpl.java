@@ -10,10 +10,7 @@ import javax.ejb.Stateless;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 import javax.persistence.TypedQuery;
-import java.util.ArrayList;
-import java.util.HashSet;
-import java.util.List;
-import java.util.Set;
+import java.util.*;
 import java.util.stream.Collectors;
 
 @Stateless
@@ -24,6 +21,25 @@ public class RoleDAOImpl implements RoleDAO {
     @PersistenceContext(unitName = "jbugs-persistence")
     private EntityManager em;
 
+
+    @Override
+    public Optional<Role> updateRole(Role role) {
+        log.info("updateRole: role={}", role);
+        Optional<Role> roleFound;
+        try {
+            roleFound = Optional.ofNullable(em.find(Role.class, role.getId()));
+        roleFound.map(r -> {
+            if(role.getPermissions() != null && !role.getPermissions().isEmpty()){
+                r.setPermissions(role.getPermissions());
+            }
+            return r;
+        }).orElseThrow(RuntimeException::new);
+        } catch (RuntimeException ex) {
+            roleFound = Optional.empty();
+        }
+        log.info("updateRole: result={}", roleFound);
+        return roleFound;
+    }
 
     @Override
     public HashSet<Role> getRolesByType(HashSet<RoleType> types) {

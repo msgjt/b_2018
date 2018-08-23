@@ -36,7 +36,7 @@ public class Role extends BaseEntity<Long> {
     @ManyToMany(cascade = CascadeType.ALL, mappedBy = "roles")
     private Set<User> users = new HashSet<>();
 
-    @ManyToMany(cascade = CascadeType.ALL)
+    @ManyToMany(cascade = CascadeType.MERGE)
     private Set<Permission> permissions = new HashSet<>();
 
 

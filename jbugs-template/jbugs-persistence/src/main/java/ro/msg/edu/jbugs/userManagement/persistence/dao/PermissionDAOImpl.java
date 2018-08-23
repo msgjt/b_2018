@@ -26,4 +26,14 @@ public class PermissionDAOImpl implements PermissionDAO {
         log.info("getAllPermissions: result={}", permissions);
         return permissions;
     }
+
+    @Override
+    public List<Permission> getRolePermissionsById(Long id) {
+        log.info("getRolePermissionsById: id={}", id);
+        TypedQuery<Permission> query = entityManager.createNamedQuery(Permission.GET_ROLE_PERMISSIONS_BY_ID, Permission.class);
+        query.setParameter("id", id);
+        List<Permission> permissions = query.getResultList();
+        log.info("getRolePermissionsById: result={}", permissions);
+        return permissions;
+    }
 }

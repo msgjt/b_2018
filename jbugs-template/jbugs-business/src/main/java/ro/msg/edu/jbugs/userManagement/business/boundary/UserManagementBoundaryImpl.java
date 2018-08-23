@@ -36,6 +36,11 @@ public class UserManagementBoundaryImpl implements UserManagementBoundary {
     }
 
     @Override
+    public RoleDto updateRole(RoleDto roleDto) throws BusinessException {
+        return roleService.updateRole(roleDto);
+    }
+
+    @Override
     public List<UserDto> getAllUsers() {
         return userService.getAllUsers();
     }
@@ -53,6 +58,11 @@ public class UserManagementBoundaryImpl implements UserManagementBoundary {
     @Override
     public List<RoleDto> getUserRolesById(Long id) {
         return roleService.getUserRolesById(id);
+    }
+
+    @Override
+    public List<PermissionDto> getRolePermissionsById(Long id) {
+        return permissionService.getRolePermissionsById(id);
     }
 
     @Override
