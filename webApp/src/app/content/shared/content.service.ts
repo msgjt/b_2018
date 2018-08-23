@@ -30,4 +30,25 @@ export class ContentService {
     return this.httpClient
       .get<Array<Role>>(url);
   }
+
+  activateUser(user: User): Observable<boolean> {
+    const url = `${this.baseUrl}/users/activate`;
+    const body = user;
+    return this.httpClient
+      .post<boolean>(url, body);
+  }
+
+  deactivateUser(user: User): Observable<boolean> {
+    const url = `${this.baseUrl}/users/deactivate`;
+    const body = user;
+    return this.httpClient
+      .post<boolean>(url, body);
+  }
+
+  hasOpenBugs(user: User): Observable<boolean> {
+    const url = `${this.baseUrl}/users/openBugs`;
+    const body = user;
+    return this.httpClient
+      .post<boolean>(url, body);
+  }
 }

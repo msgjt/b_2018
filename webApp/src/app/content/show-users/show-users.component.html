@@ -30,9 +30,9 @@
           <td>{{user.status}}</td>
           <td><i class="material-icons" (click)="editSelectedUser()">border_color</i>
           </td>
-          <td><i class="material-icons">check_box</i></td>
-          <td *ngIf="false"><i class="material-icons">check_box_outline_blank</i></td>
-          <!--pui un ngIf pe un td-->
+          <td *ngIf="isActive(user) && !hasBugs.get(user.username)"><i class="material-icons" (click)="deactivateUser(user)">check_box</i></td>
+          <td *ngIf="!isActive(user)"><i class="material-icons" (click)="activateUser(user)">check_box_outline_blank</i></td>
+
 
         </tr>
 

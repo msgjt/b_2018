@@ -10,6 +10,7 @@ import ro.msg.edu.jbugs.userManagement.client.exception.ClientException;
 import ro.msg.edu.jbugs.userManagement.client.exception.ClientExceptionCode;
 import ro.msg.edu.jbugs.userManagement.client.filters.AuthorizationSecured;
 import ro.msg.edu.jbugs.userManagement.persistence.entity.enums.PermissionType;
+import ro.msg.edu.jbugs.userManagement.persistence.entity.enums.UserStatus;
 
 import javax.ejb.EJB;
 import javax.ws.rs.*;
@@ -64,7 +65,7 @@ public class UserResource {
     }
 
     @Path("/add")
-//    @AuthorizationSecured(PermissionType.USER_MANAGEMENT)
+    @AuthorizationSecured(PermissionType.USER_MANAGEMENT)
     @POST
     public Response addUser(UserDto userDto) throws BusinessException {
         log.info("addUser: userDto={}",userDto);
@@ -82,5 +83,36 @@ public class UserResource {
         return Response.status(Response.Status.OK).entity(result).build();
     }
 
+    @Path("/activate")
+    @AuthorizationSecured(PermissionType.USER_MANAGEMENT)
+    @POST
+    public Response activateUser(UserDto userDto) throws BusinessException {
+        log.info("activateUser: userDto={}",userDto);
+        Boolean success = userManagementBoundary.setUserStatus(userDto.getId(), UserStatus.ACTIVE);
+        log.info("activateUser -- success");
+        return Response.status(Response.Status.OK).entity(success).build();
+    }
 
+    @Path("/deactivate")
+    @AuthorizationSecured(PermissionType.USER_MANAGEMENT)
+    @POST
+    public Response deactivateUser(UserDto userDto) throws BusinessException, ClientException {
+        log.info("deactivateUser: userDto={}",userDto);
+        if(userManagementBoundary.hasOpenBugsForUsername(userDto.getUsername())) {
+            throw new ClientException(ClientExceptionCode.HAS_UNFINISHED_BUGS);
+        }
+        Boolean success = userManagementBoundary.setUserStatus(userDto.getId(), UserStatus.DEACTIVATED);
+        log.info("deactivateUser -- success");
+        return Response.status(Response.Status.OK).entity(success).build();
+    }
+
+    @Path("/openBugs")
+//    @AuthorizationSecured(PermissionType.USER_MANAGEMENT)
+    @POST
+    public Response hasOpenBugs(UserDto userDto) {
+        log.info("hasOpenBugs: userDto={}",userDto);
+        Boolean hasBugs = userManagementBoundary.hasOpenBugsForUsername(userDto.getUsername());
+        log.info("hasOpenBugs -- success");
+        return Response.status(Response.Status.OK).entity(hasBugs).build();
+    }
 }

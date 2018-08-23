@@ -28,4 +28,6 @@ public interface UserDao {
 
     Optional<User> getUserWithEmail(@NotNull String email);
 
+    Boolean hasOpenBugsByUsername(String username);
+
 }
