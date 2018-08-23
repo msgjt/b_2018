@@ -24,6 +24,7 @@ public class BugResource {
     public String addBug(BugDto bugDto) throws BusinessException {
         Date date = new Date();
         bugDto.setDueDate(date);
+        System.out.println("AIICICICICICIICIC: " + bugDto.getAssignee().getUsername());
         bugService.createBug(bugDto);
         return "bug added successfully";
     }
