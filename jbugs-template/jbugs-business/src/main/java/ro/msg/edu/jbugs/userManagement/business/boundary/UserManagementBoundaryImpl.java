@@ -51,6 +51,11 @@ public class UserManagementBoundaryImpl implements UserManagementBoundary {
     }
 
     @Override
+    public List<RoleDto> getUserRolesById(Long id) {
+        return roleService.getUserRolesById(id);
+    }
+
+    @Override
     public TokenDto login(String username, String password) throws BusinessException {
         return userService.login(username, password);
     }

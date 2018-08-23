@@ -21,5 +21,7 @@ public interface UserManagementBoundary {
 
     public List<PermissionDto> getAllPermissions();
 
+    List<RoleDto> getUserRolesById(Long id);
+
     public TokenDto login(String username, String password) throws BusinessException;
 }

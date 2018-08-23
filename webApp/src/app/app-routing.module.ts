@@ -14,10 +14,10 @@ import {EditRoleComponent} from './content/edit-role/edit-role.component';
 const routes: Routes = [
   {path: '', redirectTo: '/login', pathMatch: 'full'},
   {path: 'login', component: LoginComponent},
-  {path: 'content/add', component: AddUserComponent},
+  {path: 'user/add', component: AddUserComponent},
   {path: 'content/dummy', component: DummyContentComponent},
-  {path: 'content/showUsers', component: ShowUsersComponent},
-  {path: 'content/showUsers/editUser', component: EditUserComponent},
+  {path: 'user/show', component: ShowUsersComponent},
+  {path: 'user/edit', component: EditUserComponent},
   {path: 'content/showRoles', component : ShowRolesComponent},
   {path: 'content/showRoles/editRole', component : EditRoleComponent},
   {path: 'welcome', component: WelcomeComponent},

@@ -54,4 +54,14 @@ public class RoleDAOImpl implements RoleDAO {
         log.info("getAllRoles: result={}", roles);
         return roles;
     }
+
+    @Override
+    public List<Role> getUserRolesById(Long id) {
+        log.info("getUserRolesById: id={}",id);
+        TypedQuery<Role> query = em.createNamedQuery(Role.GET_USER_ROLES_BY_ID, Role.class);
+        query.setParameter("id", id);
+        List<Role> roles = query.getResultList();
+        log.info("getUserRolesById: result={}", roles);
+        return roles;
+    }
 }

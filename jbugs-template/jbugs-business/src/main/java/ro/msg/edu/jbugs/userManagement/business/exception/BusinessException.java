@@ -1,5 +1,8 @@
 package ro.msg.edu.jbugs.userManagement.business.exception;
 
+import lombok.Getter;
+
+@Getter
 public class BusinessException extends Exception {
     private BusinessExceptionCode businessExceptionCode;
 

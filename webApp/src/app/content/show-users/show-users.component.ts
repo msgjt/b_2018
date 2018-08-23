@@ -2,6 +2,7 @@ import {Component, OnInit} from '@angular/core';
 import {User} from '../../shared/user';
 import {ContentService} from '../shared/content.service';
 import {Router} from '@angular/router';
+import {Data} from '../../shared/data';
 
 @Component({
   selector: 'app-show-users',
@@ -14,7 +15,9 @@ export class ShowUsersComponent implements OnInit {
   previewPhoto;
   users: Array<User>;
 
-  constructor(private contentService: ContentService, private router: Router) {
+  constructor(private contentService: ContentService,
+              private router: Router,
+              private data: Data) {
   }
 
 
@@ -26,9 +29,16 @@ export class ShowUsersComponent implements OnInit {
 
   }
 
-  editSelectedUser() {
-    this.router.navigate(['/content/showUsers/editUser']);
-
+  editSelectedUser(id, firstName, lastName, email, mobileNumber) {
+    console.log(id);
+    this.data.storage = {
+      'id': id,
+      'firstName': firstName,
+      'lastName': lastName,
+      'email': email,
+      'mobileNumber': mobileNumber
+    };
+    this.router.navigate(['/user/edit']);
   }
 
   togglePhotoPreview() {

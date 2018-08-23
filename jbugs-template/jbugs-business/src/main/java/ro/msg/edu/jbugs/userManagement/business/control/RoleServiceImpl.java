@@ -29,4 +29,12 @@ public class RoleServiceImpl implements RoleService{
         log.info("getAllRoles: result={}", roles);
         return roles;
     }
+
+    @Override
+    public List<RoleDto> getUserRolesById(Long id) {
+        log.info("getUserRolesById: id={}",id);
+        List<RoleDto> roles = new ArrayList<>(roleConverter.convertEntitiesToDtos(roleDAO.getUserRolesById(id)));
+        log.info("getUserRolesById: result={}", roles);
+        return roles;
+    }
 }
