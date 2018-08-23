@@ -22,9 +22,6 @@ public class BugResource {
     @Path("/add")
     @POST
     public String addBug(BugDto bugDto) throws BusinessException {
-        Date date = new Date();
-        bugDto.setDueDate(date);
-        System.out.println("AIICICICICICIICIC: " + bugDto.getAssignee().getUsername());
         bugService.createBug(bugDto);
         return "bug added successfully";
     }

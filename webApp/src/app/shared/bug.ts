@@ -7,6 +7,7 @@ export class Bug {
   private _CreatedBy: string;
   private _dueDate: Date;
   private _statusType: string;
+  private _severityType:string;
 
 
   get id(): number {
@@ -72,5 +73,13 @@ export class Bug {
 
   set statusType(value: string) {
     this._statusType = value;
+  }
+
+  get severityType(): string {
+    return this._severityType;
+  }
+
+  set severityType(value: string) {
+    this._severityType = value;
   }
 }
