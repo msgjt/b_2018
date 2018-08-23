@@ -1,12 +1,17 @@
 package ro.msg.edu.jbugs.userManagement.persistence.dao;
 
+import com.fasterxml.jackson.core.type.TypeReference;
+import com.fasterxml.jackson.databind.ObjectMapper;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import ro.msg.edu.jbugs.userManagement.persistence.entity.Bug;
+import ro.msg.edu.jbugs.userManagement.persistence.entity.enums.BugStatusType;
 
 import javax.ejb.Stateless;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
+import java.io.File;
+import java.io.IOException;
 import java.util.List;
 import java.util.Optional;
 
@@ -42,6 +47,49 @@ public class BugDaoImpl implements BugDao {
         return bugOptional;
     }
 
+    @Override
+    public Optional<Bug> closeBug(Long bugId) {
+        log.info("close Bug: bugId={}", bugId);
+        Optional<Bug> bugOptional;
+        try {
+            bugOptional = Optional.ofNullable(em.find(Bug.class, bugId));
+            log.info("optionalBug: bugOptiona:{}", bugOptional);
+            bugOptional.map(b -> {
+                if (b.getStatusType().equals(BugStatusType.FIXED) || b.getStatusType().equals(BugStatusType.REJECTED)) {
+                    b.setStatusType(BugStatusType.CLOSED);
+                    em.merge(b);
+                    return b;
+                }
+                else {
+                    return null;
+                }
+            }).orElseThrow(RuntimeException::new);
+        } catch (RuntimeException ex) {
+            bugOptional = Optional.empty();
+        }
+        log.info("closeBug: result={}", bugOptional);
+        return bugOptional;
+    }
 
-
+    @Override
+    public Optional<Bug> changeBugStatus(Long bugId, BugStatusType bugStatusType) {
+        log.info("change status Bug: bugId={} newStatus={}", bugId, bugStatusType);
+        Optional<Bug> bugOptional;
+        try {
+            bugOptional = Optional.ofNullable(em.find(Bug.class, bugId));
+            log.info("optionalBug: bugOptional:{}", bugOptional);
+            bugOptional.map(b -> {
+                if ( b.getStatusType().getNextStatus().contains(bugStatusType)) {
+                    b.setStatusType(bugStatusType);
+                    log.info("bug to update in db: bug={}", b);
+                }
+                    return b;
+            }).orElseThrow(RuntimeException::new);
+        } catch (RuntimeException ex) {
+            log.info("exceptioooon!!!");
+            bugOptional = Optional.empty();
+        }
+        log.info("change status bug: result={}", bugOptional);
+        return bugOptional;
+    }
 }

@@ -1,6 +1,7 @@
 package ro.msg.edu.jbugs.userManagement.persistence.dao;
 
 import ro.msg.edu.jbugs.userManagement.persistence.entity.Bug;
+import ro.msg.edu.jbugs.userManagement.persistence.entity.enums.BugStatusType;
 
 import javax.validation.constraints.NotNull;
 import java.io.Serializable;
@@ -19,5 +20,7 @@ public interface BugDao {
      */
     Optional<Bug> addBug(@NotNull Bug bug);
 
+    Optional<Bug> closeBug(@NotNull Long bugId);
 
+    Optional<Bug> changeBugStatus(@NotNull Long bugId, @NotNull BugStatusType bugStatusType);
 }
