@@ -57,60 +57,60 @@
       </small>
       <small class="help-block text-info" *ngIf="lastNameControl.valid">Valid Description.</small>
     </p>
-
-    <div>
-      <div class="control-group">
-        <div class="form-group floating-label-form-group controls mb-0 pb-2">
-          <input type="text"
-                 id="VersionInput"
-                 name="version"
-                 class="form-control"
-                 [(ngModel)]="model.version"
-                 required
-                 #lastNameElement
-                 #lastNameControl="ngModel"
-                 minlength="1"
-                 maxlength="3"
-                 placeholder="Version"
-                 [class.isInvalid]="lastNameControl.invalid && lastNameControl.touched">
+    <div class="row">
+        <div>
+          <div class="control-group col-lg-12 mx-auto">
+            <div class="form-group floating-label-form-group controls mb-0 pb-2">
+              <input type="text"
+                     id="VersionInput"
+                     name="version"
+                     class="form-control"
+                     [(ngModel)]="model.version"
+                     required
+                     #lastNameElement
+                     #lastNameControl="ngModel"
+                     minlength="1"
+                     maxlength="3"
+                     placeholder="Version"
+                     [class.isInvalid]="lastNameControl.invalid && lastNameControl.touched">
+            </div>
+            <p style="height: 20px">
+              <small class="help-block text-danger"
+                     *ngIf="lastNameControl.invalid && lastNameControl.touched && lastNameControl.value != '' &&lastNameControl.value != null">
+                Please enter a valid Version.
+              </small>
+              <small class="help-block text-info" *ngIf="lastNameControl.value == null || lastNameControl.value == ''">
+                Must be 1-3 characters long.
+              </small>
+              <small class="help-block text-info" *ngIf="lastNameControl.valid">Valid Version.</small>
+            </p>
+          </div>
         </div>
-        <p style="height: 20px">
-          <small class="help-block text-danger"
-                 *ngIf="lastNameControl.invalid && lastNameControl.touched && lastNameControl.value != '' &&lastNameControl.value != null">
-            Please enter a valid Version.
-          </small>
-          <small class="help-block text-info" *ngIf="lastNameControl.value == null || lastNameControl.value == ''">
-            Must be 1-3 characters long.
-          </small>
-          <small class="help-block text-info" *ngIf="lastNameControl.valid">Valid Version.</small>
-        </p>
-      </div>
-    </div>
-    <div class="control-group">
-      <div class="form-group floating-label-form-group controls mb-0 pb-2">
-        <input type="text"
-               id="FixedInVersionInput"
-               name="version"
-               class="form-control"
-               [(ngModel)]="model.fixedInVersion"
-               #lastNameElement
-               #lastNameControl="ngModel"
-               minlength="1"
-               maxlength="3"
-               placeholder="Fixed in verion"
-               [class.isInvalid]="lastNameControl.invalid && lastNameControl.touched">
-      </div>
-      <p style="height: 20px">
-        <small class="help-block text-danger"
-               *ngIf="lastNameControl.invalid && lastNameControl.touched && lastNameControl.value != '' &&lastNameControl.value != null">
-          Please enter a valid Version.
-        </small>
-        <small class="help-block text-info" *ngIf="lastNameControl.value == null || lastNameControl.value == ''">
-          Must be 1-3 characters long.
-        </small>
-        <small class="help-block text-info" *ngIf="lastNameControl.valid">Valid Version.</small>
-      </p>
-
+            <div class="control-group ">
+              <div class="form-group floating-label-form-group controls mb-0 pb-2">
+                <input type="text"
+                       id="FixedInVersionInput"
+                       name="version"
+                       class="form-control"
+                       [(ngModel)]="model.fixedInVersion"
+                       #lastNameElement
+                       #lastNameControl="ngModel"
+                       minlength="1"
+                       maxlength="3"
+                       placeholder="Fixed in verion"
+                       [class.isInvalid]="lastNameControl.invalid && lastNameControl.touched">
+              </div>
+              <p style="height: 20px">
+                <small class="help-block text-danger"
+                       *ngIf="lastNameControl.invalid && lastNameControl.touched && lastNameControl.value != '' &&lastNameControl.value != null">
+                  Please enter a valid Version.
+                </small>
+                <small class="help-block text-info" *ngIf="lastNameControl.value == null || lastNameControl.value == ''">
+                  Must be 1-3 characters long.
+                </small>
+                <small class="help-block text-info" *ngIf="lastNameControl.valid">Valid Version.</small>
+              </p>
+            </div>
     </div>
   </div>
   <div>
@@ -174,7 +174,11 @@
       <br>
     </div>
 
-
+    <div class="control-group">
+      <h4 class="text-secondary mb-0">Upload file</h4>
+      <br>
+      <input placeholder="Upload file"  type="file" id="load-file">
+    </div>
   </div>
 
 </div>
