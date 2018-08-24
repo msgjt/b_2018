@@ -44,7 +44,13 @@ public class BugResource {
     public List<BugDto> getBugs(
             @DefaultValue("") @QueryParam("title") String title,
             @DefaultValue("") @QueryParam("version") String version,
+            @DefaultValue("") @QueryParam("fixedVerion") String fixedVersion,
+            @DefaultValue("") @QueryParam("dueDate") String dueDate,
+            @DefaultValue("") @QueryParam("severity") String severity,
+            @DefaultValue("") @QueryParam("creator") String creator,
+            @DefaultValue("") @QueryParam("assignee") String assignee,
             @DefaultValue("") @QueryParam("status") String status
+
 
     ) throws BusinessException {
         log.info("getBugs: --entered {}", title, version, status);
@@ -52,30 +58,13 @@ public class BugResource {
         SearchCriteria criteria = new SearchCriteria();
         criteria.setTitle(title);
         criteria.setVersion(version);
-        criteria.setStatus(version);
-
-        List<BugDto> bugs = new ArrayList<>();
-        bugs.add(new BugDto("First bug created",
-                "extreamly long description",
-                "1",
-                "2",
-                new Date().toString(),
-                SeverityType.CRITICAL,
-                BugStatusType.CLOSED,
-                new UserDto(),
-                new UserDto()
-                ));
-        bugs.add(new BugDto("First bug created",
-                "extreamly long description",
-                "1",
-                "2",
-                new Date().toString(),
-                SeverityType.CRITICAL,
-                BugStatusType.CLOSED,
-                new UserDto() {{setFirstName("sanyi");}},
-                new UserDto() {{setFirstName("laji");}}
-        ));
-        log.info("getUsers: result={}", bugs);
-        return bugs;
+        criteria.setFixedVersion(fixedVersion);
+        criteria.setSeverity(SeverityType.valueOf(severity));
+        criteria.setCreator(creator);
+        criteria.setAssignee(assignee);
+        criteria.setStatus(BugStatusType.valueOf(status));
+        //bugService
+        log.info("getUsers: result");
+        return new ArrayList<>();
     }
 }

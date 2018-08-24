@@ -59,7 +59,7 @@ const SITE_KEY = '6LeLWmsUAAAAAPRM65RcHUjnHwdCmIJUTceUvP-k';
   providers: [
     LoginService,
     ContentService,
-    {provide: HTTP_INTERCEPTORS, useClass: UserHttpInterceptor, multi: true},
+    {provide: HTTP_INTERCEPTORS, useClass: UserHttpInterceptor, multi: true}
   ],
   bootstrap: [AppComponent]
 })

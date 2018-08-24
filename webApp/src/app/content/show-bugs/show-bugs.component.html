@@ -2,39 +2,11 @@
   <div class="col-xs-12 col-md-10 col-md-offset-1 col-lg-8 col-lg-offset-2">
 
     <div class="panel panel-default">
-      <div class="panel-heading">User information</div>
-
-      <div>
-        <div>
-          <table class="table table-striped">
-            <thead>
-            <tr>FILTERS</tr>
-            </thead>
-            <tr>
-              <td>Title</td>
-              <td>Version</td>
-              <td>FixedVersion</td>
-              <td>DueDate</td>
-              <td>Severity</td>
-              <td>Creted by</td>
-              <td>Assigned To</td>
-              <td>Status</td>
-            </tr>
-
-            <tr>
-              <td><input [(ngModel)]="titleFilter" placeholder="name"></td>
-              <td><input [(ngModel)]="versionFilter" placeholder="name"></td>
-              <td><input [(ngModel)]="fixedVersionFilter" placeholder="name"></td>
-              <td><input [(ngModel)]="dueDateFilter" placeholder="name"></td>
-              <td><input [(ngModel)]="severityFilter" placeholder="name"></td>
-              <td><input [(ngModel)]="creatorFilter" placeholder="name"> </td>
-              <td><input [(ngModel)]="assigneeFilter" placeholder="name"> </td>
-              <td><input [(ngModel)]="statusFilter" placeholder="name"></td>
-            </tr>
-
-          </table>
-        </div>
-
+      <div class="panel-heading">Bugs</div>
+      <br>
+      <br>
+      <br>
+      <br>
         <table class="table table-striped">
           <thead style="background-color: #1a252f; color: white">
           <tr>
@@ -71,6 +43,29 @@
           </tr>
           </thead>
           <tbody>
+
+          <tr>
+            <td><input size='15' (keyup.enter)="handleFilter()" [(ngModel)]="currentFilter.title" placeholder="Title"></td>
+            <td><input size='15' (keyup.enter)="handleFilter()" [(ngModel)]="currentFilter.version" placeholder="Version"></td>
+            <td><input size='15' (keyup.enter)="handleFilter()" [(ngModel)]="currentFilter.fixedInversion" placeholder="Fixed version"></td>
+            <td><input size='15' (keyup.enter)="handleFilter()" [(ngModel)]="currentFilter.dueDate" placeholder="Due Date"></td>
+            <td>
+              <select [(ngModel)]="currentFilter.severity">
+                <option  *ngFor="let severity of severityTypes">{{severity}}</option>
+              </select>
+            </td>
+            <td><input size='15' (keyup.enter)="handleFilter()" [(ngModel)]="currentFilter.creator" placeholder="Created by..."></td>
+            <td><input size='15' (keyup.enter)="handleFilter()" [(ngModel)]="currentFilter.assignee" placeholder="Assignee"></td>
+            <td>
+              <select [(ngModel)]="currentFilter.status">
+                <option  *ngFor="let status of statusTypes">{{status}}</option>
+              </select>
+            </td>
+          </tr>
+          <tr>
+            <button (click)="handleFilter()">Do Filtering...</button>
+          </tr>
+
           <tr *ngFor="let item of data">
             <td>{{item.title}}</td>
             <td>{{item.version}}</td>
@@ -87,7 +82,6 @@
             <td colspan="5">
               <button (click)="onNext()"> Next</button>
               <button (click)="onPrev()"> Previous</button>
-              <button (click)="doQuery()"> doQuerry</button>
             </td>
           </tr>
           </tfoot>
@@ -95,4 +89,3 @@
       </div>
     </div>
   </div>
-</div>

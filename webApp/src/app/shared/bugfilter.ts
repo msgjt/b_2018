@@ -1,6 +1,12 @@
 enum FieldType { Title, Version, DueDate}
 export class Bugfilter {
-  selected: FieldType;
-  value: string;
+  title = '';
+  version = '';
+  fixedInversion = '';
+  dueDate: string;
+  severity: string;
+  creator: string;
+  assignee: string;
+  status: string;
 }
 

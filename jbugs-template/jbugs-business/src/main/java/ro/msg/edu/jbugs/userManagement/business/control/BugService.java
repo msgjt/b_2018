@@ -3,6 +3,8 @@ package ro.msg.edu.jbugs.userManagement.business.control;
 import ro.msg.edu.jbugs.userManagement.business.dto.BugDto;
 import ro.msg.edu.jbugs.userManagement.business.exception.BusinessException;
 
+import java.util.List;
+
 public interface BugService {
     /**
      * This method is used to persist a bug in database
@@ -11,4 +13,12 @@ public interface BugService {
      * @throws BusinessException
      */
     BugDto createBug(BugDto bugDto) throws BusinessException;
+
+
+//    /**
+//     *
+//     * @return
+//     */
+//    List<BugDto> getBugs();
+
 }

@@ -13,20 +13,23 @@ export class ShowBugsComponent implements OnInit {
 
   public data: Bug[];
   public filterQuery = '';
-  public rowsOnPage = 10;
-  public sortBy = 'email';
   public sortOrder = 'ASCENDING';
   public lastSorter = 'title';
-
   public disableNext = false;
+  public currentFilter: Bugfilter;
+  public previousFilter: Bugfilter;
+  timerId: string;
+  public severityTypes = ['', 'CRITICAL', 'HIGH', 'MEDIUM', 'LOW'];
+  public statusTypes = ['', 'NEW', 'IN_PROGRESS', 'FIXED', 'CLOSED', 'REJECTED', 'INFO_NEEDED'];
 
-  public fiterList: Array<Bugfilter> = [];
 
   constructor(private bugsService: BugsService) {
   }
 
   ngOnInit(): void {
     this.getBugs();
+    this.currentFilter = new Bugfilter();
+    this.previousFilter = new Bugfilter();
   }
 
   public toInt(num: string) {
@@ -68,8 +71,16 @@ export class ShowBugsComponent implements OnInit {
     this.bugsService.getSorted(this.lastSorter, this.sortOrder).subscribe(bugs => this.data = bugs);
   }
 
-
-  addFilter() {
-    this.fiterList.push(new Bugfilter());
+  handleFilter() {
+    console.log('Current filter: ');
+    console.log(JSON.stringify(this.currentFilter));
+    console.log('Previous filter: ');
+    console.log(JSON.stringify(this.previousFilter));
+    if (JSON.stringify(this.currentFilter) ===  JSON.stringify(this.previousFilter)) {
+      console.log( 'nothing to do')
+    } else {
+      Object.assign(this.previousFilter, this.currentFilter);
+      this.bugsService.getFilteredBugs(this.currentFilter).subscribe(bugs => this.data = bugs);
+    }
   }
 }
