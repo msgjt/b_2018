@@ -36,7 +36,7 @@ export class LoginComponent implements OnInit {
           },
           error => {
             console.log(JSON.stringify(error['error']));
-            alert('login failed!');
+            alert(JSON.stringify(error['error']) + 'login failed!');
           },
           () => alert('login successful'));
       // () => this.router.navigateByUrl('/content'));

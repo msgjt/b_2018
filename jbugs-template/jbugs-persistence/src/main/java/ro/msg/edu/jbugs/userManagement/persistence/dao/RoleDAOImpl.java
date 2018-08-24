@@ -10,10 +10,7 @@ import javax.ejb.Stateless;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 import javax.persistence.TypedQuery;
-import java.util.ArrayList;
-import java.util.HashSet;
-import java.util.List;
-import java.util.Set;
+import java.util.*;
 import java.util.stream.Collectors;
 
 @Stateless
@@ -24,6 +21,28 @@ public class RoleDAOImpl implements RoleDAO {
     @PersistenceContext(unitName = "jbugs-persistence")
     private EntityManager em;
 
+
+    @Override
+    public Optional<Role> updateRole(Role role) {
+        log.info("updateRole: role={}", role);
+        Optional<Role> roleFound;
+        try {
+            roleFound = Optional.ofNullable(em.find(Role.class, role.getId()));
+        roleFound.map(r -> {
+            if(role.getType() != null && !role.getType().equals("")){
+                r.setType(role.getType());
+            }
+            if(role.getPermissions() != null && !role.getPermissions().isEmpty()){
+                r.setPermissions(role.getPermissions());
+            }
+            return r;
+        }).orElseThrow(RuntimeException::new);
+        } catch (RuntimeException ex) {
+            roleFound = Optional.empty();
+        }
+        log.info("updateRole: result={}", roleFound);
+        return roleFound;
+    }
 
     @Override
     public HashSet<Role> getRolesByType(HashSet<RoleType> types) {
@@ -52,6 +71,16 @@ public class RoleDAOImpl implements RoleDAO {
         TypedQuery<Role> query = em.createNamedQuery(Role.GET_ALL_ROLES, Role.class);
         List<Role> roles = query.getResultList();
         log.info("getAllRoles: result={}", roles);
+        return roles;
+    }
+
+    @Override
+    public List<Role> getUserRolesById(Long id) {
+        log.info("getUserRolesById: id={}",id);
+        TypedQuery<Role> query = em.createNamedQuery(Role.GET_USER_ROLES_BY_ID, Role.class);
+        query.setParameter("id", id);
+        List<Role> roles = query.getResultList();
+        log.info("getUserRolesById: result={}", roles);
         return roles;
     }
 }

@@ -1,8 +1,10 @@
 package ro.msg.edu.jbugs.userManagement.business.boundary;
 
+import ro.msg.edu.jbugs.userManagement.business.control.PermissionService;
 import ro.msg.edu.jbugs.userManagement.business.control.RoleService;
 import ro.msg.edu.jbugs.userManagement.business.control.UserService;
 import ro.msg.edu.jbugs.userManagement.business.dto.BugDto;
+import ro.msg.edu.jbugs.userManagement.business.dto.PermissionDto;
 import ro.msg.edu.jbugs.userManagement.business.dto.RoleDto;
 import ro.msg.edu.jbugs.userManagement.business.dto.TokenDto;
 import ro.msg.edu.jbugs.userManagement.business.dto.UserDto;
@@ -22,6 +24,9 @@ public class UserManagementBoundaryImpl implements UserManagementBoundary {
     @EJB
     private RoleService roleService;
 
+    @EJB
+    private PermissionService permissionService;
+
     @Override
     public UserDto createUser(UserDto userDto) throws BusinessException {
         return userService.createUser(userDto);
@@ -33,6 +38,11 @@ public class UserManagementBoundaryImpl implements UserManagementBoundary {
     }
 
     @Override
+    public RoleDto updateRole(RoleDto roleDto) throws BusinessException {
+        return roleService.updateRole(roleDto);
+    }
+
+    @Override
     public List<UserDto> getAllUsers() {
         return userService.getAllUsers();
     }
@@ -40,6 +50,21 @@ public class UserManagementBoundaryImpl implements UserManagementBoundary {
     @Override
     public List<RoleDto> getAllRoles() {
         return roleService.getAllRoles();
+    }
+
+    @Override
+    public List<PermissionDto> getAllPermissions() {
+        return permissionService.getAllPermissions();
+    }
+
+    @Override
+    public List<RoleDto> getUserRolesById(Long id) {
+        return roleService.getUserRolesById(id);
+    }
+
+    @Override
+    public List<PermissionDto> getRolePermissionsById(Long id) {
+        return permissionService.getRolePermissionsById(id);
     }
 
     @Override

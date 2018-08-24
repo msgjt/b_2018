@@ -22,6 +22,7 @@ public enum BusinessExceptionCode {
     PASSWORD_NOT_VALID(1007, "Wrong password"),
     TOO_MANY_ALIKE_USERNAMES(1008,"There are no more suffixes to be generated, consider increasing the range."),
     ROLES_NOT_VALID(1009, "Invalid roles"),
+    CAN_NOT_UPDATE_ROLE(1010, "Can't update role"),
     INVALID_TOKEN(5000,"The token is invalid.");
     Integer id;
     String message;

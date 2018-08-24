@@ -1,6 +1,7 @@
 package ro.msg.edu.jbugs.userManagement.business.boundary;
 
 import ro.msg.edu.jbugs.userManagement.business.dto.BugDto;
+import ro.msg.edu.jbugs.userManagement.business.dto.PermissionDto;
 import ro.msg.edu.jbugs.userManagement.business.dto.RoleDto;
 import ro.msg.edu.jbugs.userManagement.business.dto.TokenDto;
 import ro.msg.edu.jbugs.userManagement.business.dto.UserDto;
@@ -15,9 +16,11 @@ public interface UserManagementBoundary {
 
     UserDto updateUser(UserDto userDto) throws BusinessException;
 
-    List<UserDto> getAllUsers();
-
     List<RoleDto> getAllRoles();
+
+    RoleDto updateRole(RoleDto roleDto) throws BusinessException;
+
+    List<UserDto> getAllUsers();
 
     TokenDto login(String username, String password) throws BusinessException;
 
@@ -26,4 +29,11 @@ public interface UserManagementBoundary {
     List<BugDto> getBugsForUser(String username) throws BusinessException;
 
     Boolean hasOpenBugsForUsername(String username);
+
+    List<PermissionDto> getAllPermissions();
+
+    List<RoleDto> getUserRolesById(Long id);
+
+    List<PermissionDto> getRolePermissionsById(Long id);
+
 }

@@ -12,6 +12,6 @@ import java.util.Set;
 @ToString(callSuper = true, exclude = "roles")
 @Builder
 public class PermissionDto extends BaseDto{
-    private String type;
+    private String permissionType;
     private Set<RoleDto> roles;
 }

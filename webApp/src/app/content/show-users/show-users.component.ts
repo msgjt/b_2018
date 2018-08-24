@@ -2,6 +2,7 @@ import {Component, OnInit} from '@angular/core';
 import {User} from '../../shared/user';
 import {ContentService} from '../shared/content.service';
 import {Router} from '@angular/router';
+import {Data} from '../../shared/data';
 
 @Component({
   selector: 'app-show-users',
@@ -9,11 +10,14 @@ import {Router} from '@angular/router';
   styleUrls: ['./show-users.component.css']
 })
 export class ShowUsersComponent implements OnInit {
+
   user: User;
   users: Array<User>;
   hasBugs: Map<string, boolean> = new Map<string, boolean>();
 
-  constructor(private contentService: ContentService, private router: Router) {
+  constructor(private contentService: ContentService,
+              private router: Router,
+              private data: Data) {
   }
 
 
@@ -29,9 +33,16 @@ export class ShowUsersComponent implements OnInit {
         error => console.log(JSON.stringify(error)));
   }
 
-  editSelectedUser() {
-    this.router.navigate(['/editUser']);
-
+  editSelectedUser(id, firstName, lastName, email, mobileNumber) {
+    console.log(id);
+    this.data.storage = {
+      'id': id,
+      'firstName': firstName,
+      'lastName': lastName,
+      'email': email,
+      'mobileNumber': mobileNumber
+    };
+    this.router.navigate(['/user/edit']);
   }
 
   activateUser(user: User) {

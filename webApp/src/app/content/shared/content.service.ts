@@ -4,6 +4,7 @@ import {Observable} from 'rxjs';
 import {User} from '../../shared/user';
 import {Role} from '../../shared/role';
 import {Bug} from '../../shared/bug';
+import {Permission} from '../../shared/permission';
 
 @Injectable()
 export class ContentService {
@@ -18,6 +19,22 @@ export class ContentService {
     const body = {firstName, lastName, email, password, mobileNumber};
     return this.httpClient
       .post<User>(url, body);
+  }
+
+  updateUser(id: number, firstName: string, lastName: string, email: string,
+             password: string, mobileNumber: string, roles: Array<Role>): Observable<User> {
+    const url = `${this.baseUrl}/users/update`;
+    const body = {id, firstName, lastName, email, password, mobileNumber, roles};
+    return this.httpClient
+      .put<User>(url, body);
+  }
+
+  updateRole(id: number, roleType: string, permissions: Array<Permission>): Observable<Role> {
+    const url = `${this.baseUrl}/roles/update`;
+    const body = {id, roleType, permissions};
+    return this.httpClient
+      .put<Role>(url, body);
+
   }
 
   getAllUsers(): Observable<Array<User>> {
@@ -61,5 +78,24 @@ export class ContentService {
     const body = user;
     return this.httpClient
       .post<boolean>(url, body);
+  }
+
+  getUserRolesById(id: number): Observable<Array<Role>> {
+    const url = `${this.baseUrl}/roles/${id}`;
+    return this.httpClient
+      .get<Array<Role>>(url);
+  }
+
+  getRolePermissionsById(id: number): Observable<Array<Permission>> {
+    const url = `${this.baseUrl}/permissions/${id}`;
+    return this.httpClient
+      .get<Array<Permission>>(url);
+
+  }
+
+  getAllPermissions(): Observable<Array<Permission>> {
+    const url = `${this.baseUrl}/permissions`;
+    return this.httpClient
+      .get<Array<Permission>>(url);
   }
 }

@@ -1,6 +1,6 @@
 <div style="height: 100px"></div>
 <div class="container">
-  <h2 class="text-center text-uppercase text-secondary mb-0">Users</h2>
+  <h2 class="text-center text-uppercase text-secondary mb-0">{{"show.users" | translate}}</h2>
   <hr class="star-dark mb-5">
   <div class="row justify-content-center">
     <div class="col-md-12 mx-auto">
@@ -8,12 +8,12 @@
         <thead style="background-color: #1a252f; color: white">
         <tr>
           <th scope="col">#</th>
-          <th scope="col">Username</th>
-          <th scope="col">First name</th>
-          <th scope="col">Last name</th>
-          <th scope="col">Email</th>
-          <th scope="col">Mobile number</th>
-          <th scope="col">Account status</th>
+          <th scope="col">{{'login.username' | translate}}</th>
+          <th scope="col">{{'edit.firstname' | translate}}</th>
+          <th scope="col">{{'edit.lastname' | translate}}</th>
+          <th scope="col">{{'show.email' | translate}}</th>
+          <th scope="col">{{'edit.mobilenr' | translate}}</th>
+          <th scope="col">{{'show.status' | translate}}</th>
           <th scope="col"></th>
           <th scope="col"></th>
         </tr>
@@ -28,7 +28,10 @@
           <td>{{user.email}}</td>
           <td>{{user.mobileNumber}}</td>
           <td>{{user.status}}</td>
-          <td><i class="material-icons" (click)="editSelectedUser()">border_color</i>
+          <td><i class="material-icons" (click)="editSelectedUser(user.id, user.firstName,
+                                                                  user.lastName, user.email,
+                                                                  user.mobileNumber)"
+          >border_color</i>
           </td>
           <td *ngIf="isActive(user) && !hasBugs.get(user.username)"><i class="material-icons" (click)="deactivateUser(user)">check_box</i></td>
           <td *ngIf="!isActive(user)"><i class="material-icons" (click)="activateUser(user)">check_box_outline_blank</i></td>

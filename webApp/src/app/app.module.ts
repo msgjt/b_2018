@@ -20,6 +20,8 @@ import { WelcomeComponent } from './content/welcome/welcome.component';
 import {AngularMultiSelectModule} from 'angular2-multiselect-dropdown';
 import { AddBugComponent } from './add-bug/add-bug.component';
 import {Ng2FileSizeModule} from 'ng2-file-size';
+import {Data} from './shared/data';
+import { EditRoleComponent } from './content/edit-role/edit-role.component';
 
 @NgModule({
   declarations: [
@@ -32,7 +34,8 @@ import {Ng2FileSizeModule} from 'ng2-file-size';
     EditUserComponent,
     ShowUsersComponent,
     WelcomeComponent,
-    AddBugComponent
+    AddBugComponent,
+    EditRoleComponent
   ],
   imports: [
     BrowserModule,
@@ -52,6 +55,7 @@ import {Ng2FileSizeModule} from 'ng2-file-size';
 
   ],
   providers: [
+    Data,
     LoginService,
     ContentService,
     {provide: HTTP_INTERCEPTORS, useClass: UserHttpInterceptor, multi: true},

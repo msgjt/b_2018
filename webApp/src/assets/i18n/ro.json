@@ -18,5 +18,44 @@
   },
   "error": {
     "message": "Acesta nu este pagina pe care o cauti!"
+  },
+  "adduser": {
+    "adduser": "Adaugare utilizator",
+    "firstname": "Prenume",
+    "lastname": "Nume",
+    "phonenr": "Numar de telefon",
+    "password": "Parola",
+    "submit": "Adauga"
+  },
+  "edit": {
+    "edit": "Editare utilizator",
+    "firstname": "Prenume",
+    "lastname": "Nume",
+    "mobilenr": "Numar de telefon",
+    "password": "Parola",
+    "update": "Editeaza",
+    "message1": "Te rog sa introduci un preune valid.",
+    "message2": "Prenumele trebuie sa aiba o lungime de 3-20 de caractere si sa contina numai litere.",
+    "message3": "Te rog sa introduci un nume valid.",
+    "message4": "Prenumele trebuie sa aiba o lungime de 6-12 de caractere si sa contina numai litere.",
+    "message5": "Te rog sa introduci o parola valida.",
+    "message6": "Te rog sa introduci un mail valid ex: abc@msggroup.com.",
+    "message7": "Emailul trbuie sa contina doar numere, litere, puncte, underscore.",
+    "message8": "Te rog sa introduci un numar de telefon valid.",
+    "message9": "Must be 10-13 characters long and contain only numbers.",
+    "message10": "Prenume valid.",
+    "message11": "Nume valid.",
+    "message12": "Parola valida.",
+    "message13": "Email valid.",
+    "message14": "Numar de telefon valid.",
+    "selectroles": "Selecteaza Rol",
+    "selectall": "Selecteaza tot",
+    "unselectall": "Deselecteaza tot"
+  },
+  "show": {
+    "show": "Afisare utilizatori",
+    "status": "Status cont",
+    "users": "Utilizatori",
+    "email": "Email"
   }
 }
