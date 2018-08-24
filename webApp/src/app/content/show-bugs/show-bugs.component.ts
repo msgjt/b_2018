@@ -1,22 +1,26 @@
 import { Component, OnInit } from '@angular/core';
 import {BugsService} from '../shared/bugs.service';
 import {Bug} from '../../shared/Bug';
-import {SearchCriteria} from '../../shared/SearchCriteria';
+import {Bugfilter} from '../../shared/bugfilter';
 
 @Component({
   selector: 'app-show-bugs',
   templateUrl: './show-bugs.component.html',
   styleUrls: ['./show-bugs.component.css']
 })
+
 export class ShowBugsComponent implements OnInit {
 
   public data: Bug[];
   public filterQuery = '';
   public rowsOnPage = 10;
   public sortBy = 'email';
-  public sortOrder = 'asc';
+  public sortOrder = 'ASCENDING';
+  public lastSorter = 'title';
 
   public disableNext = false;
+
+  public fiterList: Array<Bugfilter> = [];
 
   constructor(private bugsService: BugsService) {
   }
@@ -50,5 +54,22 @@ export class ShowBugsComponent implements OnInit {
 
   doQuery() {
     console.log('doQuery');
+  }
+
+  sortTable(sortArg: string) {
+    console.log(sortArg);
+
+    if (sortArg == this.lastSorter) {
+      this.sortOrder = (this.sortOrder == 'ASCENDING') ? 'DESCENDING' : 'ASCENDING';
+    } else {
+      this.lastSorter = sortArg;
+      this.sortOrder = 'ASCENDING';
+    }
+    this.bugsService.getSorted(this.lastSorter, this.sortOrder).subscribe(bugs => this.data = bugs);
+  }
+
+
+  addFilter() {
+    this.fiterList.push(new Bugfilter());
   }
 }

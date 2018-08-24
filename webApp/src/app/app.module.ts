@@ -19,7 +19,6 @@ import {ShowUsersComponent} from './content/show-users/show-users.component';
 import { WelcomeComponent } from './content/welcome/welcome.component';
 import {AngularMultiSelectModule} from 'angular2-multiselect-dropdown';
 import { RecaptchaModule } from 'angular-google-recaptcha';
-import {DataTableModule} from 'angular2-datatable';
 import { ShowBugsComponent } from './content/show-bugs/show-bugs.component';
 import { DataFilterPipe } from './content/show-bugs/data-filter.pipe';
 
@@ -55,8 +54,7 @@ const SITE_KEY = '6LeLWmsUAAAAAPRM65RcHUjnHwdCmIJUTceUvP-k';
     AngularMultiSelectModule,
     RecaptchaModule.forRoot({
       siteKey: SITE_KEY,
-    }),
-    DataTableModule
+    })
   ],
   providers: [
     LoginService,

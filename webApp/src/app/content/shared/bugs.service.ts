@@ -1,10 +1,9 @@
-import { Injectable } from '@angular/core';
+import {Injectable} from '@angular/core';
 import {Observable, of} from 'rxjs';
 import {Bug} from '../../shared/Bug';
 import {Role} from '../../shared/role';
 import {HttpClient} from '@angular/common/http';
 import {User} from '../../shared/user';
-import {SearchCriteria} from '../../shared/SearchCriteria';
 
 @Injectable({
   providedIn: 'root'
@@ -35,7 +34,7 @@ export class BugsService {
   getNext(): Observable<Array<Bug>> {
     this.offset += 25;
     const url = `${this.baseUrl}/query`;
-    return this.httpClient.get<Array<Bug>>(url, {params: {'count': '25', 'offset': String(this.offset), 'order': 'ASC'}})
+    return this.httpClient.get<Array<Bug>>(url, {params: {'count': '25', 'offset': String(this.offset), 'order': 'ASC'}});
   }
 
   /**
@@ -48,5 +47,11 @@ export class BugsService {
     }
     const url = `${this.baseUrl}/query`;
     return this.httpClient.get<Array<Bug>>(url, {params: {'count': '25', 'offset': String(this.offset), 'order': 'ASC'}});
+  }
+
+  getSorted(sortByArg: string, orderArg: string): Observable<Array<Bug>> {
+    const url = `${this.baseUrl}/query`;
+    return this.httpClient.get<Array<Bug>>(url,
+      {params: {'count': '25', 'offset': String(this.offset), 'sortby': sortByArg, 'order': orderArg}});
   }
 }
