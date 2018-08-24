@@ -40,12 +40,7 @@ public class BugServiceImpl implements BugService{
         log.info("bug to close: bugId={}", bugId);
         Optional<Bug> bugOptional = bugDao.closeBug(bugId);
         log.info("Test2: bugOptional={}", bugOptional);
-        if (bugOptional.isPresent()) {
-            return true;
-        }
-        else {
-            return false;
-        }
+        return bugOptional.isPresent();
     }
 
     @Override
@@ -53,11 +48,6 @@ public class BugServiceImpl implements BugService{
         log.info("bug status to change: bugId={} newStatus={}", bugDto.getId(), bugDto.getBugStatusType());
         Optional<Bug> bugOptional = bugDao.changeBugStatus(bugDto.getId(), bugDto.getBugStatusType());
         log.info("bug optional fromm persistence: bugOptional={}", bugOptional);
-        if (bugOptional.isPresent()) {
-            log.info("return true");
-            return true;
-        }
-        log.info("return false");
-        return false;
+        return bugOptional.isPresent();
     }
 }

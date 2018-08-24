@@ -86,7 +86,6 @@ public class BugDaoImpl implements BugDao {
                     return b;
             }).orElseThrow(RuntimeException::new);
         } catch (RuntimeException ex) {
-            log.info("exceptioooon!!!");
             bugOptional = Optional.empty();
         }
         log.info("change status bug: result={}", bugOptional);

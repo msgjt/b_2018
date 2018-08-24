@@ -4,6 +4,7 @@ import lombok.Getter;
 
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.Collections;
 import java.util.List;
 
 public enum BugStatusType {
@@ -25,8 +26,9 @@ public enum BugStatusType {
     @Getter
     private List<BugStatusType> nextStatus = new ArrayList<>();
 
-    public void setNextStatus(BugStatusType... nextStatus) {
-        Arrays.stream(nextStatus).forEach(this.nextStatus::add);
+    private void setNextStatus(BugStatusType... nextStatus) {
+        //Arrays.stream(nextStatus).forEach(this.nextStatus::add);
+        Collections.addAll(this.nextStatus, nextStatus);
     }
 
 }
