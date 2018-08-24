@@ -14,9 +14,10 @@ export class ContentService {
   constructor(private httpClient: HttpClient) {
   }
 
-  addUser(firstName: string, lastName: string, email: string, password: string, mobileNumber: string): Observable<User> {
+  addUser(firstName: string, lastName: string, email: string, password: string,
+          mobileNumber: string,  roles: Array<Role>): Observable<User> {
     const url = `${this.baseUrl}/users/add`;
-    const body = {firstName, lastName, email, password, mobileNumber};
+    const body = {firstName, lastName, email, password, mobileNumber, roles};
     return this.httpClient
       .post<User>(url, body);
   }

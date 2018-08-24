@@ -23,16 +23,16 @@ public class UserDaoImpl implements UserDao {
     private EntityManager em;
 
     @Override
-    public Optional<User> addUser(User user) {
-        log.info("addUser: user={}", user);
+    public Optional<User> createUser(User user) {
+        log.info("createUser: user={}", user);
         Optional<User> userOptional;
         try {
             em.persist(user);
-            userOptional = Optional.ofNullable(user);
+            userOptional = Optional.of(user);
         } catch (RuntimeException ex) {
             userOptional = Optional.empty();
         }
-        log.info("addUser: result={}", user);
+        log.info("createUser: result={}", user);
         return userOptional;
     }
 

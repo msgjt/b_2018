@@ -70,9 +70,9 @@ public class UserResource {
     @AuthorizationSecured(PermissionType.USER_MANAGEMENT)
     @POST
     public Response addUser(UserDto userDto) throws BusinessException {
-        log.info("addUser: userDto={}",userDto);
+        log.info("createUser: userDto={}",userDto);
         UserDto result = userManagementBoundary.createUser(userDto);
-        log.info("addUser: result={}",result);
+        log.info("createUser: result={}",result);
         return Response.status(Response.Status.OK).entity(result).build();
     }
 

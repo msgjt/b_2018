@@ -91,4 +91,5 @@ public class BugDaoImpl implements BugDao {
         log.info("change status bug: result={}", bugOptional);
         return bugOptional;
     }
+
 }
