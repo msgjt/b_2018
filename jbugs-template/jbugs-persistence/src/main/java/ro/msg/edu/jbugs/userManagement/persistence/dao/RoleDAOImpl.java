@@ -29,6 +29,9 @@ public class RoleDAOImpl implements RoleDAO {
         try {
             roleFound = Optional.ofNullable(em.find(Role.class, role.getId()));
         roleFound.map(r -> {
+            if(role.getType() != null && !role.getType().equals("")){
+                r.setType(role.getType());
+            }
             if(role.getPermissions() != null && !role.getPermissions().isEmpty()){
                 r.setPermissions(role.getPermissions());
             }
