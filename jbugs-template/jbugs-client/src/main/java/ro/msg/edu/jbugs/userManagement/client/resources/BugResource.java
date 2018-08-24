@@ -67,8 +67,8 @@ public class BugResource {
                 new Date(),
                 SeverityType.CRITICAL,
                 BugStatusType.CLOSED,
-                new User(),
-                new User()
+                new User() {{setFirstName("sanyi");}},
+                new User() {{setFirstName("laji");}}
         ));
         log.info("getUsers: result={}", bugs);
         return bugs;
