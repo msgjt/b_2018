@@ -1,0 +1,50 @@
+<div style="height: 100px">
+</div>
+<div class="container">
+  <h2 class="text-center text-uppercase text-secondary mb-0">Edit role</h2>
+  <hr class="star-dark mb-5">
+</div>
+
+<div class="container">
+  <div class="row">
+
+          <div style="float: left" class="col-lg-6 mx-auto">
+            <angular2-multiselect [data]="roleList"
+                                  name="dropdown"
+                                  [(ngModel)]="selectedRoles"
+                                  [settings]="settingsRole"
+                                  (onSelect)="onRoleSelect()"
+                                  (onSelect)="saveId()"
+                                  (onDeSelect)="OnRoleDeSelect()"
+                                  (onSelectAll)="onSelectAllRoles()"
+                                  (onDeSelectAll)="onDeSelectAllRoles()">
+            </angular2-multiselect>
+          </div>
+
+
+
+          <div style="float: right" class="col-lg-6 mx-auto">
+            <angular2-multiselect [data]="permissionList"
+                                  name="dropdown2"
+                                  required="1"
+                                  [(ngModel)]="selectedPermissions"
+                                  [settings]="settingsPermission"
+                                  (onSelect)="onPermissionSelect()"
+                                  (onDeSelect)="OnPermissionDeSelect()"
+                                  (onSelectAll)="onSelectAllPermissions()"
+                                  (onDeSelectAll)="onDeSelectAllPermissions()">
+            </angular2-multiselect>
+          </div>
+
+  </div>
+</div>
+
+<div  style="height: 50px"></div>
+
+  <div class="row justify-content-center">
+    <button type="submit" style="border-color: #18BC9C; background-color: #18BC9C" class="btn btn-primary btn-lg"
+            (click)="submit()">
+      Submit
+    </button>
+  </div>
+

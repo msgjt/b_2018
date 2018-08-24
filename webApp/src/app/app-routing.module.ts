@@ -8,7 +8,7 @@ import {DummyContentComponent} from './content/dummy-content/dummy-content.compo
 import {EditUserComponent} from './content/edit-user/edit-user.component';
 import {ShowUsersComponent} from './content/show-users/show-users.component';
 import {WelcomeComponent} from './content/welcome/welcome.component';
-import {ShowRolesComponent} from './content/show-roles/show-roles.component';
+import {EditRoleComponent} from './content/edit-role/edit-role.component';
 
 const routes: Routes = [
   {path: '', redirectTo: '/login', pathMatch: 'full'},
@@ -17,7 +17,7 @@ const routes: Routes = [
   {path: 'content/dummy', component: DummyContentComponent},
   {path: 'user/show', component: ShowUsersComponent},
   {path: 'user/edit', component: EditUserComponent},
-  {path: 'role/editRole', component : ShowRolesComponent},
+  {path: 'role/editRole', component : EditRoleComponent},
   {path: 'welcome', component: WelcomeComponent},
   {path: '**', component: ErrorComponent}
 
