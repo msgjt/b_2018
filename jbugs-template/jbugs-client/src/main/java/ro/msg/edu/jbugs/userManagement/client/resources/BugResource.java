@@ -1,10 +1,14 @@
 package ro.msg.edu.jbugs.userManagement.client.resources;
 
+
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import ro.msg.edu.jbugs.userManagement.business.boundary.UserManagementBoundary;
 import ro.msg.edu.jbugs.userManagement.business.dto.BugDto;
 import ro.msg.edu.jbugs.userManagement.business.dto.RoleDto;
+import ro.msg.edu.jbugs.userManagement.business.dto.UserDto;
 import ro.msg.edu.jbugs.userManagement.business.exception.BusinessException;
 import ro.msg.edu.jbugs.userManagement.persistence.entity.User;
 import ro.msg.edu.jbugs.userManagement.persistence.entity.enums.BugStatusType;
@@ -22,7 +26,7 @@ import java.util.List;
 @Consumes(MediaType.APPLICATION_JSON)
 @Produces(MediaType.APPLICATION_JSON)
 public class BugResource {
-    private static final Logger log = LogManager.getLogger(RoleResource.class);
+    private static final Logger log = LogManager.getLogger(BugResource.class);
 
     @EJB
     private ro.msg.edu.jbugs.userManagement.business.control.BugService bugService;
@@ -30,6 +34,7 @@ public class BugResource {
     @Path("/add")
     @POST
     public String addBug(BugDto bugDto) throws BusinessException {
+        log.info("logInfo" + bugDto.getAssignee().getUsername());
         bugService.createBug(bugDto);
         return "test";
     }
@@ -54,21 +59,21 @@ public class BugResource {
                 "extreamly long description",
                 "1",
                 "2",
-                new Date(),
+                new Date().toString(),
                 SeverityType.CRITICAL,
                 BugStatusType.CLOSED,
-                new User(),
-                new User()
+                new UserDto(),
+                new UserDto()
                 ));
         bugs.add(new BugDto("First bug created",
                 "extreamly long description",
                 "1",
                 "2",
-                new Date(),
+                new Date().toString(),
                 SeverityType.CRITICAL,
                 BugStatusType.CLOSED,
-                new User() {{setFirstName("sanyi");}},
-                new User() {{setFirstName("laji");}}
+                new UserDto() {{setFirstName("sanyi");}},
+                new UserDto() {{setFirstName("laji");}}
         ));
         log.info("getUsers: result={}", bugs);
         return bugs;
