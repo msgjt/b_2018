@@ -21,6 +21,7 @@ const routes: Routes = [
   {path: 'user/edit', component: EditUserComponent},
   {path: 'role/editRole', component : EditRoleComponent},
   {path: 'welcome', component: WelcomeComponent},
+  {path: 'bugs/add', component: AddBugComponent},
   {path: 'bugs', component: ShowBugsComponent},
   {path: '**', component: ErrorComponent}
 

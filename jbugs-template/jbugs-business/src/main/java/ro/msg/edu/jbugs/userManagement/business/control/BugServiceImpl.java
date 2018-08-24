@@ -11,6 +11,7 @@ import ro.msg.edu.jbugs.userManagement.persistence.entity.enums.BugStatusType;
 
 import javax.ejb.EJB;
 import javax.ejb.Stateless;
+import javax.inject.Inject;
 import java.util.Optional;
 
 @Stateless
@@ -20,8 +21,8 @@ public class BugServiceImpl implements BugService{
     @EJB
     private BugDao bugDao;
 
-
-    private BugConverter bugConverter = new BugConverter();
+    @Inject
+    private BugConverter bugConverter;
 
     @Override
     public BugDto createBug(BugDto bugDto) throws BusinessException {

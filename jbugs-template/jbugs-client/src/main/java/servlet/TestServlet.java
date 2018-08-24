@@ -79,7 +79,7 @@ public class TestServlet extends HttpServlet {
         user.setId(1l);
         user.setPassword("fd");
         user.setStatus(UserStatus.ACTIVE);
-        userDao.addUser(user);
+        userDao.createUser(user);
 //        Optional<User> userOptional = userDao.getUserByUsername("admina");
 //        User user = userOptional.get();
 //        userDao.addUser(user);
