@@ -19,7 +19,7 @@ public class PermissionConverter extends AbstractConverterBaseEntityConverter<Pe
     @Override
     public Permission convertDtoToEntity(PermissionDto permissionDto) {
         Permission permission = Permission.builder()
-                .type(PermissionType.valueOf(permissionDto.getType()))
+                .type(PermissionType.valueOf(permissionDto.getPermissionType()))
                 .build();
         if(permissionDto.getRoles() != null && !permissionDto.getRoles().isEmpty()){
             Set<Role> roles =
@@ -35,7 +35,7 @@ public class PermissionConverter extends AbstractConverterBaseEntityConverter<Pe
     @Override
     public PermissionDto convertEntityToDto(Permission permission) {
         PermissionDto permissionDto = PermissionDto.builder()
-                .type(permission.getType().name())
+                .permissionType(permission.getType().name())
                 .build();
         permissionDto.setId(permission.getId());
         return permissionDto;
