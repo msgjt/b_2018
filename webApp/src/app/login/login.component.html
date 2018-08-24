@@ -63,8 +63,19 @@
           </div>
           <br>
           <div class="row justify-content-center">
+            <recaptcha
+              name="recaptcha"
+              [(ngModel)]="recaptcha"
+              (scriptLoad)="onScriptLoad()"
+              (scriptError)="onScriptError()"></recaptcha>
+          </div>
+
+
+          <br>
+          <div class="row justify-content-center">
             <button type="submit" style="border-color: #18BC9C; background-color: #18BC9C"
-                    class="btn btn-primary btn-lg" [disabled]="formControl.invalid">{{'login.login' | translate }}
+                    class="btn btn-primary btn-lg" [disabled]="formControl.invalid || !recaptcha">{{'login.login' |
+              translate }}
             </button>
           </div>
         </form>

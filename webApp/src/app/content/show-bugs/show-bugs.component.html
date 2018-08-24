@@ -1,0 +1,91 @@
+<div class="row justify-content-center">
+  <div class="col-xs-12 col-md-10 col-md-offset-1 col-lg-8 col-lg-offset-2">
+
+    <div class="panel panel-default">
+      <div class="panel-heading">Bugs</div>
+      <br>
+      <br>
+      <br>
+      <br>
+        <table class="table table-striped">
+          <thead style="background-color: #1a252f; color: white">
+          <tr>
+            <th style="width: 35%" (click)="sortTable('title')">
+              Title
+            </th>
+            <th style="width: 5%" (click)="sortTable('version')">
+              Version
+            </th>
+            <th style="width: 5%" (click)="sortTable('fixedInVerison')">
+              Fixed In
+            </th>
+
+            <th style="width: 5%" (click)="sortTable('dueDate')">
+              Due Date
+            </th>
+
+            <th style="width: 5%" (click)="sortTable('severity')">
+              Severity
+            </th>
+
+            <th style="width: 10%" (click)="sortTable('creator')">
+              Created by
+            </th>
+
+            <th style="width: 10%" (click)="sortTable('assignee')">
+              Assigned to
+            </th>
+
+            <th style="width: 5%" (click)="sortTable('status')">
+              Status
+            </th>
+
+          </tr>
+          </thead>
+          <tbody>
+
+          <tr>
+            <td><input size='15' (keyup.enter)="handleFilter()" [(ngModel)]="currentFilter.title" placeholder="Title"></td>
+            <td><input size='15' (keyup.enter)="handleFilter()" [(ngModel)]="currentFilter.version" placeholder="Version"></td>
+            <td><input size='15' (keyup.enter)="handleFilter()" [(ngModel)]="currentFilter.fixedInversion" placeholder="Fixed version"></td>
+            <td><input size='15' (keyup.enter)="handleFilter()" [(ngModel)]="currentFilter.dueDate" placeholder="Due Date"></td>
+            <td>
+              <select [(ngModel)]="currentFilter.severity">
+                <option  *ngFor="let severity of severityTypes">{{severity}}</option>
+              </select>
+            </td>
+            <td><input size='15' (keyup.enter)="handleFilter()" [(ngModel)]="currentFilter.creator" placeholder="Created by..."></td>
+            <td><input size='15' (keyup.enter)="handleFilter()" [(ngModel)]="currentFilter.assignee" placeholder="Assignee"></td>
+            <td>
+              <select [(ngModel)]="currentFilter.status">
+                <option  *ngFor="let status of statusTypes">{{status}}</option>
+              </select>
+            </td>
+          </tr>
+          <tr>
+            <button (click)="handleFilter()">Do Filtering...</button>
+          </tr>
+
+          <tr *ngFor="let item of data">
+            <td>{{item.title}}</td>
+            <td>{{item.version}}</td>
+            <td>{{item.fixedInVersion}}</td>
+            <td>{{item.dueDate}}</td>
+            <td>{{item.severityType}}</td>
+            <td>{{item.creator.firstName}}</td>
+            <td>{{item.assignee.firstName}}</td>
+            <td>{{item.status}}</td>
+          </tr>
+          </tbody>
+          <tfoot>
+          <tr>
+            <td colspan="5">
+              <button (click)="onNext()"> Next</button>
+              <button (click)="onPrev()"> Previous</button>
+            </td>
+          </tr>
+          </tfoot>
+        </table>
+      </div>
+    </div>
+  </div>

@@ -22,6 +22,12 @@ import { AddBugComponent } from './add-bug/add-bug.component';
 import {Ng2FileSizeModule} from 'ng2-file-size';
 import {Data} from './shared/data';
 import { EditRoleComponent } from './content/edit-role/edit-role.component';
+import { RecaptchaModule } from 'angular-google-recaptcha';
+import { ShowBugsComponent } from './content/show-bugs/show-bugs.component';
+import { DataFilterPipe } from './content/show-bugs/data-filter.pipe';
+
+// TODO should be taken from somekind of config?
+const SITE_KEY = '6LeLWmsUAAAAAPRM65RcHUjnHwdCmIJUTceUvP-k';
 
 @NgModule({
   declarations: [
@@ -34,6 +40,8 @@ import { EditRoleComponent } from './content/edit-role/edit-role.component';
     EditUserComponent,
     ShowUsersComponent,
     WelcomeComponent,
+    ShowBugsComponent,
+    DataFilterPipe,
     AddBugComponent,
     EditRoleComponent
   ],
@@ -50,15 +58,16 @@ import { EditRoleComponent } from './content/edit-role/edit-role.component';
         deps: [HttpClient]
       }
     }),
-    AngularMultiSelectModule
-
-
+    AngularMultiSelectModule,
+    RecaptchaModule.forRoot({
+      siteKey: SITE_KEY,
+    })
   ],
   providers: [
     Data,
     LoginService,
     ContentService,
-    {provide: HTTP_INTERCEPTORS, useClass: UserHttpInterceptor, multi: true},
+    {provide: HTTP_INTERCEPTORS, useClass: UserHttpInterceptor, multi: true}
   ],
   bootstrap: [AppComponent]
 })

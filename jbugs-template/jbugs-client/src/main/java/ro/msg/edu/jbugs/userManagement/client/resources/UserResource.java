@@ -4,6 +4,7 @@ import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import ro.msg.edu.jbugs.userManagement.business.boundary.UserManagementBoundary;
 import ro.msg.edu.jbugs.userManagement.business.dto.PermissionDto;
+import ro.msg.edu.jbugs.userManagement.business.dto.BugDto;
 import ro.msg.edu.jbugs.userManagement.business.dto.TokenDto;
 import ro.msg.edu.jbugs.userManagement.business.dto.UserDto;
 import ro.msg.edu.jbugs.userManagement.business.exception.BusinessException;
@@ -39,7 +40,6 @@ public class UserResource {
         log.info("getUsers: result={}", allUsers);
         return allUsers;
     }
-
 
     @Path("/login")
     @POST

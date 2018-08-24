@@ -10,6 +10,7 @@ import {ShowUsersComponent} from './content/show-users/show-users.component';
 import {WelcomeComponent} from './content/welcome/welcome.component';
 import {AddBugComponent} from './add-bug/add-bug.component';
 import {EditRoleComponent} from './content/edit-role/edit-role.component';
+import {ShowBugsComponent} from './content/show-bugs/show-bugs.component';
 
 const routes: Routes = [
   {path: '', redirectTo: '/login', pathMatch: 'full'},
@@ -20,7 +21,7 @@ const routes: Routes = [
   {path: 'user/edit', component: EditUserComponent},
   {path: 'role/editRole', component : EditRoleComponent},
   {path: 'welcome', component: WelcomeComponent},
-  {path: 'bugs/add', component: AddBugComponent},
+  {path: 'bugs', component: ShowBugsComponent},
   {path: '**', component: ErrorComponent}
 
 ];
