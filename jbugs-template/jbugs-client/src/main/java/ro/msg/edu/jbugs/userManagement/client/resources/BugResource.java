@@ -10,6 +10,8 @@ import ro.msg.edu.jbugs.userManagement.business.dto.BugDto;
 import ro.msg.edu.jbugs.userManagement.business.dto.RoleDto;
 import ro.msg.edu.jbugs.userManagement.business.dto.UserDto;
 import ro.msg.edu.jbugs.userManagement.business.exception.BusinessException;
+import ro.msg.edu.jbugs.userManagement.business.exception.BusinessExceptionCode;
+import ro.msg.edu.jbugs.userManagement.client.exception.ClientExceptionCode;
 import ro.msg.edu.jbugs.userManagement.persistence.entity.User;
 import ro.msg.edu.jbugs.userManagement.persistence.entity.enums.BugStatusType;
 import ro.msg.edu.jbugs.userManagement.persistence.entity.enums.SeverityType;
@@ -20,6 +22,7 @@ import javax.ws.rs.core.MediaType;
 import javax.xml.crypto.Data;
 import java.util.ArrayList;
 import java.util.Date;
+import javax.ws.rs.core.Response;
 import java.util.List;
 
 @Path("/bugs")
@@ -66,5 +69,29 @@ public class BugResource {
         //bugService
         log.info("getUsers: result");
         return new ArrayList<>();
+    }
+
+
+
+    @Path("/close")
+    @POST
+    public Response closeBug(Long bugId) throws BusinessException {
+        log.info("close bug in ressource: bugId={}", bugId);
+        if (bugService.closeBug(bugId)) {
+            return Response.ok().build();
+        }
+        throw new BusinessException(BusinessExceptionCode.CAN_NOT_CLOSE_BUG);
+    }
+
+    @Path("/changestatus")
+    @POST
+    public Response changeBugStatus(BugDto bugDto) throws BusinessException {
+        log.info("change bug status in ressource: bugId={} newStatus={}", bugDto.getId(), bugDto.getBugStatusType());
+        if (bugService.changeBugStatus(bugDto)) {
+            log.info("bug status changed");
+            return Response.ok().build();
+        }
+        log.info("bug status not changed");
+        throw new BusinessException(BusinessExceptionCode.CAN_NOT_CLOSE_BUG_STATUS);
     }
 }

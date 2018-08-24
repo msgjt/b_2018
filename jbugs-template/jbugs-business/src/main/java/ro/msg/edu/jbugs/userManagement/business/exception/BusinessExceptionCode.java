@@ -23,7 +23,10 @@ public enum BusinessExceptionCode {
     TOO_MANY_ALIKE_USERNAMES(1008,"There are no more suffixes to be generated, consider increasing the range."),
     ROLES_NOT_VALID(1009, "Invalid roles"),
     CAN_NOT_UPDATE_ROLE(1010, "Can't update role"),
-    INVALID_TOKEN(5000,"The token is invalid.");
+    INVALID_TOKEN(5000,"The token is invalid."),
+    CAN_NOT_FIND_BUG(2001, "Bug not found"),
+    CAN_NOT_CLOSE_BUG(2002, "Bug can not be closed from this status"),
+    CAN_NOT_CLOSE_BUG_STATUS(2003, "Bug status can not be changed from this status");
     Integer id;
     String message;
 }

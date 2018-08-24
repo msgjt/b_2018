@@ -2,6 +2,7 @@ package ro.msg.edu.jbugs.userManagement.business.control;
 
 import ro.msg.edu.jbugs.userManagement.business.dto.BugDto;
 import ro.msg.edu.jbugs.userManagement.business.exception.BusinessException;
+import ro.msg.edu.jbugs.userManagement.persistence.entity.enums.BugStatusType;
 
 import java.util.List;
 
@@ -21,4 +22,8 @@ public interface BugService {
 //     */
 //    List<BugDto> getBugs();
 
+
+    boolean closeBug(Long bugId) throws BusinessException;
+
+    boolean changeBugStatus(BugDto bugDto) throws BusinessException;
 }

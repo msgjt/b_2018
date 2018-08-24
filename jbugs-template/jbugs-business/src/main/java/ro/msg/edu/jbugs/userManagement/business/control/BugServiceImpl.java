@@ -7,6 +7,7 @@ import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import ro.msg.edu.jbugs.userManagement.persistence.dao.BugDao;
 import ro.msg.edu.jbugs.userManagement.persistence.entity.Bug;
+import ro.msg.edu.jbugs.userManagement.persistence.entity.enums.BugStatusType;
 
 import javax.ejb.EJB;
 import javax.ejb.Stateless;
@@ -30,5 +31,21 @@ public class BugServiceImpl implements BugService{
         Optional<Bug> bug1 = bugDao.addBug(bug);
         log.info("Test: bug1={}", bug1);
         return bugDto;
+    }
+
+    @Override
+    public boolean closeBug(Long bugId) throws BusinessException {
+        log.info("bug to close: bugId={}", bugId);
+        Optional<Bug> bugOptional = bugDao.closeBug(bugId);
+        log.info("Test2: bugOptional={}", bugOptional);
+        return bugOptional.isPresent();
+    }
+
+    @Override
+    public boolean changeBugStatus(BugDto bugDto) throws BusinessException {
+        log.info("bug status to change: bugId={} newStatus={}", bugDto.getId(), bugDto.getBugStatusType());
+        Optional<Bug> bugOptional = bugDao.changeBugStatus(bugDto.getId(), bugDto.getBugStatusType());
+        log.info("bug optional fromm persistence: bugOptional={}", bugOptional);
+        return bugOptional.isPresent();
     }
 }
