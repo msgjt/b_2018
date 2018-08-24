@@ -11,6 +11,7 @@ import {Permission} from '../../shared/permission';
 })
 export class ShowRolesComponent implements OnInit {
 
+  model: Role;
   roles: Array<Role>;
   permissions: Array<Permission>;
   roleList = [];
@@ -23,6 +24,7 @@ export class ShowRolesComponent implements OnInit {
   settingsPermission = {};
 
   constructor(private contentService: ContentService) {
+    this.model = new Role(null, null);
 
     this.contentService.getAllRoles()
       .subscribe(roles => this.roles = roles,
@@ -46,6 +48,7 @@ export class ShowRolesComponent implements OnInit {
 
 
   saveId(id) {
+    this.model.id = id;
     this.selectedPermissions = [];
     this.contentService.getRolePermissionsById(id)
       .subscribe(permissions => this.permissions = permissions,
