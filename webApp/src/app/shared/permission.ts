@@ -1,9 +1,9 @@
 export class Permission {
   id: number;
-  type: string;
+  permissionType: string;
 
-  constructor(id: number, type: string) {
+  constructor(id: number, permissionType: string) {
     this.id = id;
-    this.type = type;
+    this.permissionType = permissionType;
   }
 }

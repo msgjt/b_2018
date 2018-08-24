@@ -20,7 +20,6 @@ import { WelcomeComponent } from './content/welcome/welcome.component';
 import {AngularMultiSelectModule} from 'angular2-multiselect-dropdown';
 import {Data} from './shared/data';
 import { ShowRolesComponent } from './content/show-roles/show-roles.component';
-import { EditRoleComponent } from './content/edit-role/edit-role.component';
 
 @NgModule({
   declarations: [
@@ -33,8 +32,7 @@ import { EditRoleComponent } from './content/edit-role/edit-role.component';
     EditUserComponent,
     ShowUsersComponent,
     WelcomeComponent,
-    ShowRolesComponent,
-    EditRoleComponent
+    ShowRolesComponent
   ],
   imports: [
     BrowserModule,

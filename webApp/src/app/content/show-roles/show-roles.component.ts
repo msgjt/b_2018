@@ -42,7 +42,7 @@ export class ShowRolesComponent implements OnInit {
       .subscribe(permissions => this.permissions = permissions,
         error => console.log(JSON.stringify(error)),
         () => {
-          this.permissions.forEach(permission => this.permissionList.push({'id': permission.id, 'itemName': permission.type}));
+          this.permissions.forEach(permission => this.permissionList.push({'id': permission.id, 'itemName': permission.permissionType}));
         });
   }
 
@@ -54,7 +54,10 @@ export class ShowRolesComponent implements OnInit {
       .subscribe(permissions => this.permissions = permissions,
         error => console.log(JSON.stringify(error)),
         () => {
-          this.permissions.forEach(permission => this.selectedPermissions.push({'id': permission.id, 'itemName': permission.type}));
+          this.permissions.forEach(permission => this.selectedPermissions.push({
+            'id': permission.id,
+            'itemName': permission.permissionType
+          }));
         });
   }
 
