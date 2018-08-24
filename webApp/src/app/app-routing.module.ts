@@ -17,7 +17,7 @@ const routes: Routes = [
   {path: 'content/dummy', component: DummyContentComponent},
   {path: 'user/show', component: ShowUsersComponent},
   {path: 'user/edit', component: EditUserComponent},
-  {path: 'role/showRole', component : ShowRolesComponent},
+  {path: 'role/editRole', component : ShowRolesComponent},
   {path: 'welcome', component: WelcomeComponent},
   {path: '**', component: ErrorComponent}
 

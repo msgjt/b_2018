@@ -28,9 +28,9 @@ export class ContentService {
       .put<User>(url, body);
   }
 
-  updateRole(id: number, permissions: Array<Permission>): Observable<Role> {
+  updateRole(id: number, roleType: string, permissions: Array<Permission>): Observable<Role> {
     const url = `${this.baseUrl}/roles/update`;
-    const body = {id, permissions};
+    const body = {id, roleType, permissions};
     return this.httpClient
       .put<Role>(url, body);
 
