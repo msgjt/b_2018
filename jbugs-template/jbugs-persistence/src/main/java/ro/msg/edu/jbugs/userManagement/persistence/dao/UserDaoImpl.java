@@ -1,9 +1,10 @@
 package ro.msg.edu.jbugs.userManagement.persistence.dao;
 
-import ro.msg.edu.jbugs.userManagement.persistence.entity.Role;
+import ro.msg.edu.jbugs.userManagement.persistence.entity.Bug;
 import ro.msg.edu.jbugs.userManagement.persistence.entity.User;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
+import ro.msg.edu.jbugs.userManagement.persistence.entity.enums.BugStatusType;
 import ro.msg.edu.jbugs.userManagement.persistence.entity.enums.UserStatus;
 
 import javax.ejb.*;
@@ -13,8 +14,6 @@ import javax.persistence.Query;
 import javax.persistence.TypedQuery;
 import java.util.List;
 import java.util.Optional;
-import java.util.Set;
-import java.util.stream.Collectors;
 
 @Stateless
 public class UserDaoImpl implements UserDao {
@@ -144,4 +143,14 @@ public class UserDaoImpl implements UserDao {
         return userOptional;
     }
 
+    @Override
+    public Boolean hasOpenBugsByUsername(String username) {
+        log.info("hasOpenBugsByUsername: username={}", username);
+        TypedQuery<Bug> query = em.createNamedQuery(User.COUNT_OPEN_BUGS_BY_USERNAME, Bug.class);
+        query.setParameter("username", username);
+        query.setParameter("status", BugStatusType.CLOSED);
+        List<Bug> openBugs = query.getResultList();
+        log.info("hasOpenBugsByUsername: result={}", openBugs.size());
+        return !openBugs.isEmpty();
+    }
 }
