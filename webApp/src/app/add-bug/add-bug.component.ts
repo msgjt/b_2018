@@ -17,7 +17,7 @@ export class AddBugComponent implements OnInit {
   priority = 'LOW';
   bugStatusType = 'OPEN';
   assignee = null;
-
+  creator: User;
 
   constructor(private contentservice: ContentService) {
   }
@@ -26,14 +26,21 @@ export class AddBugComponent implements OnInit {
     this.contentservice.getAllUsers()
       .subscribe(result => this.users = result,
         error => console.log(JSON.stringify(error)));
+
   }
 
 
   onadd() {
+    const loggedUser: string = localStorage.getItem('username');
+    const user = this.users.filter((value) => {
+      return value.username === loggedUser;
+    });
+    this.model.creator = user[0];
     console.log(this.model.title + this.model.description + this.model.version
-      + this.model.dueDate.toString() + this.priority + this.bugStatusType + this.assignee);
+      + this.model.dueDate.toString() + this.priority + this.bugStatusType + this.assignee + this.model.creator);
     this.contentservice.addbug(this.model.title, this.model.description,
-      this.model.version, this.model.fixedInVersion, this.priority, this.bugStatusType, this.model.dueDate, this.assignee).subscribe();
+      this.model.version, this.model.fixedInVersion, this.priority,
+      this.bugStatusType, this.model.dueDate.toString(), this.assignee, this.model.creator).subscribe();
   }
 
 }

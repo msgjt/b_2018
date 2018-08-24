@@ -36,8 +36,8 @@ public class Bug extends BaseEntity<Long> {
     @ManyToOne
     private User creator;
 
-    @ManyToOne
-    @JoinColumn(name = "assignee_id")
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "assignee_id",referencedColumnName = "id")
     private User assignee;
 
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "bug")

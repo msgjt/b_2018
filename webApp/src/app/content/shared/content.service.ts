@@ -33,10 +33,11 @@ export class ContentService {
   }
 
   addbug(title: string, description: string, version: string, fixedInVersion: string, severityType: string, bugStatusType: string,
-         dueDate: Date, assignee: User) {
+         dueDate: string, assignee: User, creator: User) {
     const url = `${this.baseUrl}/bugs/add`;
     console.log(assignee);
-    const body = {title, description, version, fixedInVersion, severityType, bugStatusType, dueDate, assignee};
+    const body = {title, description, version, fixedInVersion, severityType, bugStatusType, dueDate, assignee, creator};
+    console.log(body);
     return this.httpClient
       .post<Bug>(url, body);
   }
