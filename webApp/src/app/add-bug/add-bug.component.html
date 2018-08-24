@@ -177,7 +177,18 @@
     <div class="control-group">
       <h4 class="text-secondary mb-0">Upload file</h4>
       <br>
-      <input placeholder="Upload file"  type="file" id="load-file">
+      <input  #input [(ngModel)]="atachement"
+             [fileSizeErrorMsg]="'File size must be less that 1mb and more that 25Mb!'"
+              [ng2FileSize]="{ max: 25600 }"
+              (change)="onFile($event)"
+             class="from-control-file ng-valid running-alert " type="file" >
+      <!--<div _ngcontent-c1="" class="alert alert-success">-->
+        <!--<strong _ngcontent-c1="">Valid size: </strong>-->
+        <!--<span _ngcontent-c1="">-->
+                        <!--6009 bytes-->
+                    <!--</span>-->
+      <!--</div>-->
+
     </div>
   </div>
 

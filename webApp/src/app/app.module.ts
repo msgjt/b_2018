@@ -19,6 +19,7 @@ import {ShowUsersComponent} from './content/show-users/show-users.component';
 import { WelcomeComponent } from './content/welcome/welcome.component';
 import {AngularMultiSelectModule} from 'angular2-multiselect-dropdown';
 import { AddBugComponent } from './add-bug/add-bug.component';
+import {Ng2FileSizeModule} from 'ng2-file-size';
 
 @NgModule({
   declarations: [
@@ -37,6 +38,7 @@ import { AddBugComponent } from './add-bug/add-bug.component';
     BrowserModule,
     AppRoutingModule,
     FormsModule,
+    Ng2FileSizeModule,
     HttpClientModule,
     TranslateModule.forRoot({
       loader: {

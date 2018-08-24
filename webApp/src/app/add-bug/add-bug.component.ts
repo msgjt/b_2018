@@ -18,6 +18,8 @@ export class AddBugComponent implements OnInit {
   bugStatusType = 'OPEN';
   assignee = null;
   creator: User;
+  atachement = null;
+  file = null;
 
   constructor(private contentservice: ContentService) {
   }
@@ -29,6 +31,9 @@ export class AddBugComponent implements OnInit {
 
   }
 
+  onFile(event){
+    this.file = event.target.files[0];
+  }
 
   onadd() {
     const loggedUser: string = localStorage.getItem('username');
