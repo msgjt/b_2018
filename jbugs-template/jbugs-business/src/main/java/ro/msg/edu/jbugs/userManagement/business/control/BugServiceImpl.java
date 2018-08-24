@@ -6,13 +6,11 @@ import ro.msg.edu.jbugs.userManagement.business.exception.BusinessException;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import ro.msg.edu.jbugs.userManagement.persistence.dao.BugDao;
-import ro.msg.edu.jbugs.userManagement.persistence.dao.BugDaoImpl;
 import ro.msg.edu.jbugs.userManagement.persistence.entity.Bug;
 import ro.msg.edu.jbugs.userManagement.persistence.entity.enums.BugStatusType;
 
 import javax.ejb.EJB;
 import javax.ejb.Stateless;
-import javax.inject.Inject;
 import java.util.Optional;
 
 @Stateless

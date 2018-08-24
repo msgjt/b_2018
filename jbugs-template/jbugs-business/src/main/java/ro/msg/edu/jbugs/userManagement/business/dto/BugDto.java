@@ -1,11 +1,10 @@
 package ro.msg.edu.jbugs.userManagement.business.dto;
 
 import lombok.*;
-import ro.msg.edu.jbugs.userManagement.persistence.entity.User;
 import ro.msg.edu.jbugs.userManagement.persistence.entity.enums.BugStatusType;
 import ro.msg.edu.jbugs.userManagement.persistence.entity.enums.SeverityType;
 
-import java.util.Date;
+
 
 @NoArgsConstructor
 @AllArgsConstructor
@@ -19,11 +18,11 @@ public class BugDto extends BaseDto{
     private String description;
     private String version;
     private String fixedInVersion;
-    private Date dueDate;
+    private String dueDate;
     private SeverityType severityType;
     private BugStatusType bugStatusType;
-    private User creator;
-    private User assignee;
+    private UserDto creator;
+    private UserDto assignee;
 
 
 }
