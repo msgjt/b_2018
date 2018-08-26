@@ -9,6 +9,4 @@ export class Bug {
   creator: User;
   dueDate: string;
 
-
-
 }
