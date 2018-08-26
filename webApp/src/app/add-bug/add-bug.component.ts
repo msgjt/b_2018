@@ -31,9 +31,10 @@ export class AddBugComponent implements OnInit {
 
   }
 
-  onFile(event){
+  onFile(event) {
     this.file = event.target.files[0];
   }
+
 
   onadd() {
     const loggedUser: string = localStorage.getItem('username');
@@ -46,6 +47,9 @@ export class AddBugComponent implements OnInit {
     this.contentservice.addbug(this.model.title, this.model.description,
       this.model.version, this.model.fixedInVersion, this.priority,
       this.bugStatusType, this.model.dueDate.toString(), this.assignee, this.model.creator).subscribe();
+    this.contentservice.addFile(this.file).subscribe(res => {
+      console.log(res);
+    });
   }
 
 }

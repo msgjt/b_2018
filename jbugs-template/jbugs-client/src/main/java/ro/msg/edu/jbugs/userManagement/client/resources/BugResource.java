@@ -20,6 +20,7 @@ import javax.ejb.EJB;
 import javax.ws.rs.*;
 import javax.ws.rs.core.MediaType;
 import javax.xml.crypto.Data;
+import java.io.File;
 import java.util.ArrayList;
 import java.util.Date;
 import javax.ws.rs.core.Response;
@@ -40,6 +41,15 @@ public class BugResource {
         log.info("logInfo" + bugDto.getAssignee().getUsername());
         bugService.createBug(bugDto);
         return "test";
+    }
+
+    @Path("/file")
+    @POST
+    @Consumes(MediaType.MULTIPART_FORM_DATA)
+    public String addFile(File file) throws BusinessException {
+        log.info("logInfo " + file.getName());
+        //bugService.createBug(bugDto);
+        return "it works";
     }
 
     @Path("query")
@@ -70,7 +80,6 @@ public class BugResource {
         log.info("getUsers: result");
         return new ArrayList<>();
     }
-
 
 
     @Path("/close")

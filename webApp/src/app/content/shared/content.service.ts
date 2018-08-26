@@ -15,7 +15,7 @@ export class ContentService {
   }
 
   addUser(firstName: string, lastName: string, email: string, password: string,
-          mobileNumber: string,  roles: Array<Role>): Observable<User> {
+          mobileNumber: string, roles: Array<Role>): Observable<User> {
     const url = `${this.baseUrl}/users/add`;
     const body = {firstName, lastName, email, password, mobileNumber, roles};
     return this.httpClient
@@ -56,6 +56,14 @@ export class ContentService {
     console.log(assignee);
     const body = {title, description, version, fixedInVersion, severityType, bugStatusType, dueDate, assignee, creator};
     console.log(body);
+    return this.httpClient
+      .post<Bug>(url, body);
+  }
+
+  addFile(file: File) {
+    const url = `${this.baseUrl}/bugs/file`;
+    const body = new FormData();
+    body.append('file', file, file.name);
     return this.httpClient
       .post<Bug>(url, body);
   }
