@@ -25,6 +25,7 @@ import { EditRoleComponent } from './content/edit-role/edit-role.component';
 import { RecaptchaModule } from 'angular-google-recaptcha';
 import { ShowBugsComponent } from './content/show-bugs/show-bugs.component';
 import { DataFilterPipe } from './content/show-bugs/data-filter.pipe';
+import {EditBugComponent} from './edit-bug/edit-bug.component';
 
 // TODO should be taken from somekind of config?
 const SITE_KEY = '6LeLWmsUAAAAAPRM65RcHUjnHwdCmIJUTceUvP-k';
@@ -43,7 +44,8 @@ const SITE_KEY = '6LeLWmsUAAAAAPRM65RcHUjnHwdCmIJUTceUvP-k';
     ShowBugsComponent,
     DataFilterPipe,
     AddBugComponent,
-    EditRoleComponent
+    EditRoleComponent,
+    EditBugComponent
   ],
   imports: [
     BrowserModule,

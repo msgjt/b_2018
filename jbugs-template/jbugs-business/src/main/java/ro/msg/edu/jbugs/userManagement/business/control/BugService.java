@@ -15,15 +15,9 @@ public interface BugService {
      */
     BugDto createBug(BugDto bugDto) throws BusinessException;
 
-
-//    /**
-//     *
-//     * @return
-//     */
-//    List<BugDto> getBugs();
-
-
     boolean closeBug(Long bugId) throws BusinessException;
 
     boolean changeBugStatus(BugDto bugDto) throws BusinessException;
+
+    BugDto updateBug(BugDto bugDto) throws  BusinessException;
 }

@@ -92,4 +92,40 @@ public class BugDaoImpl implements BugDao {
         return bugOptional;
     }
 
+    @Override
+    public Optional<Bug> updateBug(Bug bug) {
+        log.info("update bug in persistence from business: bug={}", bug);
+        Optional<Bug> bugFound;
+        log.info("!!!!ID:" +  bug.getId());
+        try {
+            bugFound = Optional.ofNullable(em.find(Bug.class, bug.getId()));
+            log.info("bug found in db: bug={}", bugFound);
+            bugFound.map(b -> {
+                if(bug.getTitle()!= null && !bug.getTitle().equals(""))
+                    b.setTitle(bug.getTitle());
+                if(bug.getDescription()!= null && !bug.getDescription().equals(""))
+                    b.setDescription(bug.getDescription());
+                if(bug.getVersion()!= null && !bug.getVersion().equals(""))
+                    b.setVersion(bug.getVersion());
+                if(bug.getFixedInVersion()!= null && !bug.getFixedInVersion().equals(""))
+                    b.setFixedInVersion(bug.getFixedInVersion());
+                if(bug.getDueDate()!= null && !bug.getDueDate().equals(""))
+                    b.setDueDate(bug.getDueDate());
+                if(bug.getSeverityType()!= null && !bug.getSeverityType().equals(""))
+                    b.setSeverityType(bug.getSeverityType());
+                if(bug.getStatusType()!= null && !bug.getStatusType().equals(""))
+                    b.setStatusType(bug.getStatusType());
+                if(bug.getCreator()!= null && !bug.getCreator().equals(""))
+                    b.setCreator(bug.getCreator());
+                if(bug.getAssignee()!= null && !bug.getAssignee().equals("")) {
+                    b.setAssignee(bug.getAssignee());
+                }
+                return b;
+            }).orElseThrow(RuntimeException::new);
+        } catch (RuntimeException ex) {
+            bugFound = Optional.empty();
+        }
+        log.info("updateBug: result={}", bugFound);
+        return bugFound;
+    }
 }

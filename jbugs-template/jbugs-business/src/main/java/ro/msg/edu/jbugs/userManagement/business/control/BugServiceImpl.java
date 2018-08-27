@@ -5,6 +5,7 @@ import ro.msg.edu.jbugs.userManagement.business.dto.BugDto;
 import ro.msg.edu.jbugs.userManagement.business.exception.BusinessException;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
+import ro.msg.edu.jbugs.userManagement.business.exception.BusinessExceptionCode;
 import ro.msg.edu.jbugs.userManagement.persistence.dao.BugDao;
 import ro.msg.edu.jbugs.userManagement.persistence.entity.Bug;
 import ro.msg.edu.jbugs.userManagement.persistence.entity.enums.BugStatusType;
@@ -48,5 +49,18 @@ public class BugServiceImpl implements BugService{
         Optional<Bug> bugOptional = bugDao.changeBugStatus(bugDto.getId(), bugDto.getBugStatusType());
         log.info("bug optional fromm persistence: bugOptional={}", bugOptional);
         return bugOptional.isPresent();
+    }
+
+    @Override
+    public BugDto updateBug(BugDto bugDto) throws BusinessException {
+        log.info("updateBug from client: bugDto={}", bugDto);
+        Bug bug = bugConverter.convertDtoToEntity(bugDto);
+        //BugValidator.validateBugForUpdate(bug);
+        log.info("BugDTO to Bug: bug={}", bug);
+        Optional<Bug> bugOptional = bugDao.updateBug(bug);
+        Bug bugResult = bugOptional
+                .orElseThrow(() -> new BusinessException(BusinessExceptionCode.CAN_NOT_UPDATE_BUG));
+        log.info("bug optional from persistence: bugOptional={}", bugOptional);
+        return bugConverter.convertEntityToDto(bugResult);
     }
 }

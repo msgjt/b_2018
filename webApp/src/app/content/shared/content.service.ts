@@ -5,6 +5,7 @@ import {User} from '../../shared/user';
 import {Role} from '../../shared/role';
 import {Bug} from '../../shared/bug';
 import {Permission} from '../../shared/permission';
+import {BugStatusType} from '../../shared/bugstatustype';
 
 @Injectable()
 export class ContentService {
@@ -98,5 +99,15 @@ export class ContentService {
     const url = `${this.baseUrl}/permissions`;
     return this.httpClient
       .get<Array<Permission>>(url);
+  }
+
+  updateBug(title: string, description: string, version: string,
+  fixedInVersion: string, dueDate: string, status: string,
+  creator: string, assignedTo: string, severityType: string) {
+    const url = `${this.baseUrl}/bugs/update`;
+    const body = {title, description, version, fixedInVersion, dueDate, status, creator, assignedTo, severityType};
+    console.log(body);
+    return this.httpClient
+      .post<Bug>(url, body);
   }
 }

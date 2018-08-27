@@ -13,7 +13,7 @@ public class BugConverter extends AbstractConverterBaseEntityConverter<Bug, BugD
     @Override
     public Bug convertDtoToEntity(BugDto bugDto) {
         UserConverter userConverter= new UserConverter();
-        return Bug.builder()
+        Bug bug = Bug.builder()
                 .title(bugDto.getTitle())
                 .description(bugDto.getDescription())
                 .version(bugDto.getVersion())
@@ -24,6 +24,10 @@ public class BugConverter extends AbstractConverterBaseEntityConverter<Bug, BugD
                 .creator(userConverter.convertDtoToEntity(bugDto.getAssignee()))
                 .assignee(userConverter.convertDtoToEntity(bugDto.getCreator()))
                 .build();
+        if (bugDto.getId() != null) {
+            bug.setId(bugDto.getId());
+        }
+        return bug;
     }
 
     @Override

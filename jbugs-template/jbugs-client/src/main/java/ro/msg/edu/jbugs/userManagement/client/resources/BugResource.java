@@ -85,7 +85,7 @@ public class BugResource {
 
     @Path("/changestatus")
     @POST
-    public Response changeBugStatus(BugDto bugDto) throws  BusinessException{
+    public Response changeBugStatus(BugDto bugDto) throws  BusinessException {
         log.info("change bug status in ressource: bugId={} newStatus={}", bugDto.getId(), bugDto.getBugStatusType());
         if (bugService.changeBugStatus(bugDto)) {
             log.info("bug status changed");
@@ -94,4 +94,13 @@ public class BugResource {
         log.info("bug status not changed");
         throw new BusinessException(BusinessExceptionCode.CAN_NOT_CLOSE_BUG_STATUS);
     }
+
+    @Path("/updatebug")
+    @POST
+    public Response updateBug(BugDto bugDto) throws BusinessException {
+        log.info("update bug with new params: Bug={}", bugDto);
+        BugDto result = bugService.updateBug(bugDto);
+        return Response.status(Response.Status.OK).entity(result).build();
+    }
+
 }

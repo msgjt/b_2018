@@ -23,4 +23,6 @@ public interface BugDao {
     Optional<Bug> closeBug(@NotNull Long bugId);
 
     Optional<Bug> changeBugStatus(@NotNull Long bugId, @NotNull BugStatusType bugStatusType);
+
+    Optional<Bug> updateBug(@NotNull Bug bug);
 }

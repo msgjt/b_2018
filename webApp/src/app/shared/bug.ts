@@ -1,4 +1,6 @@
 import {User} from './user';
+import {BugStatusType} from './bugstatustype';
+import {BugSeverityType} from './bugseveritytype';
 
 export class Bug {
   id: number;
@@ -8,5 +10,7 @@ export class Bug {
   version: string;
   creator: User;
   dueDate: string;
-
+  status: BugStatusType;
+  assignedTo: User;
+  severityType: BugSeverityType;
 }

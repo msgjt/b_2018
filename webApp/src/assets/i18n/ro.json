@@ -56,5 +56,10 @@
     "status": "Status cont",
     "users": "Utilizatori",
     "email": "Email"
+  },
+  "editbug": {
+    "selectstatus": "Selecteaza status",
+    "selectuser": "Selecteaza utilizator",
+    "selectseverity": "Selecteaza severitatea"
   }
 }

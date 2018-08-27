@@ -57,5 +57,10 @@
     "status": "Account status",
     "users": "Users",
     "email": "Email"
+  },
+  "editbug": {
+    "selectstatus": "Select status",
+    "selectuser": "Select user",
+    "selectseverity": "Select severity"
   }
 }

@@ -27,7 +27,8 @@ public enum BusinessExceptionCode {
     INVALID_TOKEN(5000,"The token is invalid."),
     CAN_NOT_FIND_BUG(2001, "Bug not found"),
     CAN_NOT_CLOSE_BUG(2002, "Bug can not be closed from this status"),
-    CAN_NOT_CLOSE_BUG_STATUS(2003, "Bug status can not be changed from this status");
+    CAN_NOT_CLOSE_BUG_STATUS(2003, "Bug status can not be changed from this status"),
+    CAN_NOT_UPDATE_BUG(2004, "Bug can not be updated");
     Integer id;
     String message;
 }

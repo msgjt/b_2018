@@ -31,7 +31,7 @@ export class AddBugComponent implements OnInit {
 
   }
 
-  onFile(event){
+  onFile(event) {
     this.file = event.target.files[0];
   }
 
