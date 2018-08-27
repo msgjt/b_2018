@@ -33,6 +33,7 @@ export class AddBugComponent implements OnInit {
 
   onFile(event) {
     this.file = event.target.files[0];
+    console.log(this.file.name.substring(this.file.name.length - 3));
   }
 
 
