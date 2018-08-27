@@ -22,19 +22,18 @@
   },
   "adduser": {
     "adduser": "Add user",
-    "firstname": "First Name",
-    "lastname": "Last name",
-    "phonenr": "Mobil number",
-    "password": "Password",
-    "submit": "Submit"
+    "passwordRe": "Reenter password",
+    "passwordRe1": "Please reenter the password.",
+    "passwordRe2": "Passwords don't match.",
+    "submit": "Add"
   },
   "edit": {
     "edit": "Edit user",
     "firstname": "First Name",
     "lastname": "Last name",
-    "mobilenr": "Mobil number",
+    "mobilenr": "Mobile number",
     "password": "Password",
-    "update": "Submit",
+    "update": "Update",
     "message1": "Please enter a valid First Name.",
     "message2": "Must be 3-20 characters long and contain only letters.",
     "message3": "Please enter a valid Last Name.",
@@ -56,6 +55,7 @@
   "show": {
     "show": "Show users",
     "status": "Account status",
-    "users": "Users"
+    "users": "Users",
+    "email": "Email"
   }
 }

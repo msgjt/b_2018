@@ -7,10 +7,13 @@
         <form name="sentMessage" id="contactForm" autocomplete="off" (ngSubmit)="submitForm()" #formControl="ngForm">
           <div class="control-group">
             <div class="form-group floating-label-form-group controls mb-0 pb-2">
+              <!--<p style="height: 20px">-->
+                <!--<small *ngIf="usernameControl.value != '' && usernameControl.value != null">Username:</small>-->
+              <!--</p>-->
               <input type="text"
                      id="usernameInput"
                      name="username"
-                     class="form-control"
+                     class="form-control better-placeholder"
                      [(ngModel)]="model.username"
                      required
                      #usernameElement
@@ -63,8 +66,19 @@
           </div>
           <br>
           <div class="row justify-content-center">
+            <recaptcha
+              name="recaptcha"
+              [(ngModel)]="recaptcha"
+              (scriptLoad)="onScriptLoad()"
+              (scriptError)="onScriptError()"></recaptcha>
+          </div>
+
+
+          <br>
+          <div class="row justify-content-center">
             <button type="submit" style="border-color: #18BC9C; background-color: #18BC9C"
-                    class="btn btn-primary btn-lg" [disabled]="formControl.invalid">{{'login.login' | translate }}
+                    class="btn btn-primary btn-lg" [disabled]="formControl.invalid || !recaptcha">{{'login.login' |
+              translate }}
             </button>
           </div>
         </form>

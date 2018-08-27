@@ -12,7 +12,7 @@ import java.util.Optional;
  */
 public interface UserDao {
 
-    Optional<User> addUser(@NotNull User user);
+    Optional<User> createUser(@NotNull User user);
 
     Optional<User> updateUser(@NotNull User user);
 
@@ -27,5 +27,7 @@ public interface UserDao {
     Boolean setUserStatusByUsername(String username, UserStatus userStatus);
 
     Optional<User> getUserWithEmail(@NotNull String email);
+
+    Boolean hasOpenBugsByUsername(String username);
 
 }

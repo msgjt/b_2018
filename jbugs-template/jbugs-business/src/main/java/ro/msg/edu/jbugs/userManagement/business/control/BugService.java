@@ -4,6 +4,8 @@ import ro.msg.edu.jbugs.userManagement.business.dto.BugDto;
 import ro.msg.edu.jbugs.userManagement.business.exception.BusinessException;
 import ro.msg.edu.jbugs.userManagement.persistence.entity.enums.BugStatusType;
 
+import java.util.List;
+
 public interface BugService {
     /**
      * This method is used to persist a bug in database
@@ -12,6 +14,14 @@ public interface BugService {
      * @throws BusinessException
      */
     BugDto createBug(BugDto bugDto) throws BusinessException;
+
+
+//    /**
+//     *
+//     * @return
+//     */
+//    List<BugDto> getBugs();
+
 
     boolean closeBug(Long bugId) throws BusinessException;
 

@@ -19,6 +19,15 @@ import {ShowUsersComponent} from './content/show-users/show-users.component';
 import { WelcomeComponent } from './content/welcome/welcome.component';
 import {AngularMultiSelectModule} from 'angular2-multiselect-dropdown';
 import { AddBugComponent } from './add-bug/add-bug.component';
+import {Ng2FileSizeModule} from 'ng2-file-size';
+import {Data} from './shared/data';
+import { EditRoleComponent } from './content/edit-role/edit-role.component';
+import { RecaptchaModule } from 'angular-google-recaptcha';
+import { ShowBugsComponent } from './content/show-bugs/show-bugs.component';
+import { DataFilterPipe } from './content/show-bugs/data-filter.pipe';
+
+// TODO should be taken from somekind of config?
+const SITE_KEY = '6LeLWmsUAAAAAPRM65RcHUjnHwdCmIJUTceUvP-k';
 
 @NgModule({
   declarations: [
@@ -31,12 +40,16 @@ import { AddBugComponent } from './add-bug/add-bug.component';
     EditUserComponent,
     ShowUsersComponent,
     WelcomeComponent,
-    AddBugComponent
+    ShowBugsComponent,
+    DataFilterPipe,
+    AddBugComponent,
+    EditRoleComponent
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
     FormsModule,
+    Ng2FileSizeModule,
     HttpClientModule,
     TranslateModule.forRoot({
       loader: {
@@ -45,14 +58,16 @@ import { AddBugComponent } from './add-bug/add-bug.component';
         deps: [HttpClient]
       }
     }),
-    AngularMultiSelectModule
-
-
+    AngularMultiSelectModule,
+    RecaptchaModule.forRoot({
+      siteKey: SITE_KEY,
+    })
   ],
   providers: [
+    Data,
     LoginService,
     ContentService,
-    {provide: HTTP_INTERCEPTORS, useClass: UserHttpInterceptor, multi: true},
+    {provide: HTTP_INTERCEPTORS, useClass: UserHttpInterceptor, multi: true}
   ],
   bootstrap: [AppComponent]
 })

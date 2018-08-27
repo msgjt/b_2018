@@ -12,7 +12,7 @@
     "password": "Parola",
     "message1": "Te rog sa introduci un nume de utilizator valid.",
     "message2": "Te rog sa introduci o parola valida.",
-    "message3": "Parola trebuie sa aiba o lungime de 6-12 caractere si sa contina doar litere sau numere",
+    "message3": "Parola trebuie sa aiba o lungime de 6-12 caractere si sa contina doar litere sau cifre",
     "message4": "Numele utilizatorului este valid.",
     "message5": "Parola valida."
   },
@@ -21,10 +21,9 @@
   },
   "adduser": {
     "adduser": "Adaugare utilizator",
-    "firstname": "Prenume",
-    "lastname": "Nume",
-    "phonenr": "Numar de telefon",
-    "password": "Parola",
+    "passwordRe": "Reintroduceti parola",
+    "passwordRe1": "Te rog sa introduci parola inca o data.",
+    "passwordRe2": "Parolele nu sunt identice.",
     "submit": "Adauga"
   },
   "edit": {
@@ -37,7 +36,7 @@
     "message1": "Te rog sa introduci un preune valid.",
     "message2": "Prenumele trebuie sa aiba o lungime de 3-20 de caractere si sa contina numai litere.",
     "message3": "Te rog sa introduci un nume valid.",
-    "message4": "Prenumele trebuie sa aiba o lungime de 6-12 de caractere si sa contina numai litere.",
+    "message4": "Parola trebuie sa aiba o lungime de 6-12 de caractere si sa contina numai litere si cifre.",
     "message5": "Te rog sa introduci o parola valida.",
     "message6": "Te rog sa introduci un mail valid ex: abc@msggroup.com.",
     "message7": "Emailul trbuie sa contina doar numere, litere, puncte, underscore.",
@@ -55,6 +54,7 @@
   "show": {
     "show": "Afisare utilizatori",
     "status": "Status cont",
-    "users": "Utilizatori"
+    "users": "Utilizatori",
+    "email": "Email"
   }
 }

@@ -73,13 +73,13 @@ public class TestServlet extends HttpServlet {
 //        }
 
         Optional<User> optionalUser = userDao.getUserByUsernameWithRolesAndPermissions("macarc");
-//        User user = new User();
-//        user.setFirstName("qwerty");
-//        user.setLastName("asdfg");
-//        user.setId(1l);
-//        user.setPassword("fd");
-//        user.setStatus(UserStatus.ACTIVE);
-//        userDao.addUser(user);
+        User user = new User();
+        user.setFirstName("qwerty");
+        user.setLastName("asdfg");
+        user.setId(1l);
+        user.setPassword("fd");
+        user.setStatus(UserStatus.ACTIVE);
+        userDao.createUser(user);
 //        Optional<User> userOptional = userDao.getUserByUsername("admina");
 //        User user = userOptional.get();
 //        userDao.addUser(user);
