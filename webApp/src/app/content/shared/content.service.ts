@@ -6,6 +6,7 @@ import {Role} from '../../shared/role';
 import {Bug} from '../../shared/bug';
 import {Permission} from '../../shared/permission';
 import {BugStatusType} from '../../shared/bugstatustype';
+import {BugSeverityType} from '../../shared/bugseveritytype';
 
 @Injectable()
 export class ContentService {
@@ -16,7 +17,7 @@ export class ContentService {
   }
 
   addUser(firstName: string, lastName: string, email: string, password: string,
-          mobileNumber: string,  roles: Array<Role>): Observable<User> {
+          mobileNumber: string, roles: Array<Role>): Observable<User> {
     const url = `${this.baseUrl}/users/add`;
     const body = {firstName, lastName, email, password, mobileNumber, roles};
     return this.httpClient
@@ -101,13 +102,15 @@ export class ContentService {
       .get<Array<Permission>>(url);
   }
 
-  updateBug(title: string, description: string, version: string,
-  fixedInVersion: string, dueDate: string, status: string,
-  creator: string, assignedTo: string, severityType: string) {
+  updateBug(id: number, title: string, description: string, version: string,
+            fixedInVersion: string, dueDate: string, bugStatusType: string,
+            creator: User, assignee: User, severityType: string): Observable<Bug> {
     const url = `${this.baseUrl}/bugs/update`;
-    const body = {title, description, version, fixedInVersion, dueDate, status, creator, assignedTo, severityType};
-    console.log(body);
+    const body = {id, title, description, version, fixedInVersion, dueDate, bugStatusType, creator, assignee, severityType};
+    console.log('status: ' + bugStatusType);
+    console.log('severity: ' + severityType);
+    console.log('body: ' + body);
     return this.httpClient
-      .post<Bug>(url, body);
+      .put<Bug>(url, body);
   }
 }

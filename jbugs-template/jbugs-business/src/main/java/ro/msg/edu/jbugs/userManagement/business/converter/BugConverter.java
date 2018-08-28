@@ -1,5 +1,6 @@
 package ro.msg.edu.jbugs.userManagement.business.converter;
 
+import ro.msg.edu.jbugs.userManagement.business.control.UserServiceImpl;
 import ro.msg.edu.jbugs.userManagement.business.dto.BugDto;
 import ro.msg.edu.jbugs.userManagement.persistence.entity.Bug;
 

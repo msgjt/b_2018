@@ -95,8 +95,8 @@ public class BugResource {
         throw new BusinessException(BusinessExceptionCode.CAN_NOT_CLOSE_BUG_STATUS);
     }
 
-    @Path("/updatebug")
-    @POST
+    @Path("/update")
+    @PUT
     public Response updateBug(BugDto bugDto) throws BusinessException {
         log.info("update bug with new params: Bug={}", bugDto);
         BugDto result = bugService.updateBug(bugDto);
